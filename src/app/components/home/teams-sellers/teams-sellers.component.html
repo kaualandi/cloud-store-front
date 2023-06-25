@@ -1,0 +1,15 @@
+<section id="heart-teams">
+  <div class="container">
+    <h1>Veja os mantos do seu time do coração</h1>
+    <div class="content">
+      <ul>
+        <li *ngFor="let team of heart_teams">
+          <a [routerLink]="['/products', team.id]">
+            <img [src]="team.img" [alt]="team.name">
+            <span>{{ team.name }}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
