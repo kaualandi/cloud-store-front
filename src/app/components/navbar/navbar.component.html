@@ -1,23 +1,67 @@
-<nav #navbar [ngClass]="{ scroll }" [ngStyle]="{ '--navbar-height': navbar_height + 'px' }">
-  <div class="content">
+<div class="tape">
+  <swiper [slidesPerView]="1" [navigation]="true" [autoplay]="autoplayConfig">
+    <ng-template swiperSlide *ngFor="let tape of tape_texts">
+      <p>
+        <i icon="{{tape.icon}}"></i>
+        <span [innerHTML]="tape.text"></span>
+      </p>
+    </ng-template>
+  </swiper>
+</div>
 
+<nav>
+  <div class="content">
     <a class="logo" routerLink="/">
       <img src="assets/images/logo.png" alt="logo">
-      Boilerplate
     </a>
 
-    <div class="hamburger" [ngClass]="{ active: !navbar_hidden }">
-      <button aria-label="menu" mat-icon-button (click)="navbar_hidden = !navbar_hidden">
-        <span class="line"></span>
+    <div class="search card-input" [ngClass]="{active: showSearch}">
+      <input type="text" placeholder="Qual manto procura?">
+      <button aria-label="Buscar" mat-icon-button>
+        <i icon="search"></i>
       </button>
     </div>
 
-    <div class="menu {{colapse}}" [ngClass]="{ hidden: navbar_hidden }">
-      <a mat-button routerLink="/">Início</a>
-      <a mat-button routerLink="/about">Sobre</a>
-      <a mat-button routerLink="/contact">Contato</a>
+    <div class="menu">
+      <button class="search_button" (click)="showSearch = !showSearch" aria-label="Buscar" mat-button>
+        <i icon="search"></i>
+        <span class="flex">
+          Buscar manto
+        </span>
+      </button>
+      <button aria-label="Login/Cadastro" mat-button>
+        <i icon="user"></i>
+        <span class="flex">
+          <small>Entrar/Cadastrar</small>
+          Minha conta
+        </span>
+      </button>
+
+      <button aria-label="Rastreio" mat-button>
+        <i icon="truck"></i>
+        <span class="flex">
+          <small>Onde está meu pedido?</small>
+          Rastrear pedido
+        </span>
+      </button>
+
+      <button aria-label="Carrinho" mat-button>
+        <i icon="cart"></i>
+        <span class="flex">Carrinho</span>
+        <span class="dot">2</span>
+      </button>
     </div>
   </div>
 </nav>
+<div class="pages">
+  <swiper [slidesPerView]="'auto'" [navigation]="true" [freeMode]="true">
+    <ng-template swiperSlide *ngFor="let page of page_links">
+      <a mat-button [routerLink]="page.link">{{page.text}}</a>
+    </ng-template>
+  </swiper>
+</div>
+
+
+
 
 <router-outlet></router-outlet>

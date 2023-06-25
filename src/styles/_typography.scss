@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
 $base-font-size: 19;
 $min-font-size: 10;
 $max-font-size: 52;
@@ -54,5 +56,30 @@ $max-font-size: 52;
 
   #{$class-name} {
     font-size: calc($i / $base-font-size * 1rem) !important;
+  }
+}
+
+.f-poppins {
+  font-family: 'Poppins', sans-serif !important;
+}
+
+.f-inter {
+  font-family: 'Inter', sans-serif !important;
+}
+
+.mat-typography {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  a,
+  button,
+  span,
+  label,
+  .mat-button {
+    font-family: 'Poppins', sans-serif;
   }
 }

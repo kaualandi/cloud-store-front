@@ -31,12 +31,13 @@
   input,
   textarea,
   select {
-    padding: 12px 16px;
-    border-radius: 50px;
-    border: 1px solid var(--secondary-bg);
-    background-color: var(--secondary-bg);
+    padding: 15px 20px;
+    border-radius: var(--br);
     outline: none;
-    color: var(--text-color);
+    border: none;
+    box-shadow: var(--bs);
+    background-color: #fff;
+    color: var(--text_color);
 
     &[type='number'] {
       -webkit-appearance: textfield;

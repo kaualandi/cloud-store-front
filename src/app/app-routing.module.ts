@@ -14,7 +14,6 @@ const routes: Routes = [
   {
     path: '',
     component: NavbarComponent,
-    canActivate: [AuthGuard], // * Caso o projeto tenha rotas sem auth além de login, remover essa linha.
     children: [
       {
         path: '',

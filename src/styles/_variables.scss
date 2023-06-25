@@ -4,23 +4,29 @@
   --br: 0.5rem;
   --time-c-b: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
-  --text-color: #000000;
-  --main-color: #302b2b;
-  --primary-bg: #fff;
-  --secondary-bg: #e9e9e9;
+  --footer_primary: #ff8c00;
+  --title_color: #07180d;
+  --text_color: #161616;
+  --primary_color: #1e95eb;
+  --secondary_color: #cfa572;
+  --third_color: #2b2a2a;
+  --primary_bg: #ebebeb;
+  --secondary_bg: #f0f0f0;
+  --third_bg: #191919;
+  --border_color: #b9b9b9;
 
-  --yellow-color: #f2af4c;
-  --green-color: #5dc983;
-  --red-color: #eb5769;
+  --yellow_color: #f2af4c;
+  --green_color: #5dc983;
+  --red_color: #eb5769;
 
   // ? Navbar variables
-  --navbar-max-width: 1024px;
-  --navbar-logo-height: 50px;
-  --navbar-position: fixed;
-  --navbar-top-bg: #fff; // transparent
-  --navbar-top-color: #000000;
-  --navbar-top-padding: 20px 10px;
-  --navbar-scroll-bg: #f00;
-  --navbar-scroll-color: #fff;
-  --navbar-scroll-padding: 0 10px;
+  --navbar_max_width: 1440px;
+  --navbar_logo_width: 70px;
+  --navbar_logo_width_tablet: 50px;
+  --navbar_top_bg: #ebebeb;
+  --navbar_top_color: #000000;
+  --navbar_top_padding: 18px 40px;
+  --navbar_scroll_bg: #ebebeb;
+  --navbar_scroll_color: #000000;
+  --navbar_scroll_padding: 10px 10px;
 }
