@@ -1,15 +1,25 @@
 <section id="heart-teams">
   <div class="container">
-    <h1>Veja os mantos do seu time do coração</h1>
+    <h1 class="f-28">Veja os mantos do seu time do coração</h1>
     <div class="content">
       <ul>
         <li *ngFor="let team of heart_teams">
           <a [routerLink]="['/products', team.id]">
             <img [src]="team.img" [alt]="team.name">
-            <span>{{ team.name }}</span>
+            <span class="f-16">{{ team.name }}</span>
           </a>
         </li>
       </ul>
     </div>
+  </div>
+</section>
+
+<section id="best-sellers">
+  <div class="container">
+    <header>
+      <h1>Mais vendidos</h1>
+      <p>Clique e veja todos os produtos</p>
+      <a mat-button>Ver mais produtos</a>
+    </header>
   </div>
 </section>
