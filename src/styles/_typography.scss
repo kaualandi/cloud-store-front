@@ -46,6 +46,9 @@ $max-font-size: 52;
   label {
     @extend .fd-14;
   }
+  input {
+    @extend .fd-14;
+  }
   .mat-button {
     @extend .fd-14;
   }
@@ -79,7 +82,7 @@ $max-font-size: 52;
   button,
   span,
   label,
-  .mat-button {
+  input .mat-button {
     font-family: 'Poppins', sans-serif;
   }
 }
