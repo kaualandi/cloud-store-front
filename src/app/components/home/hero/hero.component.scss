@@ -1,0 +1,36 @@
+@import 'src/styles/media';
+@import 'swiper/css';
+@import 'swiper/css/pagination';
+
+#banner {
+  .swiper {
+    .swiper-wrapper {
+      .swiper-slide {
+        img {
+          width: 100%;
+          height: 100%;
+          border-radius: var(--br);
+          &.mobile {
+            display: none;
+          }
+          @include media('<=tablet') {
+            &.mobile {
+              display: block;
+            }
+            &.desktop {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+    .swiper-pagination-bullet {
+      transition: var(--ts);
+      border-radius: 1rem;
+      &.swiper-pagination-bullet-active {
+        --swiper-pagination-color: var(--primary_color);
+        width: 0.8rem;
+      }
+    }
+  }
+}

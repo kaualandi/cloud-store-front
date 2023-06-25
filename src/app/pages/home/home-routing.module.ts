@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 const routes: Routes = [
   {
     path: '',
+    title: 'Início | CloudStore',
     component: HomeComponent,
   },
 ];

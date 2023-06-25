@@ -23,7 +23,6 @@ $rm_button_labels: '<=710px';
       gap: 10px;
       align-items: center;
       justify-content: center;
-      // @extend .f-ibm;
       b {
         font-weight: 600;
       }
@@ -63,7 +62,6 @@ nav {
       }
       span {
         color: var(--navbar_top_color);
-        // @extend .f-ibm;
         line-height: 1.2;
         font-weight: 600;
       }
@@ -98,7 +96,6 @@ nav {
       input {
         border-radius: 50px 0 0 50px;
         width: 100%;
-        // @extend .f-ibm;
       }
       button {
         width: 80px;
@@ -146,7 +143,6 @@ nav {
         small {
           color: var(--primary_color);
           font-size: 0.5rem;
-          // @extend f-ibm;
         }
         .dot {
           position: absolute;
@@ -162,7 +158,6 @@ nav {
           justify-content: center;
           font-size: 0.6rem !important;
           font-weight: 500;
-          // @extend .f-inter;
         }
 
         &.mat-button {
@@ -232,12 +227,10 @@ nav {
   }
   a {
     color: var(--primary_bg);
-    border-radius: var(--br);
     font-size: 0.8rem;
     font-weight: 500;
     display: block;
     text-decoration: none;
     padding: 0 30px;
-    // @extend .f-inter;
   }
 }

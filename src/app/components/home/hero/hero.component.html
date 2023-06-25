@@ -1,0 +1,10 @@
+<section id="banner">
+  <div class="container">
+    <swiper [slidesPerView]="1" [spaceBetween]="20" [pagination]="true" [autoplay]="autoplayConfig">
+      <ng-template swiperSlide *ngFor="let banner of banners">
+        <img [src]="banner.desktop" alt="" class="desktop">
+        <img [src]="banner.mobile" alt="" class="mobile">
+      </ng-template>
+    </swiper>
+  </div>
+</section>
