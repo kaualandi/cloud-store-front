@@ -14,8 +14,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   loading = false;
 
-  showSearch = false;
-
   autoplayConfig = {
     disableOnInteraction: false,
     pauseOnMouseEnter: true,

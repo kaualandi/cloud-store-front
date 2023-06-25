@@ -15,7 +15,7 @@
       <img src="assets/images/logo.png" alt="logo">
     </a>
 
-    <div class="search card-input" [ngClass]="{active: showSearch}">
+    <div class="search card-input">
       <input type="text" placeholder="Qual manto procura?">
       <button aria-label="Buscar" mat-icon-button>
         <i icon="search"></i>
@@ -23,12 +23,6 @@
     </div>
 
     <div class="menu">
-      <button class="search_button" (click)="showSearch = !showSearch" aria-label="Buscar" mat-button>
-        <i icon="search"></i>
-        <span class="flex">
-          Buscar manto
-        </span>
-      </button>
       <button aria-label="Login/Cadastro" mat-button>
         <i icon="user"></i>
         <span class="flex">

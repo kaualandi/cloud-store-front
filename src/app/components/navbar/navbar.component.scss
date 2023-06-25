@@ -39,6 +39,7 @@ nav {
   background-color: var(--navbar_top_bg);
   position: sticky;
   top: 0;
+  z-index: 2;
   .content {
     max-width: var(--navbar_max_width);
     margin: 0 auto;
@@ -47,6 +48,9 @@ nav {
     flex-wrap: inherit;
     align-items: center;
     justify-content: space-between;
+    @include media('<=navbar-collapse') {
+      flex-wrap: wrap;
+    }
 
     .logo {
       display: flex;
@@ -68,8 +72,7 @@ nav {
     }
 
     .search {
-      width: 50%;
-      max-width: 815px;
+      width: 40%;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -78,20 +81,10 @@ nav {
       box-shadow: 0px 4px 9px 0px rgba(0, 0, 0, 0.25);
       border-radius: 50px;
       @include media('<=navbar-collapse') {
-        position: fixed;
-        top: 56px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 10%;
-        opacity: 0;
-        z-index: -1;
+        width: 100%;
+        margin-top: 0.5rem;
+        order: 1;
         transition: var(--ts);
-        &.active {
-          opacity: 1;
-          z-index: 3;
-          width: 80%;
-          top: 180px;
-        }
       }
       input {
         border-radius: 50px 0 0 50px;
@@ -178,12 +171,6 @@ nav {
           i {
             margin-right: 0;
           }
-        }
-      }
-      .search_button {
-        display: none;
-        @include media('<=navbar-collapse') {
-          display: block;
         }
       }
     }
