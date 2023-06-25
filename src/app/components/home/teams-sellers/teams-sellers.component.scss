@@ -4,22 +4,32 @@
       font-weight: 700;
       color: var(--title_color_two);
     }
+
     .content {
       margin-top: 50px;
+
       ul {
         list-style: none;
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
         gap: 30px;
+
         li {
           width: 120px;
+
           a {
             display: flex;
             flex-direction: column;
             text-align: center;
             text-decoration: none;
             color: var(--title_color);
+            transition: var(--ts);
+
+            &:hover {
+              transform: scale(1.2);
+            }
+
             img {
               margin-bottom: 10px;
               width: 100%;
