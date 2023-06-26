@@ -1,3 +1,5 @@
+@import '/src/styles/media';
+
 #heart-teams {
   .container {
     h1 {
@@ -35,6 +37,78 @@
               width: 100%;
             }
           }
+        }
+      }
+    }
+  }
+}
+
+#best-sellers {
+  .container {
+    .content {
+      background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url('/assets/images/stadium.png');
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      display: flex;
+      gap: 2%;
+      padding: 25px 60px;
+      border-radius: var(--br);
+      header {
+        width: 27%;
+        color: var(--white);
+        margin-top: 20px;
+        min-width: 180px;
+        h1 {
+          font-weight: 600;
+          margin-bottom: 15px;
+        }
+        button {
+          background-color: var(--white);
+          color: var(--black);
+          font-weight: 600;
+          border-radius: 16px;
+          padding: 2px 25px;
+          margin-top: 25px;
+          z-index: 3;
+        }
+      }
+      .carousel {
+        width: 73%;
+        .arrows {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          left: 0;
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          z-index: 2;
+          .next,
+          .prev {
+            background-color: var(--primary_color);
+            color: var(--white);
+            transition: var(--ts);
+            &.swiper-button-disabled {
+              transform: scale(0.8);
+              opacity: 0;
+            }
+            &.next {
+              margin-right: 12px;
+            }
+            &.prev {
+              margin-left: 12px;
+            }
+          }
+        }
+      }
+      @include media('<=tablet') {
+        flex-direction: column;
+        gap: 25px;
+        header,
+        .carousel {
+          width: 100%;
         }
       }
     }

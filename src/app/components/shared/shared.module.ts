@@ -7,6 +7,8 @@ import { InputNumberDirective } from 'src/app/directives/input-number.directive'
 import { LoadingComponent } from './loading/loading.component';
 import { PageLoadingComponent } from './page-loading/page-loading.component';
 import { PaginationComponent } from './pagination/pagination.component';
+import { MatButtonModule } from '@angular/material/button';
+import { ProductCardComponent } from './product-card/product-card.component';
 
 @NgModule({
   imports: [CommonModule],
@@ -17,6 +19,7 @@ import { PaginationComponent } from './pagination/pagination.component';
     IconDirective,
     InputFileDirective,
     InputNumberDirective,
+    ProductCardComponent,
   ],
   exports: [
     LoadingComponent,
@@ -25,6 +28,8 @@ import { PaginationComponent } from './pagination/pagination.component';
     IconDirective,
     InputFileDirective,
     InputNumberDirective,
+    MatButtonModule,
+    ProductCardComponent,
   ],
 })
 export class SharedModule {}

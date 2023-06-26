@@ -1,0 +1,25 @@
+<div class="product-card">
+  <div *ngIf="discount" class="discount">
+    <span class="f-12">{{ discount }}%</span>
+  </div>
+
+  <div class="image">
+    <img [src]="product.img" [alt]="product.name">
+    <img src="https://via.placeholder.com/640x640" [alt]="product.name">
+  </div>
+
+  <div class="details">
+    <span class="name f-17">{{ product.name }}</span>
+    <div class="prices">
+      <span class="new f-22 f-inter">{{ product.price | currency }}</span>
+      <span *ngIf="discount" class="old f-12 f-inter">{{ product.old_price | currency }}</span>
+    </div>
+    <span class="parcels f-13">
+      em até <b>12X</b> de <span class="f-13">{{ (product.price / 12) | currency }}</span>
+    </span>
+  </div>
+
+  <div class="shipping">
+    <span class="f-11">Frete grátis</span>
+  </div>
+</div>
