@@ -1,9 +1,10 @@
 .mat-button-base {
   &.mat-button {
     &.primary {
-      background-color: var(--main-color);
-      color: var(--primary-bg);
-      border-radius: 50px;
+      background-color: var(--primary_color);
+      color: var(--white);
+      border-radius: 18px;
+      padding: 0.2rem 1rem;
     }
 
     &.mat-button-disabled,

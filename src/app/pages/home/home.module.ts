@@ -1,3 +1,4 @@
+import { AboutComponent } from './../../components/home/about/about.component';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
@@ -16,6 +17,7 @@ import { ArticlesComponent } from 'src/app/components/home/articles/articles.com
     HeroComponent,
     TeamsSellersComponent,
     ArticlesComponent,
+    AboutComponent,
   ],
 })
 export class HomeModule {}

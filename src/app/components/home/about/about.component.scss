@@ -1,0 +1,45 @@
+@import 'src/styles/media';
+
+#about {
+  .container {
+    display: flex;
+    gap: 100px;
+    align-items: center;
+    justify-content: center;
+    & > * {
+      width: 50%;
+      img {
+        width: 100%;
+        border-radius: var(--br);
+      }
+      h1 {
+        font-weight: 700;
+        color: var(--title_color_two);
+      }
+      p {
+        line-height: 1.4;
+        color: var(--text_color);
+        margin-top: 20px;
+      }
+      a {
+        margin-top: 20px;
+      }
+    }
+    @include media('<=desktop') {
+      gap: 20px;
+      .content {
+        p,
+        a {
+          margin-top: 10px;
+        }
+      }
+    }
+    @include media('<=tablet') {
+      flex-direction: column;
+      gap: 20px;
+      & > * {
+        width: 100%;
+      }
+    }
+  }
+}
