@@ -184,11 +184,10 @@ nav {
 }
 
 .pages {
-  background-color: var(--primary_color);
   box-shadow: var(--bs);
   position: relative;
   .swiper {
-    max-width: 1150px;
+    max-width: 930px;
     margin: 0 auto;
     .swiper-wrapper {
       .swiper-slide {
@@ -219,11 +218,11 @@ nav {
     }
   }
   a {
-    color: var(--primary_bg);
+    color: var(--third_color);
     font-size: 0.8rem;
     font-weight: 500;
     display: block;
     text-decoration: none;
-    padding: 0 30px;
+    padding: 0 15px;
   }
 }
