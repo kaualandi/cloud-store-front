@@ -11,6 +11,7 @@
       img {
         width: 100%;
         border-radius: var(--br);
+        max-width: 450px;
       }
       h1 {
         font-weight: 700;
@@ -24,6 +25,11 @@
       a {
         margin-top: 20px;
       }
+    }
+    figure {
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
     @include media('<=desktop') {
       gap: 20px;

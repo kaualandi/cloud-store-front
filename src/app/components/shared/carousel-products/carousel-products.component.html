@@ -1,0 +1,18 @@
+<div class="content">
+  <div class="carousel">
+    <swiper [config]="config">
+      <ng-template swiperSlide *ngFor="let prod of products">
+        <app-product-card [product]="prod"></app-product-card>
+      </ng-template>
+    </swiper>
+    <div class="arrows">
+      <button class="prev" mat-icon-button>
+        <i class="f-24" icon="angle_left"></i>
+      </button>
+
+      <button class="next" mat-icon-button>
+        <i class="f-24" icon="angle_right"></i>
+      </button>
+    </div>
+  </div>
+</div>
