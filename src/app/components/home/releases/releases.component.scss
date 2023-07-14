@@ -1,0 +1,20 @@
+#releases {
+  .container {
+    .title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      h2 {
+        border-bottom: 4px solid var(--primary_color);
+        font-weight: 600;
+      }
+      a {
+        color: var(--primary_color);
+        font-weight: 600;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}

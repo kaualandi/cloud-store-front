@@ -13,7 +13,7 @@ import { CarouselProductsComponent } from './carousel-products/carousel-products
 import { SwiperModule } from 'swiper/angular';
 
 @NgModule({
-  imports: [CommonModule, SwiperModule],
+  imports: [CommonModule, SwiperModule, MatButtonModule],
   declarations: [
     LoadingComponent,
     PageLoadingComponent,

@@ -1,0 +1,26 @@
+.content {
+  .carousel {
+    position: relative;
+    .arrows {
+      button {
+        background-color: var(--primary_color);
+        color: var(--primary_bg);
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1;
+        box-shadow: var(--bs);
+        transition: var(--ts);
+        &.swiper-button-disabled {
+          opacity: 0.3;
+        }
+        &.prev {
+          left: -10px;
+        }
+        &.next {
+          right: -10px;
+        }
+      }
+    }
+  }
+}
