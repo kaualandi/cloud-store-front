@@ -5,7 +5,7 @@
       align-items: center;
       justify-content: space-between;
       h2 {
-        border-bottom: 4px solid var(--primary_color);
+        text-decoration: underline var(--primary_color) 4px;
         font-weight: 600;
       }
       a {

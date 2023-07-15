@@ -1,0 +1,54 @@
+@import 'src/styles/media';
+
+#about {
+  .container {
+    display: flex;
+    gap: 50px;
+    align-items: center;
+    justify-content: center;
+    & > * {
+      width: 50%;
+      img {
+        width: 100%;
+        border-radius: var(--br);
+        max-width: 300px;
+      }
+      h1 {
+        font-weight: 700;
+        color: var(--title_color_two);
+        line-height: 1.5;
+        text-decoration: underline var(--primary_color) 4px;
+      }
+      p {
+        line-height: 1.4;
+        color: var(--text_color);
+        margin-top: 20px;
+        max-width: 450px;
+      }
+      a {
+        margin-top: 20px;
+      }
+    }
+    figure {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+    @include media('<=desktop') {
+      gap: 20px;
+      .content {
+        p,
+        a {
+          margin-top: 10px;
+        }
+      }
+    }
+    @include media('<=tablet') {
+      flex-direction: column;
+      gap: 20px;
+      & > * {
+        width: 100%;
+      }
+    }
+  }
+}

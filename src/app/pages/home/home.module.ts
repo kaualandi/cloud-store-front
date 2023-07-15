@@ -10,6 +10,7 @@ import { SwiperModule } from 'swiper/angular';
 import { TeamsSellersComponent } from '../../components/home/teams-sellers/teams-sellers.component';
 import { ArticlesComponent } from 'src/app/components/home/articles/articles.component';
 import { ReleasesComponent } from '../../components/home/releases/releases.component';
+import { FaqComponent } from '../../components/home/faq/faq.component';
 
 @NgModule({
   imports: [CommonModule, SharedModule, HomeRoutingModule, SwiperModule],
@@ -20,6 +21,7 @@ import { ReleasesComponent } from '../../components/home/releases/releases.compo
     ArticlesComponent,
     AboutComponent,
     ReleasesComponent,
+    FaqComponent,
   ],
 })
 export class HomeModule {}
