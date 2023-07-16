@@ -12,9 +12,10 @@ import { ProductCardComponent } from './product-card/product-card.component';
 import { CarouselProductsComponent } from './carousel-products/carousel-products.component';
 import { SwiperModule } from 'swiper/angular';
 import { FooterComponent } from '../footer/footer.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-  imports: [CommonModule, SwiperModule, MatButtonModule],
+  imports: [CommonModule, SwiperModule, MatButtonModule, RouterModule],
   declarations: [
     LoadingComponent,
     PageLoadingComponent,

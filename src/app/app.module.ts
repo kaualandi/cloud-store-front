@@ -6,15 +6,14 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { SwiperModule } from 'swiper/angular';
 import { environment } from './../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
-import { SwiperModule } from 'swiper/angular';
 
+import { MatButtonModule } from '@angular/material/button';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { MatButtonModule } from '@angular/material/button';
 import { SharedModule } from './components/shared/shared.module';
 
 registerLocaleData(localePt);
@@ -24,7 +23,6 @@ registerLocaleData(localePt);
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
     HttpClientModule,
     MatSnackBarModule,
     MatDialogModule,

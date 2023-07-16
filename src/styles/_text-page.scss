@@ -1,0 +1,59 @@
+#text-page {
+  padding-top: 3rem;
+
+  .content {
+    padding: 0 8%;
+    max-width: var(--navbar_max_width);
+    margin: 0 auto;
+    h1 {
+      font-weight: 600;
+      color: var(--text_color);
+      text-align: center;
+      margin: 0;
+      @extend .f-45;
+      line-height: 1;
+    }
+
+    p,
+    li,
+    a,
+    span,
+    ol {
+      color: var(--text_color);
+      @extend .f-16;
+      line-height: 1.5;
+      letter-spacing: 1px;
+      text-align: justify;
+      list-style: none;
+    }
+
+    ol {
+      counter-reset: item;
+      li {
+        display: block;
+        &:before {
+          content: counters(item, '.') '. ';
+          counter-increment: item;
+        }
+      }
+    }
+
+    ol {
+      ol {
+        padding-left: 1rem;
+      }
+    }
+
+    li {
+      + li {
+        margin-top: 0.5rem;
+      }
+    }
+
+    .section {
+      & + .section {
+        margin-top: 2rem;
+      }
+    }
+  }
+}
