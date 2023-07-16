@@ -1,1 +1,53 @@
-<p>footer works!</p>
+<footer>
+  <div class="content">
+    <div class="logo">
+      <img src="assets/images/logo.png" alt="Cloud Store">
+      <div class="customer anchor">
+        <p>Atendimento</p>
+        <ul>
+          <li><b>E-mail: </b><a [href]="mail" target="_blank">contanto@cloudstore.com</a></li>
+          <li><b>WhatsApp: </b><a [href]="wpp" target="_blank">(21) 99695-3637</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="infors">
+      <div class="anchors">
+        <div class="help anchor">
+          <p>Ajuda</p>
+          <ul>
+            <li><a routerLink="/faq">Perguntas Frequentes</a></li>
+            <li><a routerLink="/exchange">Troca e Devoluções</a></li>
+            <li><a routerLink="/sizes">Tabela de Medidas</a></li>
+            <li><a routerLink="/washing">Instruções de Lavagem</a></li>
+          </ul>
+        </div>
+        <div class="about anchor">
+          <p>INTISTUCIONAL</p>
+          <ul>
+            <li><a routerLink="/about">Sobre a CloudStore</a></li>
+            <li><a routerLink="/shipping">Política de Envio</a></li>
+            <li><a routerLink="/privacy">Política de Privacidade</a></li>
+          </ul>
+        </div>
+        <div class="social anchor">
+          <p>Redes Sociais</p>
+          <ul>
+            <li><a [href]="instagram" target="_blank">Instagram</a></li>
+            <li><a [href]="facebook" target="_blank">Facebook</a></li>
+            <li><a [href]="tiktok" target="_blank">TikTok</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="payments">
+        <ul>
+          <li><i icon="cc_mastercard"></i></li>
+          <li><i icon="cc_visa"></i></li>
+          <li><i icon="pix"></i></li>
+          <li><i icon="paypal"></i></li>
+          <li><i icon="barcode"></i></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
