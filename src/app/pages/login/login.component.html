@@ -2,23 +2,26 @@
   <div class="row">
     <div class="col">
       <div class="logo">
-        <img src="assets/images/logo.svg" alt="Logo">
+        <img src="assets/icons/logo/1.svg" alt="Logo">
+        <img src="assets/icons/logo/2.svg" alt="Logo">
+        <img src="assets/icons/logo/3.svg" alt="Logo">
       </div>
     </div>
     <div class="col">
       <div class="form">
         <form (ngSubmit)="loginSubmitHandler()" [formGroup]="login_form">
-          <h1>Login</h1>
+          <h1>Entrar</h1>
           <div class="card-input">
-            <label for="email">Email</label>
-            <input type="text" id="email" placeholder="Digite seu email" mask="(00) 00000-0000" formControlName="email">
+            <label for="email">E-mail</label>
+            <input type="text" id="email" placeholder="Digite seu e-mail" formControlName="email">
           </div>
           <div class="card-input">
             <label for="password">Senha</label>
             <span class="input-icon">
               <input [type]="view_pass ? 'text' : 'password'" id="password" placeholder="Digite sua senha"
                 formControlName="password">
-              <button type="button" mat-icon-button aria-label="Ver senha" (click)="view_pass = !view_pass">
+              <button class="view-pass" type="button" mat-icon-button aria-label="Ver senha"
+                (click)="view_pass = !view_pass">
                 <i icon="view_pass" *ngIf="!view_pass"></i>
                 <i icon="hide_pass" *ngIf="view_pass"></i>
               </button>
@@ -34,6 +37,9 @@
             <button mat-button type="submit" class="primary" [disabled]="login_form.invalid || loading">
               Entrar
               <loading *ngIf="loading"></loading>
+            </button>
+            <button mat-button type="button" class="signup">
+              Não tem uma conta?
             </button>
           </div>
         </form>

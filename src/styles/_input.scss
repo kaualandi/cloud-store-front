@@ -32,12 +32,11 @@
   textarea,
   select {
     padding: 13px 20px;
-    border-radius: var(--br);
+    border-radius: 4px;
     outline: none;
     border: none;
-    box-shadow: var(--bs);
     background-color: #fff;
-    color: var(--text_color);
+    color: var(--title_color) !important;
 
     &[type='number'] {
       -webkit-appearance: textfield;

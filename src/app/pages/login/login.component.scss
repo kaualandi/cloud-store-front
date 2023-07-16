@@ -3,7 +3,8 @@
 #login {
   min-height: 100vh;
   width: 100%;
-  background-color: var(--main-color);
+  // background-image: linear-gradient(45deg, #fff 0%, #ddd 100%);
+  background-image: linear-gradient(45deg, #1d93e8 0%, #1556b8 100%);
 
   .row {
     padding: 2rem 8%;
@@ -14,6 +15,9 @@
     @include media('<=tablet') {
       gap: 2rem;
       flex-direction: column;
+      .logo {
+        margin-bottom: 3rem;
+      }
     }
 
     .col {
@@ -25,12 +29,25 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        position: relative;
         img {
           width: 100%;
           max-width: 350px;
+          position: absolute;
+          animation: top-bottom 1s ease-in-out infinite alternate;
+          --delay: 0.2s;
+          &:nth-child(1) {
+            animation-delay: var(--delay);
+          }
+          &:nth-child(2) {
+            animation-delay: calc(var(--delay) * 2);
+          }
+          &:nth-child(3) {
+            animation-delay: calc(var(--delay) * 3);
+          }
           @include media('<=tablet') {
-            max-width: 250px;
-            width: 50%;
+            max-width: 220px;
+            width: 100%;
           }
         }
       }
@@ -44,7 +61,7 @@
         flex-direction: column;
 
         form {
-          background-color: var(--primary-bg);
+          background-color: var(--primary_bg-bg);
           padding: 2rem;
           border-radius: var(--br);
           width: 100%;
@@ -54,19 +71,59 @@
             text-align: center;
           }
 
+          label,
+          h1,
+          a,
+          ::ng-deep .mat-checkbox-label span {
+            color: var(--primary_bg);
+          }
+
+          button[type='submit'] {
+            background-image: linear-gradient(45deg, #fff 0%, #ddd 100%);
+            color: var(--title_color);
+          }
+
+          .view-pass {
+            color: var(--title_color) !important;
+          }
+
           .forgot-password {
             display: inline-block;
             text-align: end;
             a {
-              color: var(--main-color);
               text-decoration: none;
+              color: var(--primary_bg);
               &:hover {
                 text-decoration: underline;
               }
             }
           }
+
+          .signup {
+            margin-top: 0.5rem;
+            color: var(--primary_bg);
+          }
         }
       }
     }
+  }
+}
+
+@keyframes top-bottom {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(10px);
+  }
+}
+
+::ng-deep {
+  .mat-checkbox-frame {
+    border-color: var(--primary_bg) !important;
+  }
+
+  .mat-checkbox-checked.mat-accent .mat-checkbox-background {
+    background-color: var(--primary_color) !important;
   }
 }
