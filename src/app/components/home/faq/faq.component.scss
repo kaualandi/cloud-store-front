@@ -1,6 +1,6 @@
 @import 'src/styles/media';
 
-#about {
+#faq {
   .container {
     display: flex;
     gap: 50px;
@@ -48,6 +48,14 @@
       gap: 20px;
       & > * {
         width: 100%;
+        justify-content: center;
+        text-align: center;
+        p {
+          margin: 20px auto 12px;
+        }
+      }
+      figure {
+        justify-content: center;
       }
     }
   }

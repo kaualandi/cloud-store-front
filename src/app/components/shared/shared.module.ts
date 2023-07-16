@@ -11,6 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { ProductCardComponent } from './product-card/product-card.component';
 import { CarouselProductsComponent } from './carousel-products/carousel-products.component';
 import { SwiperModule } from 'swiper/angular';
+import { FooterComponent } from '../footer/footer.component';
 
 @NgModule({
   imports: [CommonModule, SwiperModule, MatButtonModule],
@@ -23,6 +24,7 @@ import { SwiperModule } from 'swiper/angular';
     InputNumberDirective,
     ProductCardComponent,
     CarouselProductsComponent,
+    FooterComponent,
   ],
   exports: [
     LoadingComponent,
@@ -34,6 +36,7 @@ import { SwiperModule } from 'swiper/angular';
     MatButtonModule,
     ProductCardComponent,
     CarouselProductsComponent,
+    FooterComponent,
   ],
 })
 export class SharedModule {}

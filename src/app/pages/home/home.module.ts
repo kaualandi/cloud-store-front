@@ -11,6 +11,7 @@ import { TeamsSellersComponent } from '../../components/home/teams-sellers/teams
 import { ArticlesComponent } from 'src/app/components/home/articles/articles.component';
 import { ReleasesComponent } from '../../components/home/releases/releases.component';
 import { FaqComponent } from '../../components/home/faq/faq.component';
+import { PillarsComponent } from '../../components/home/pillars/pillars.component';
 
 @NgModule({
   imports: [CommonModule, SharedModule, HomeRoutingModule, SwiperModule],
@@ -22,6 +23,7 @@ import { FaqComponent } from '../../components/home/faq/faq.component';
     AboutComponent,
     ReleasesComponent,
     FaqComponent,
+    PillarsComponent,
   ],
 })
 export class HomeModule {}
