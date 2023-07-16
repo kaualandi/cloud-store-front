@@ -12,4 +12,6 @@ export class FooterComponent {
   instagram = 'https://www.instagram.com/cloudstorebr/';
   facebook = 'https://www.facebook.com/cloudstorebr';
   tiktok = 'https://www.tiktok.com/@cloudstorebr';
+
+  year = new Date().getFullYear();
 }

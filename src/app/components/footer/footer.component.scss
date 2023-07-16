@@ -103,3 +103,14 @@ footer {
     }
   }
 }
+
+.copy {
+  background-color: var(--primary_color);
+  padding: 4px;
+  p,
+  a {
+    color: var(--white);
+    text-align: center;
+    margin: 0;
+  }
+}
