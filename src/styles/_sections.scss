@@ -5,3 +5,18 @@
   padding: 0 1rem;
   margin-top: 3rem;
 }
+
+main {
+  animation: fadeInBounceLeft 0.5s ease-in-out both;
+}
+
+@keyframes fadeInBounceLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

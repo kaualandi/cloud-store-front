@@ -18,13 +18,19 @@
     li,
     a,
     span,
-    ol {
+    ol,
+    ul {
       color: var(--text_color);
       @extend .f-16;
       line-height: 1.5;
       letter-spacing: 1px;
       text-align: justify;
       list-style: none;
+      margin: 0;
+      margin-bottom: 12px;
+    }
+    li {
+      margin-bottom: 2px;
     }
 
     ol {
@@ -38,15 +44,19 @@
       }
     }
 
-    ol {
-      ol {
-        padding-left: 1rem;
+    ul {
+      li {
+        display: block;
+        &:before {
+          content: '•';
+          margin-right: 8px;
+        }
       }
     }
 
-    li {
-      + li {
-        margin-top: 0.5rem;
+    ol {
+      ol {
+        padding-left: 1rem;
       }
     }
 

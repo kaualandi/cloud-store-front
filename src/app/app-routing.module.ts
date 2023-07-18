@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar.component';
 
-const SPR = false;
+const SPR = true;
 
 const routes: Routes = [
   {
@@ -25,6 +25,11 @@ const routes: Routes = [
           import('./pages/privacy-policy/privacy-policy.module').then(
             (m) => m.PrivacyPolicyModule
           ),
+      },
+      {
+        path: 'washing',
+        loadChildren: () =>
+          import('./pages/washing/washing.module').then((m) => m.WashingModule),
       },
     ],
   },
