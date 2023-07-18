@@ -31,6 +31,13 @@ const routes: Routes = [
         loadChildren: () =>
           import('./pages/washing/washing.module').then((m) => m.WashingModule),
       },
+      {
+        path: 'shipping',
+        loadChildren: () =>
+          import('./pages/shipping-policy/shipping-policy.module').then(
+            (m) => m.ShippingPolicyModule
+          ),
+      },
     ],
   },
 ];

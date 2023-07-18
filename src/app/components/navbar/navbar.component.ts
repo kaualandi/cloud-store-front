@@ -58,7 +58,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     },
     {
       text: 'Política de Envio',
-      link: '/send-polices',
+      link: '/shipping',
     },
   ];
 
