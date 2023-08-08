@@ -15,6 +15,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SharedModule } from './components/shared/shared.module';
+import { NgxMaskModule } from 'ngx-mask';
 
 registerLocaleData(localePt);
 
@@ -29,6 +30,7 @@ registerLocaleData(localePt);
     MatButtonModule,
     SwiperModule,
     SharedModule,
+    NgxMaskModule.forRoot(),
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // ? Registra o ServiceWorker após build em produção

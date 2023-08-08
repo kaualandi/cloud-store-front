@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-footer',
@@ -6,12 +7,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./footer.component.scss'],
 })
 export class FooterComponent {
-  mail = 'mailto:contato@cloudstore.com';
-  wpp = 'https://wa.me/5521996953637';
+  constructor(private storage: StorageService) {}
 
-  instagram = 'https://www.instagram.com/cloudstorebr/';
-  facebook = 'https://www.facebook.com/cloudstorebr';
-  tiktok = 'https://www.tiktok.com/@cloudstorebr';
+  config = this.storage.config;
+
+  mail = `mailto:${this.config.email}`;
+  wpp = `https://wa.me/55${this.config.whatsapp}`;
+
+  instagram = `https://www.instagram.com/${this.config.instagram}/`;
+  facebook = `https://www.facebook.com/${this.config.facebook}/`;
+  tiktok = `https://www.tiktok.com/@${this.config.tiktok}/`;
 
   year = new Date().getFullYear();
 }

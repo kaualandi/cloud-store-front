@@ -1,3 +1,5 @@
+import { IConfigTag } from './../../models/config';
+import { HomeFooterService } from './../../services/home-footer.service';
 import { StorageService } from './../../services/storage.service';
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import SwiperCore, { Autoplay, Navigation, FreeMode } from 'swiper';
@@ -10,7 +12,10 @@ SwiperCore.use([Navigation, Autoplay, FreeMode]);
   encapsulation: ViewEncapsulation.None,
 })
 export class NavbarComponent implements OnInit, OnDestroy {
-  constructor(private storage: StorageService) {}
+  constructor(
+    private storage: StorageService,
+    private homeFooterService: HomeFooterService
+  ) {}
 
   loading = false;
 
@@ -20,16 +25,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     delay: 5000,
   };
 
-  tape_texts = [
-    {
-      text: 'Frete <b>grátis</b> para todo país!',
-      icon: 'truck',
-    },
-    {
-      text: 'Use o cupom <b>DESCONTO10</b> e ganhe 10% de desconto!',
-      icon: 'dollar_badge',
-    },
-  ];
+  tape_texts: IConfigTag[] = [];
 
   page_links = [
     {
@@ -63,7 +59,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   ];
 
   ngOnInit(): void {
-    this.getMe();
+    this.getConfig();
 
     this.storage.watchUser().subscribe({
       next: () => {
@@ -77,9 +73,24 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   getMe() {
+    this.loading = false;
     // Requisição para pegar o usuário logado
     // if (error?.status === 401) {
     //   this.storageService.logout();
     // }
+  }
+
+  getConfig() {
+    this.loading = true;
+    this.homeFooterService.getConfig().subscribe({
+      next: (response) => {
+        this.storage.config = response;
+        this.tape_texts = response.tags;
+        this.getMe();
+      },
+      error: () => {
+        this.loading = false;
+      },
+    });
   }
 }

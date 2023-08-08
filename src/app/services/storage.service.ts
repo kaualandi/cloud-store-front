@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { Subject } from 'rxjs';
 import { IUser } from '../models/user';
+import { IConfig } from '../models/config';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,8 @@ export class StorageService {
   constructor(private cookieService: CookieService, private router: Router) {}
 
   UserSubject = new Subject<void>();
-  myUser: IUser = {} as IUser;
+  private myUser: IUser = {} as IUser;
+  private _config: IConfig = {} as IConfig;
 
   get myself() {
     return this.myUser;
@@ -19,6 +21,14 @@ export class StorageService {
 
   set myself(user: IUser) {
     this.myUser = user;
+  }
+
+  get config() {
+    return this._config;
+  }
+
+  set config(config: IConfig) {
+    this._config = config;
   }
 
   watchUser() {

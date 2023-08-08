@@ -5,8 +5,9 @@
       <div class="customer anchor">
         <p>Atendimento</p>
         <ul>
-          <li><b>E-mail: </b><a [href]="mail" target="_blank">contanto@cloudstore.com</a></li>
-          <li><b>WhatsApp: </b><a [href]="wpp" target="_blank">(21) 99695-3637</a></li>
+          <li><b>E-mail: </b><a [href]="mail" target="_blank">{{ this.config.email }}</a></li>
+          <li><b>WhatsApp: </b><a [href]="wpp" target="_blank">{{ this.config.phone | mask: '(00) 00000-0000' }}</a>
+          </li>
         </ul>
       </div>
     </div>

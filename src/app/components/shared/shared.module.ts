@@ -13,9 +13,16 @@ import { CarouselProductsComponent } from './carousel-products/carousel-products
 import { SwiperModule } from 'swiper/angular';
 import { FooterComponent } from '../footer/footer.component';
 import { RouterModule } from '@angular/router';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
-  imports: [CommonModule, SwiperModule, MatButtonModule, RouterModule],
+  imports: [
+    CommonModule,
+    SwiperModule,
+    MatButtonModule,
+    RouterModule,
+    NgxMaskModule.forRoot(),
+  ],
   declarations: [
     LoadingComponent,
     PageLoadingComponent,

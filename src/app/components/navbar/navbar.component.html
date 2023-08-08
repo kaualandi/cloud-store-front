@@ -3,7 +3,7 @@
     <ng-template swiperSlide *ngFor="let tape of tape_texts">
       <p>
         <i icon="{{tape.icon}}"></i>
-        <span [innerHTML]="tape.text"></span>
+        <span [innerHTML]="tape.name"></span>
       </p>
     </ng-template>
   </swiper>
@@ -55,7 +55,5 @@
   </swiper>
 </div>
 
-
-
-
-<router-outlet></router-outlet>
+<router-outlet *ngIf="!loading"></router-outlet>
+<page-loading *ngIf="loading"></page-loading>
