@@ -2,14 +2,16 @@
   <div class="container">
     <h1 class="f-28">Veja os mantos do seu time do coração</h1>
     <div class="content">
-      <ul>
-        <li *ngFor="let team of heart_teams">
-          <a [routerLink]="['/products', team.id]">
-            <img [src]="team.img" [alt]="team.name">
-            <span class="f-16">{{ team.name }}</span>
-          </a>
-        </li>
-      </ul>
+      <swiper [config]="configTeams">
+        <ng-template swiperSlide *ngFor="let team of heart_teams">
+          <div class="team">
+            <a [routerLink]="['/products', team.id]">
+              <img [src]="team.url" [alt]="team.name">
+              <span class="f-16">{{ team.name }}</span>
+            </a>
+          </div>
+        </ng-template>
+      </swiper>
     </div>
   </div>
 </section>
@@ -23,7 +25,7 @@
         <button mat-button>Ver mais produtos</button>
       </header>
       <div class="carousel">
-        <swiper [config]="config">
+        <swiper [config]="configSellers">
           <ng-template swiperSlide *ngFor="let prod of products">
             <app-product-card [product]="prod"></app-product-card>
           </ng-template>
