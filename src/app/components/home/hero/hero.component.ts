@@ -1,4 +1,5 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { IBanner } from 'src/app/models/config';
 import SwiperCore, { Autoplay, Pagination } from 'swiper';
 
 SwiperCore.use([Pagination, Autoplay]);
@@ -10,24 +11,11 @@ SwiperCore.use([Pagination, Autoplay]);
   encapsulation: ViewEncapsulation.None,
 })
 export class HeroComponent {
+  @Input() banners: IBanner[] = [];
+
   autoplayConfig = {
     disableOnInteraction: false,
     pauseOnMouseEnter: true,
     delay: 10000,
   };
-
-  banners = [
-    {
-      mobile: 'https://via.placeholder.com/500x300',
-      desktop: 'https://via.placeholder.com/1920x700',
-    },
-    {
-      mobile: 'https://via.placeholder.com/500x300',
-      desktop: 'https://via.placeholder.com/1920x700',
-    },
-    {
-      mobile: 'https://via.placeholder.com/500x300',
-      desktop: 'https://via.placeholder.com/1920x700',
-    },
-  ];
 }

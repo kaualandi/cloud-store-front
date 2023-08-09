@@ -1,4 +1,4 @@
-import { IConfigTag } from './../../models/config';
+import { ITag } from './../../models/config';
 import { HomeFooterService } from './../../services/home-footer.service';
 import { StorageService } from './../../services/storage.service';
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
@@ -25,7 +25,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     delay: 5000,
   };
 
-  tape_texts: IConfigTag[] = [];
+  tape_texts: ITag[] = [];
 
   page_links = [
     {

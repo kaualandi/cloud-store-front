@@ -1,7 +1,15 @@
-export interface IConfigTag {
+export interface ITag {
   id: number;
   name: string;
   icon: string;
+  created_at: string;
+  updated_at: string;
+  config_id: number;
+}
+
+export interface IBanner {
+  id: number;
+  image: string;
   created_at: string;
   updated_at: string;
   config_id: number;
@@ -23,7 +31,7 @@ export interface IConfig {
   installment_limit: number;
   created_at: string;
   updated_at: string;
-  tags: IConfigTag[];
+  tags: ITag[];
   articles: [];
-  banners: [];
+  banners: IBanner[];
 }
