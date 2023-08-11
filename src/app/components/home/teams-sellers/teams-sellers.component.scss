@@ -83,28 +83,26 @@
       .carousel {
         width: 73%;
         .arrows {
-          position: absolute;
-          top: 50%;
-          transform: translateY(-50%);
-          left: 0;
-          width: 100%;
-          display: flex;
-          justify-content: space-between;
-          z-index: 2;
           .next,
           .prev {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 2;
+
             background-color: var(--primary_color);
             color: var(--white);
             transition: var(--ts);
             &.swiper-button-disabled {
-              transform: scale(0.8);
-              opacity: 0;
+              opacity: 0.3;
             }
             &.next {
               margin-right: 12px;
+              right: 0;
             }
             &.prev {
               margin-left: 12px;
+              left: 0;
             }
           }
         }
