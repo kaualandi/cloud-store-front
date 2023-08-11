@@ -1,13 +1,7 @@
 <section id="articles">
   <div class="container">
-    <div class="article">
-      <img src="https://via.placeholder.com/640x640" [alt]="">
-    </div>
-    <div class="article">
-      <img src="https://via.placeholder.com/640x640" [alt]="">
-    </div>
-    <div class="article">
-      <img src="https://via.placeholder.com/640x640" [alt]="">
+    <div class="article" *ngFor="let article of articles">
+      <img [src]="article.image" [alt]="">
     </div>
   </div>
 </section>

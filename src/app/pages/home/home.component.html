@@ -1,7 +1,7 @@
 <main id="home">
   <app-hero *ngIf="config.banners?.length" [banners]="config.banners"></app-hero>
   <app-teams-sellers></app-teams-sellers>
-  <app-articles></app-articles>
+  <app-articles *ngIf="config.articles?.length" [articles]="config.articles"></app-articles>
   <app-about></app-about>
   <app-releases></app-releases>
   <app-faq></app-faq>

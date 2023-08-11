@@ -15,6 +15,14 @@ export interface IBanner {
   config_id: number;
 }
 
+export interface IArticle {
+  id: number;
+  image: string;
+  created_at: string;
+  updated_at: string;
+  config_id: number;
+}
+
 export interface IConfig {
   id: number;
   instagram: string;
@@ -32,6 +40,6 @@ export interface IConfig {
   created_at: string;
   updated_at: string;
   tags: ITag[];
-  articles: [];
+  articles: IArticle[];
   banners: IBanner[];
 }
