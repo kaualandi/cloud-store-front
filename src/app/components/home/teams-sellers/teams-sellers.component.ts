@@ -14,6 +14,8 @@ SwiperCore.use([Navigation, FreeMode]);
 export class TeamsSellersComponent implements OnInit {
   constructor(private homeFooterService: HomeFooterService) {}
 
+  loading = false;
+
   heart_teams: ITeam[] = [];
 
   products: IProduct[] = [];
@@ -56,10 +58,16 @@ export class TeamsSellersComponent implements OnInit {
   };
 
   ngOnInit(): void {
+    this.loading = true;
+    this.getTeamsAndSellers();
+  }
+
+  getTeamsAndSellers() {
     this.homeFooterService.getTeamsAndSellers().subscribe({
       next: (res) => {
         this.heart_teams = res.teams;
         this.products = res.products;
+        this.loading = false;
       },
     });
   }

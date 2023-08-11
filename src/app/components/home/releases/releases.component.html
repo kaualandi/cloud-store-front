@@ -5,6 +5,7 @@
       <a class="f-18">Ver todos</a>
     </div>
 
-    <app-carousel-products [products]="products"></app-carousel-products>
+    <app-carousel-products *ngIf="!loading" [products]="products"></app-carousel-products>
+    <page-loading *ngIf="loading"></page-loading>
   </div>
 </section>

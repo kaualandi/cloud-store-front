@@ -10,9 +10,12 @@ import { IProduct } from 'src/app/models/product';
 export class ReleasesComponent implements OnInit {
   constructor(private homeFooterService: HomeFooterService) {}
 
+  loading = false;
+
   products: IProduct[] = [];
 
   ngOnInit() {
+    this.loading = true;
     this.getProducts();
   }
 
@@ -20,6 +23,7 @@ export class ReleasesComponent implements OnInit {
     this.homeFooterService.getReleases().subscribe({
       next: (products) => {
         this.products = products;
+        this.loading = false;
       },
     });
   }

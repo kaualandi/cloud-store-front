@@ -2,7 +2,8 @@
   <div class="container">
     <h1 class="f-28">Veja os mantos do seu time do coração</h1>
     <div class="content">
-      <swiper [config]="configTeams">
+      <page-loading *ngIf="loading"></page-loading>
+      <swiper *ngIf="!loading" [config]="configTeams">
         <ng-template swiperSlide *ngFor="let team of heart_teams">
           <div class="team">
             <a routerLink="/products?team={{team.id}}">
@@ -24,7 +25,10 @@
         <p class="f-18">Clique e veja todos os produtos</p>
         <button mat-button>Ver mais produtos</button>
       </header>
-      <div class="carousel">
+      <div class="loading">
+        <page-loading *ngIf="loading"></page-loading>
+      </div>
+      <div *ngIf="!loading" class="carousel">
         <swiper [config]="configSellers">
           <ng-template swiperSlide *ngFor="let prod of products">
             <app-product-card [product]="prod"></app-product-card>
