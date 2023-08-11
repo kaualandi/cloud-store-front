@@ -1,4 +1,4 @@
-<div class="product-card">
+<div class="product-card" [routerLink]="['/product', product.id]">
   <div *ngIf="discount" class="discount">
     <span class="f-12">{{ product.discount }}%</span>
   </div>

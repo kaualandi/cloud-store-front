@@ -5,7 +5,7 @@
       <swiper [config]="configTeams">
         <ng-template swiperSlide *ngFor="let team of heart_teams">
           <div class="team">
-            <a [routerLink]="['/products', team.id]">
+            <a routerLink="/products?team={{team.id}}">
               <img [src]="team.url" [alt]="team.name">
               <span class="f-16">{{ team.name }}</span>
             </a>

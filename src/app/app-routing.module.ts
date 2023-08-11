@@ -38,6 +38,13 @@ const routes: Routes = [
             (m) => m.ShippingPolicyModule
           ),
       },
+      {
+        path: 'product/:id',
+        loadChildren: () =>
+          import('./pages/detail-product/detail-product.module').then(
+            (m) => m.DetailProductModule
+          ),
+      },
     ],
   },
 ];
