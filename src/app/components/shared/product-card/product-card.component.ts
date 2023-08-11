@@ -9,15 +9,13 @@ import { IProduct } from 'src/app/models/product';
 export class ProductCardComponent implements OnInit {
   @Input() product = {} as IProduct;
 
-  discount?: number;
+  discount = 0;
 
   ngOnInit() {
-    if (this.product.old_price !== this.product.price) {
-      this.discount = Math.round(
-        ((this.product.price - this.product.old_price) /
-          this.product.old_price) *
-          100
-      );
+    if (this.product.discount) {
+      this.discount =
+        this.product.base_price -
+        this.product.base_price * (this.product.discount / 100);
     }
   }
 }

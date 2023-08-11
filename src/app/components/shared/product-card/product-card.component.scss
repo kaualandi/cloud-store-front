@@ -58,6 +58,12 @@
     margin-top: 10px;
     .name {
       color: var(--text_color);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      height: 40px;
     }
     .prices {
       margin-top: 10px;
