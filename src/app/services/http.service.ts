@@ -44,7 +44,7 @@ export class HttpService {
     return headers;
   }
 
-  private handleError(error: HttpErrorResponse) {
+  private handleError = (error: HttpErrorResponse) => {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
       // Erro ocorreu no lado do client
@@ -56,7 +56,7 @@ export class HttpService {
     this.snackbar.error(errorMessage);
 
     return throwError(() => errorMessage);
-  }
+  };
 
   /**
    * ### Método GET
@@ -72,7 +72,7 @@ export class HttpService {
     const headers = this.getHeaders();
     return this.http
       .get<T>(this.getUrl(url), { headers, params })
-      .pipe(retry(2), catchError(this.handleError));
+      .pipe(retry(1), catchError(this.handleError));
   }
 
   /**
@@ -96,7 +96,7 @@ export class HttpService {
         headers,
         params,
       })
-      .pipe(retry(2), catchError(this.handleError));
+      .pipe(retry(1), catchError(this.handleError));
   }
 
   /**
@@ -117,7 +117,7 @@ export class HttpService {
 
     return this.http
       .patch<T>(this.getUrl(url), _body, { headers, params })
-      .pipe(retry(2), catchError(this.handleError));
+      .pipe(retry(1), catchError(this.handleError));
   }
 
   /**
@@ -134,6 +134,6 @@ export class HttpService {
     const headers = this.getHeaders();
     return this.http
       .delete<T>(this.getUrl(url), { headers, params })
-      .pipe(retry(2), catchError(this.handleError));
+      .pipe(retry(1), catchError(this.handleError));
   }
 }

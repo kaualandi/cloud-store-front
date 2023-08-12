@@ -1,5 +1,44 @@
-<main id="detail-product">
+<main *ngIf="!loading" id="detail-product">
   <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="card images">
+          <div class="all-images">
+            <button mat-icon-button class="image" *ngFor="let image of product.images; let iImg = index;"
+              (click)="handleSelectImage(iImg)" [ngClass]="{active: activedImageId === iImg}">
+              <img src="{{image.url}}" alt="{{product.name}}">
+            </button>
+          </div>
 
+          <div class="showcase">
+            <div class="image">
+              <img src="{{product.images[activedImageId].url}}" alt="{{product.name}}">
+            </div>
+          </div>
+        </div>
+
+        <div class="card about">
+          <app-about-product></app-about-product>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card infors">
+          <header>
+            <p class="status">
+              Novo <span *ngIf="product.sold">| product.sold Vendidos</span>
+            </p>
+            <h1>{{product.name}}</h1>
+            <div *ngIf="product.avaliations.length" class="avaliations">
+              {{ product.avaliations.length }} Avaliações
+            </div>
+          </header>
+        </div>
+      </div>
+    </div>
   </div>
+
+  <app-footer></app-footer>
 </main>
+
+
+<page-loading *ngIf="loading"></page-loading>

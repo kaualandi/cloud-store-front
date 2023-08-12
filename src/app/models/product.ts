@@ -8,6 +8,16 @@ export interface IProductImage {
   updated_at: string;
 }
 
+export interface IProductAvaliation {
+  id: number;
+  product_id: number;
+  user_id: number;
+  avaliation: number;
+  comment: string;
+  created_at: string;
+  updated_at: string;
+}
+
 export interface IProduct {
   id: number;
   name: string;
@@ -22,4 +32,5 @@ export interface IProduct {
   updated_at: string;
   team: ITeam;
   images: IProductImage[];
+  avaliations: IProductAvaliation[];
 }
