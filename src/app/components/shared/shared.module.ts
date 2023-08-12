@@ -32,7 +32,6 @@ import { AddToCardButtonComponent } from './add-to-card-button/add-to-card-butto
     ProductCardComponent,
     CarouselProductsComponent,
     FooterComponent,
-    AddToCardButtonComponent,
   ],
   exports: [
     LoadingComponent,
