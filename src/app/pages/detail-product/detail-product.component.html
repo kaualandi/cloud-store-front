@@ -32,6 +32,89 @@
               {{ product.avaliations.length }} Avaliações
             </div>
           </header>
+
+          <div class="sizes">
+            <button mat-button class="secondary s table"><i icon="ruler"></i> Tabela de medidas</button>
+            <p>Tamanho: {{cartItem.product_variant.name}}</p>
+            <div class="sizes-list">
+              <button mat-button class="size s" *ngFor="let size of product.variants;"
+                [ngClass]="cartItem.product_variant_id === size.id ? 'primary' : 'alt'"
+                (click)="handleSelectSize(size)">
+                {{size.name}}
+              </button>
+            </div>
+          </div>
+
+          <div class="customs">
+            <p>
+              Personalizar
+              <strong>
+                ({{customization_fee ? (customization_fee | currency) : 'Grátis'}})
+              </strong>
+            </p>
+
+            <div class="choice">
+              <button mat-button class="s" [ngClass]="!cartItem.customization ? 'primary' : 'alt'"
+                (click)="setCustoms(false)">
+                Não Personalizar
+              </button>
+              <button mat-button class="s" [ngClass]="cartItem.customization ? 'primary' : 'alt'"
+                (click)="setCustoms(true)">
+                Personalizar
+              </button>
+            </div>
+
+            <form *ngIf="cartItem.customization" (ngSubmit)="handleCustomFormSubmit()" [formGroup]="customsForm">
+              <div class="card-input">
+                <label for="name">
+                  <i icon="user"></i> Nome:
+                  <small [ngClass]="{error: (customsForm.value.name?.length || 0) > 15}">
+                    {{15 - (customsForm.value.name?.length || 0)}} restantes
+                  </small>
+                </label>
+                <input type="text" id="name" class="alt" formControlName="name" placeholder="Nome">
+              </div>
+
+              <div class="card-input">
+                <label for="number"><i icon="ball"></i> Número:</label>
+                <input type="number" id="number" class="alt" formControlName="number" placeholder="Número">
+              </div>
+            </form>
+          </div>
+
+          <div class="price">
+            <p class="title">
+              Preço:
+            </p>
+
+            <div class="content">
+              <p class="old" *ngIf="discount">
+                De: <span>{{product.base_price | currency}}</span>
+              </p>
+              <p class="current">
+                <span class="price f-36">{{discount | currency}}</span>
+                <span class="discount f-12">
+                  {{product.discount}}%
+                </span>
+              </p>
+              <div class="tags">
+                <div *ngIf="!free_shipping" class="tag delivery">
+                  <span class="f-12"><i class="f-12" icon="truck"></i><b>Frete</b> grátis acima de <b>{{delivery_fee |
+                      currency}}</b></span>
+                </div>
+                <div *ngIf="free_shipping" class="tag delivery">
+                  <span class="f-12"><i class="f-12" icon="truck"></i><b>Frete</b> grátis</span>
+                </div>
+                <div class="tag pix">
+                  <span class="f-12"><i class="f-12" icon="pix"></i>Até <b>5% OFF</b> no <b>PIX</b></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="delivery">
+
+          </div>
         </div>
       </div>
     </div>

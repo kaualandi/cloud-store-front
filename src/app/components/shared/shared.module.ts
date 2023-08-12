@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { IconDirective } from 'src/app/directives/icon.directive';
 import { InputFileDirective } from 'src/app/directives/input-file.directive';
-import { InputNumberDirective } from 'src/app/directives/input-number.directive';
 import { LoadingComponent } from './loading/loading.component';
 import { PageLoadingComponent } from './page-loading/page-loading.component';
 import { PaginationComponent } from './pagination/pagination.component';
@@ -29,7 +28,6 @@ import { NgxMaskModule } from 'ngx-mask';
     PaginationComponent,
     IconDirective,
     InputFileDirective,
-    InputNumberDirective,
     ProductCardComponent,
     CarouselProductsComponent,
     FooterComponent,
@@ -40,7 +38,6 @@ import { NgxMaskModule } from 'ngx-mask';
     PaginationComponent,
     IconDirective,
     InputFileDirective,
-    InputNumberDirective,
     MatButtonModule,
     ProductCardComponent,
     CarouselProductsComponent,

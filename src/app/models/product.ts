@@ -18,6 +18,14 @@ export interface IProductAvaliation {
   updated_at: string;
 }
 
+export interface IProductVariant {
+  id: number;
+  product_id: number;
+  name: string;
+  created_at: string;
+  updated_at: string;
+}
+
 export interface IProduct {
   id: number;
   name: string;
@@ -33,4 +41,5 @@ export interface IProduct {
   team: ITeam;
   images: IProductImage[];
   avaliations: IProductAvaliation[];
+  variants: IProductVariant[];
 }

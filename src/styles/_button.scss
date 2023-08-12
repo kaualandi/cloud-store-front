@@ -1,10 +1,27 @@
 .mat-button-base {
   &.mat-button {
+    padding: 0.2rem 1rem;
+    transition: var(--ts);
+    border-radius: var(--br);
+
     &.primary {
       background-color: var(--primary_color);
+      border: 1px solid var(--primary_color);
       color: var(--white);
-      border-radius: 4px;
-      padding: 0.2rem 1rem;
+    }
+
+    &.secondary {
+      background-color: var(--primary_bg);
+      border: 1px solid var(--primary_color);
+    }
+
+    &.alt {
+      background-color: transparent;
+      border: 1px solid transparent;
+    }
+
+    &.s {
+      padding: 0rem 0.5rem;
     }
 
     &.mat-button-disabled,
