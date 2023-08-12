@@ -13,6 +13,7 @@ import { SwiperModule } from 'swiper/angular';
 import { FooterComponent } from '../footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { NgxMaskModule } from 'ngx-mask';
+import { AddToCardButtonComponent } from './add-to-card-button/add-to-card-button.component';
 
 @NgModule({
   imports: [
@@ -31,6 +32,7 @@ import { NgxMaskModule } from 'ngx-mask';
     ProductCardComponent,
     CarouselProductsComponent,
     FooterComponent,
+    AddToCardButtonComponent,
   ],
   exports: [
     LoadingComponent,

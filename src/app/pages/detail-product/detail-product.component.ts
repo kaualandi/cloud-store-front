@@ -38,6 +38,8 @@ export class DetailProductComponent implements OnInit {
     number: ['', [Validators.required, Validators.min(1), Validators.max(99)]],
   });
 
+  addToCartStatus: 'idle' | 'loading' | 'loaded' | 'success' = 'idle';
+
   ngOnInit(): void {
     if (!this.id) {
       return;
@@ -81,5 +83,21 @@ export class DetailProductComponent implements OnInit {
 
   handleCustomFormSubmit() {
     this.customsForm.markAllAsTouched();
+  }
+
+  addToCart() {
+    if (this.addToCartStatus !== 'idle') return;
+    setTimeout(() => {
+      this.addToCartStatus = 'loading';
+      setTimeout(() => {
+        this.addToCartStatus = 'loaded';
+        setTimeout(() => {
+          this.addToCartStatus = 'success';
+          setTimeout(() => {
+            this.addToCartStatus = 'idle';
+          }, 2000);
+        }, 1000);
+      }, 4000);
+    }, 500);
   }
 }
