@@ -35,8 +35,6 @@ export class CartService {
 
   getCart() {
     if (this.storage.token) {
-      console.log('getCartLogged');
-
       return this.getCartLogged();
     }
     return this.getCartGuest();

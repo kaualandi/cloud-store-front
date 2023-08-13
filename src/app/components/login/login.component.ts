@@ -1,8 +1,7 @@
-import { AuthService } from './../../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { CookiesLoginComponent } from 'src/app/components/modals/cookies-login/cookies-login.component';
 import { StorageService } from 'src/app/services/storage.service';
 
@@ -15,9 +14,9 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     public dialog: MatDialog,
+    public dialogRef: MatDialogRef<LoginComponent>,
     public storage: StorageService,
-    private authService: AuthService,
-    public router: Router
+    private authService: AuthService
   ) {}
 
   loading = false;
@@ -45,12 +44,12 @@ export class LoginComponent implements OnInit {
     this.authService.login(email, password).subscribe({
       next: (response) => {
         this.loading = false;
-        this.storage.setToken(response.token, remember);
-        this.router.navigate(['/']);
+        this.storage.setToken(response.access_token, remember);
+        this.dialogRef.close(true);
       },
       error: () => {
         this.loading = false;
-        this.router.navigate(['/']);
+        this.dialogRef.close(false);
       },
     });
   }

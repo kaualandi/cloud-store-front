@@ -1,9 +1,13 @@
+import { AuthService } from './../../services/auth.service';
 import { CartService } from 'src/app/services/cart.service';
 import { ITag } from './../../models/config';
 import { HomeFooterService } from './../../services/home-footer.service';
 import { StorageService } from './../../services/storage.service';
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import SwiperCore, { Autoplay, Navigation, FreeMode } from 'swiper';
+import { MatDialog } from '@angular/material/dialog';
+import { LoginComponent } from '../login/login.component';
+import { IUser } from 'src/app/models/user';
 
 SwiperCore.use([Navigation, Autoplay, FreeMode]);
 @Component({
@@ -16,11 +20,14 @@ export class NavbarComponent implements OnInit, OnDestroy {
   constructor(
     private storage: StorageService,
     private homeFooterService: HomeFooterService,
-    private cartService: CartService
+    private cartService: CartService,
+    private authService: AuthService,
+    private dialog: MatDialog
   ) {}
 
   loading = false;
   cartLength = 0;
+  user = {} as IUser;
 
   autoplayConfig = {
     disableOnInteraction: false,
@@ -63,7 +70,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getConfig();
-    this.getCart();
 
     this.storage.watchUser().subscribe({
       next: () => {
@@ -84,10 +90,19 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   getMe() {
     this.loading = false;
-    // Requisição para pegar o usuário logado
-    // if (error?.status === 401) {
-    //   this.storageService.logout();
-    // }
+    this.authService.me().subscribe({
+      next: (data) => {
+        this.storage.myself = data;
+        this.user = data;
+        this.getCart();
+        this.loading = false;
+      },
+      error: (error) => {
+        if (error.status === 401) {
+          this.storage.logout();
+        }
+      },
+    });
   }
 
   getConfig() {
@@ -96,7 +111,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
       next: (response) => {
         this.storage.config = response;
         this.tape_texts = response.tags;
-        this.getMe();
+        if (this.storage.token) this.getMe();
+        if (!this.storage.token) this.getCart();
       },
       error: () => {
         this.loading = false;
@@ -108,7 +124,28 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.cartService.getCart().subscribe({
       next: (response) => {
         this.cartLength = response.length;
+        this.loading = false;
       },
+    });
+  }
+
+  handleProfileClick() {
+    if (!this.storage.token) {
+      console.log('Não logado');
+
+      this.openLoginDialog();
+    }
+  }
+
+  openLoginDialog() {
+    const dialogRef = this.dialog.open(LoginComponent, {
+      panelClass: 'login-dialog',
+    });
+
+    dialogRef.afterClosed().subscribe((result: boolean) => {
+      if (result) {
+        this.getMe();
+      }
     });
   }
 }

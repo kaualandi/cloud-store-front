@@ -23,10 +23,11 @@
     </div>
 
     <div class="menu">
-      <button aria-label="Login/Cadastro" mat-button>
+      <button aria-label="Login/Cadastro" (click)="handleProfileClick()" mat-button>
         <i icon="user"></i>
         <span class="flex">
-          <small>Entrar/Cadastrar</small>
+          <small *ngIf="!user.id">Entrar/Cadastrar</small>
+          <small *ngIf="user.id">Olá, {{user.name.split(' ')[0]}}</small>
           Minha conta
         </span>
       </button>

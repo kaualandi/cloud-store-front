@@ -52,3 +52,7 @@ body {
   overflow: visible;
   vertical-align: -0.125em;
 }
+
+.cdk-overlay-dark-backdrop {
+  backdrop-filter: blur(5px);
+}

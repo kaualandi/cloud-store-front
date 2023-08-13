@@ -1,18 +1,23 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatTabsModule } from '@angular/material/tabs';
+import { RouterModule } from '@angular/router';
+import { NgxMaskModule } from 'ngx-mask';
 import { IconDirective } from 'src/app/directives/icon.directive';
 import { InputFileDirective } from 'src/app/directives/input-file.directive';
+import { SwiperModule } from 'swiper/angular';
+import { FooterComponent } from '../footer/footer.component';
+import { LoginComponent } from '../login/login.component';
+import { CookiesLoginComponent } from '../modals/cookies-login/cookies-login.component';
+import { CarouselProductsComponent } from './carousel-products/carousel-products.component';
 import { LoadingComponent } from './loading/loading.component';
 import { PageLoadingComponent } from './page-loading/page-loading.component';
 import { PaginationComponent } from './pagination/pagination.component';
-import { MatButtonModule } from '@angular/material/button';
 import { ProductCardComponent } from './product-card/product-card.component';
-import { CarouselProductsComponent } from './carousel-products/carousel-products.component';
-import { SwiperModule } from 'swiper/angular';
-import { FooterComponent } from '../footer/footer.component';
-import { RouterModule } from '@angular/router';
-import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
   imports: [
@@ -20,6 +25,10 @@ import { NgxMaskModule } from 'ngx-mask';
     SwiperModule,
     MatButtonModule,
     RouterModule,
+    ReactiveFormsModule,
+    MatCheckboxModule,
+    MatDialogModule,
+    MatTabsModule,
     NgxMaskModule.forRoot(),
   ],
   declarations: [
@@ -31,6 +40,8 @@ import { NgxMaskModule } from 'ngx-mask';
     ProductCardComponent,
     CarouselProductsComponent,
     FooterComponent,
+    LoginComponent,
+    CookiesLoginComponent,
   ],
   exports: [
     LoadingComponent,

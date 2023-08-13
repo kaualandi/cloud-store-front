@@ -1,0 +1,66 @@
+<mat-tab-group>
+  <mat-tab label="Entrar">
+    <form (ngSubmit)="loginSubmitHandler()" [formGroup]="login_form">
+      <div class="card-input">
+        <label for="email">E-mail</label>
+        <input class="alt" type="text" id="email" name="email" placeholder="Digite seu e-mail" formControlName="email">
+      </div>
+      <div class="card-input">
+        <label for="current-password">Senha</label>
+        <span class="input-icon">
+          <input class="alt" [type]="view_pass ? 'text' : 'password'" id="current-password" name="current-password"
+            placeholder="Digite sua senha" formControlName="password">
+          <button class="view-pass" type="button" mat-icon-button aria-label="Ver senha"
+            (click)="view_pass = !view_pass">
+            <i icon="view_pass" *ngIf="!view_pass"></i>
+            <i icon="hide_pass" *ngIf="view_pass"></i>
+          </button>
+        </span>
+        <span class="forgot-password">
+          <a class="f-12" routerLink="/forgot-password">Esqueceu sua senha?</a>
+        </span>
+      </div>
+      <div class="card-input">
+        <mat-checkbox formControlName="remember"><span class="f-14">Lembrar-me</span></mat-checkbox>
+      </div>
+      <div class="card-input">
+        <button mat-button type="submit" class="primary" [disabled]="login_form.invalid || loading">
+          Entrar
+          <loading *ngIf="loading"></loading>
+        </button>
+      </div>
+    </form>
+  </mat-tab>
+  <mat-tab label="Criar conta">
+    <form (ngSubmit)="loginSubmitHandler()" [formGroup]="login_form">
+      <div class="card-input">
+        <label for="email">E-mail</label>
+        <input class="alt" type="text" id="email" name="email" placeholder="Digite seu e-mail" formControlName="email">
+      </div>
+      <div class="card-input">
+        <label for="current-password">Senha</label>
+        <span class="input-icon">
+          <input class="alt" [type]="view_pass ? 'text' : 'password'" id="current-password" name="current-password"
+            placeholder="Digite sua senha" formControlName="password">
+          <button class="view-pass" type="button" mat-icon-button aria-label="Ver senha"
+            (click)="view_pass = !view_pass">
+            <i icon="view_pass" *ngIf="!view_pass"></i>
+            <i icon="hide_pass" *ngIf="view_pass"></i>
+          </button>
+        </span>
+        <span class="forgot-password">
+          <a class="f-12" routerLink="/forgot-password">Esqueceu sua senha?</a>
+        </span>
+      </div>
+      <div class="card-input">
+        <mat-checkbox formControlName="remember"><span class="f-14">Lembrar-me</span></mat-checkbox>
+      </div>
+      <div class="card-input">
+        <button mat-button type="submit" class="primary" [disabled]="login_form.invalid || loading">
+          Criar conta
+          <loading *ngIf="loading"></loading>
+        </button>
+      </div>
+    </form>
+  </mat-tab>
+</mat-tab-group>

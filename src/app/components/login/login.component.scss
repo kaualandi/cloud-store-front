@@ -1,0 +1,39 @@
+@import 'src/styles/media';
+
+form {
+  padding: 1rem;
+  width: 100%;
+  max-width: 350px;
+
+  h1 {
+    text-align: center;
+  }
+
+  .forgot-password {
+    display: inline-block;
+    text-align: end;
+    a {
+      text-decoration: none;
+      color: var(--title_color);
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+::ng-deep {
+  .mat-checkbox-frame {
+    border-color: var(--title_color) !important;
+  }
+
+  .mat-checkbox-checked.mat-accent .mat-checkbox-background {
+    background-color: var(--primary_color) !important;
+  }
+
+  .mat-tab-group.mat-primary .mat-ink-bar {
+    background-color: var(--primary_color) !important;
+    height: 5px;
+    border-radius: 5px;
+  }
+}
