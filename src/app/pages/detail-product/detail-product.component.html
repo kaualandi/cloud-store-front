@@ -18,11 +18,7 @@
         </div>
 
         <div class="card images mob">
-          <!-- <swiper [slidesPerView]="1" [spaceBetween]="20" [pagination]="true">
-            <ng-template swiperSlide *ngFor="let image of product.images">
-              <img [src]="image.url" alt="">
-            </ng-template>
-          </swiper> -->
+          <app-images-carousel [images]="product.images"></app-images-carousel>
         </div>
 
         <div class="card about desk">

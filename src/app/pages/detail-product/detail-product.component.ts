@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ICartItem } from 'src/app/models/cart';
@@ -10,6 +10,7 @@ import { StorageService } from 'src/app/services/storage.service';
   selector: 'app-detail-product',
   templateUrl: './detail-product.component.html',
   styleUrls: ['./detail-product.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class DetailProductComponent implements OnInit {
   constructor(
