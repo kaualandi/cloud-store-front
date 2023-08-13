@@ -223,7 +223,8 @@
                   }
                 }
                 .default,
-                .check {
+                .check,
+                .cart {
                   top: 50%;
                   left: 50%;
                   transform: translateY(-50%) translateX(-50%);
@@ -234,13 +235,17 @@
                 }
                 .cart {
                   top: 50%;
-                  left: -2rem;
-                  transform: translateY(-50%) scale(0);
-                  transition: var(--ts);
+                  left: 50%;
+                  transform: translateY(-50%) translateX(-50%) scale(0);
+                  transition: transform 0.3s ease-in-out, left 0.3s ease-in-out;
                   transition-duration: 1s;
-                  &.active {
+                  &:not(.loaded) {
                     animation: loading 0.3s infinite alternate;
-                    left: var(--width);
+                  }
+                  &.loaded {
+                    transform: translateY(-50%) translateX(-50%) scale(1)
+                      rotate(0deg) skew(10deg);
+                    left: 105%;
                   }
                 }
               }
@@ -254,9 +259,11 @@
 
 @keyframes loading {
   0% {
-    transform: translateY(-50%) translateX(-10px) scale(1);
+    transform: translateY(-50%) translateX(-60%) scale(1) rotate(10deg)
+      skew(10deg);
   }
   100% {
-    transform: translateY(-50%) translateX(10px) scale(1);
+    transform: translateY(-50%) translateX(-50%) scale(1) rotate(0deg)
+      skew(0deg);
   }
 }

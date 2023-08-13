@@ -132,8 +132,8 @@
               <span [ngClass]="{active: addToCartStatus === 'idle'}" class="default">
                 Comprar agora
               </span>
-              <span [ngClass]="{active: addToCartStatus.includes('load'), loading: addToCartStatus === 'loading'}"
-                [ngStyle]="{'--width': addToCartStatus === 'loading' ? '50%' : '100%'}" class="cart">
+              <span [ngClass]="{active: addToCartStatus.includes('load'), loaded: addToCartStatus === 'loaded'}"
+                class="cart">
                 <i icon="cart"></i>
               </span>
               <span [ngClass]="{active: addToCartStatus === 'success'}" class="check">
