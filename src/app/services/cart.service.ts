@@ -1,8 +1,7 @@
-import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { ICartItem } from 'src/app/models/cart';
-import { HttpService } from './http.service';
+import { BodyJson, HttpService } from './http.service';
 import { StorageService } from './storage.service';
 
 @Injectable({
@@ -36,21 +35,25 @@ export class CartService {
 
   getCart() {
     if (this.storage.token) {
+      console.log('getCartLogged');
+
       return this.getCartLogged();
     }
     return this.getCartGuest();
   }
 
   private addToCartLogged(cartItem: ICartItem) {
-    let body = new HttpParams()
-      .set('product_variant', cartItem.product_variant_id)
-      .set('quantity', cartItem.quantity)
-      .set('customization', cartItem.customization);
+    const body = {
+      product_variant: cartItem.product_variant_id,
+      quantity: cartItem.quantity,
+      customization: cartItem.customization,
+    } as BodyJson;
 
     if (cartItem.customization) {
-      body = body
-        .set('customization_name', cartItem.customization_name)
-        .set('customization_number', cartItem.customization_number);
+      // eslint-disable-next-line dot-notation
+      body['customization_name'] = cartItem.customization_name;
+      // eslint-disable-next-line dot-notation
+      body['customization_number'] = cartItem.customization_number;
     }
 
     return this.http.post('cart', body);
