@@ -1,3 +1,4 @@
+import { CartService } from 'src/app/services/cart.service';
 import { ITag } from './../../models/config';
 import { HomeFooterService } from './../../services/home-footer.service';
 import { StorageService } from './../../services/storage.service';
@@ -14,10 +15,12 @@ SwiperCore.use([Navigation, Autoplay, FreeMode]);
 export class NavbarComponent implements OnInit, OnDestroy {
   constructor(
     private storage: StorageService,
-    private homeFooterService: HomeFooterService
+    private homeFooterService: HomeFooterService,
+    private cartService: CartService
   ) {}
 
   loading = false;
+  cartLength = 0;
 
   autoplayConfig = {
     disableOnInteraction: false,
@@ -60,10 +63,17 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getConfig();
+    this.getCart();
 
     this.storage.watchUser().subscribe({
       next: () => {
         this.getMe();
+      },
+    });
+
+    this.cartService.watchCart().subscribe({
+      next: () => {
+        this.getCart();
       },
     });
   }
@@ -90,6 +100,14 @@ export class NavbarComponent implements OnInit, OnDestroy {
       },
       error: () => {
         this.loading = false;
+      },
+    });
+  }
+
+  getCart() {
+    this.cartService.getCart().subscribe({
+      next: (response) => {
+        this.cartLength = response.length;
       },
     });
   }

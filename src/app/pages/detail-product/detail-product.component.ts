@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ICartItem } from 'src/app/models/cart';
 import { IProduct, IProductVariant } from 'src/app/models/product';
+import { CartService } from 'src/app/services/cart.service';
 import { ProductsService } from 'src/app/services/products.service';
 import { StorageService } from 'src/app/services/storage.service';
 
@@ -16,6 +17,7 @@ export class DetailProductComponent implements OnInit {
   constructor(
     private productsService: ProductsService,
     private storage: StorageService,
+    private cartService: CartService,
     private route: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder
@@ -31,7 +33,7 @@ export class DetailProductComponent implements OnInit {
 
   product = {} as IProduct;
   discount = 0;
-  cartItem = {} as ICartItem;
+  cartItem = { customization: false, quantity: 1 } as ICartItem;
   activedImageId = 0;
 
   customsForm = this.fb.group({
@@ -39,7 +41,7 @@ export class DetailProductComponent implements OnInit {
     number: ['', [Validators.required, Validators.min(1), Validators.max(99)]],
   });
 
-  addToCartStatus: 'idle' | 'loading' | 'loaded' | 'success' = 'idle';
+  addToCartStatus: 'idle' | 'loading' | 'loaded' | 'success' | 'error' = 'idle';
 
   ngOnInit(): void {
     if (!this.id) {
@@ -88,17 +90,38 @@ export class DetailProductComponent implements OnInit {
 
   addToCart() {
     if (this.addToCartStatus !== 'idle') return;
+
+    if (this.cartItem.customization) {
+      if (!this.customsForm.valid) {
+        this.customsForm.markAllAsTouched();
+        return;
+      }
+
+      this.cartItem.customization_name = this.customsForm.value.name || '';
+      this.cartItem.customization_number =
+        Number(this.customsForm.value.number) || 0;
+    }
+
+    this.addToCartStatus = 'loading';
+
+    this.cartService.addToCart(this.cartItem).subscribe({
+      next: () => {
+        this.handleAddToCart(true);
+        this.cartService.changeCart();
+      },
+      error: () => {
+        this.handleAddToCart(false);
+      },
+    });
+  }
+
+  handleAddToCart(status: boolean) {
+    this.addToCartStatus = 'loaded';
     setTimeout(() => {
-      this.addToCartStatus = 'loading';
+      this.addToCartStatus = status ? 'success' : 'error';
       setTimeout(() => {
-        this.addToCartStatus = 'loaded';
-        setTimeout(() => {
-          this.addToCartStatus = 'success';
-          setTimeout(() => {
-            this.addToCartStatus = 'idle';
-          }, 2000);
-        }, 1000);
-      }, 4000);
-    }, 500);
+        this.addToCartStatus = 'idle';
+      }, 1000);
+    }, 1000);
   }
 }

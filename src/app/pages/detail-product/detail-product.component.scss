@@ -4,6 +4,9 @@
 
 #detail-product {
   .container {
+    @include media('<=tablet') {
+      margin-top: 0;
+    }
     .row {
       display: grid;
       grid-template-columns: 3fr 2fr;
@@ -253,6 +256,10 @@
                 padding: 0.5rem;
                 background-color: var(--green_color);
                 border-color: var(--green_color);
+                &.error {
+                  background-color: var(--red_color);
+                  border-color: var(--red_color);
+                }
                 text-transform: uppercase;
                 position: relative;
                 overflow: hidden;

@@ -132,7 +132,7 @@
           </div>
 
           <div class="action">
-            <button mat-button class="primary" (click)="addToCart()">
+            <button mat-button class="primary" (click)="addToCart()" [ngClass]="{error: addToCartStatus === 'error'}">
               <span [ngClass]="{active: addToCartStatus === 'idle'}" class="default">
                 Comprar agora
               </span>
@@ -142,6 +142,9 @@
               </span>
               <span [ngClass]="{active: addToCartStatus === 'success'}" class="check">
                 <i icon="check"></i>
+              </span>
+              <span [ngClass]="{active: addToCartStatus === 'error'}" class="check">
+                <i icon="xmark"></i>
               </span>
             </button>
           </div>
