@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col">
-        <div class="card images">
+        <div class="card images desk">
           <div class="all-images">
             <button mat-icon-button class="image" *ngFor="let image of product.images; let iImg = index;"
               (click)="handleSelectImage(iImg)" [ngClass]="{active: activedImageId === iImg}">
@@ -17,7 +17,15 @@
           </div>
         </div>
 
-        <div class="card about">
+        <div class="card images mob">
+          <!-- <swiper [slidesPerView]="1" [spaceBetween]="20" [pagination]="true">
+            <ng-template swiperSlide *ngFor="let image of product.images">
+              <img [src]="image.url" alt="">
+            </ng-template>
+          </swiper> -->
+        </div>
+
+        <div class="card about desk">
           <app-about-product></app-about-product>
         </div>
       </div>
@@ -141,6 +149,10 @@
               </span>
             </button>
           </div>
+        </div>
+
+        <div class="card about mob">
+          <app-about-product></app-about-product>
         </div>
       </div>
     </div>

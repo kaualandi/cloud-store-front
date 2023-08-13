@@ -1,8 +1,15 @@
+@import 'src/styles/media';
+@import 'swiper/css';
+@import 'swiper/css/pagination';
+
 #detail-product {
   .container {
     .row {
       display: grid;
       grid-template-columns: 3fr 2fr;
+      @include media('<=tablet') {
+        grid-template-columns: 1fr;
+      }
       gap: 2rem;
       .col {
         width: 100%;
@@ -16,52 +23,91 @@
           }
 
           &.images {
-            width: 100%;
-            display: flex;
-            gap: 1.5rem;
-            aspect-ratio: 2/2.15;
-            .all-images {
+            &.desk {
+              @include media('<=tablet') {
+                display: none;
+              }
+              width: 100%;
               display: flex;
-              flex-direction: column;
-              gap: 0.5rem;
-              padding-right: 0.2rem;
-              overflow: auto;
-              flex: none;
-              .image {
-                width: 70px;
-                height: 70px;
-                background-color: var(--primary_color);
-                img {
-                  transition: var(--ts);
-                  width: 100%;
-                  height: 100%;
-                  object-fit: cover;
-                  border-radius: 50%;
-                }
-                &.active {
+              gap: 1.5rem;
+              aspect-ratio: 2/2.15;
+              .all-images {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+                padding-right: 0.2rem;
+                overflow: auto;
+                flex: none;
+                .image {
+                  width: 70px;
+                  height: 70px;
+                  background-color: var(--primary_color);
                   img {
-                    transform: scale(0.9);
+                    transition: var(--ts);
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    border-radius: 50%;
+                  }
+                  &.active {
+                    img {
+                      transform: scale(0.9);
+                    }
+                  }
+                }
+              }
+              .showcase {
+                width: 100%;
+                height: 100%;
+                .image {
+                  aspect-ratio: 4/5;
+                  img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    border-radius: 15px;
                   }
                 }
               }
             }
-            .showcase {
-              width: 100%;
-              height: 100%;
-              .image {
-                aspect-ratio: 4/5;
-                img {
-                  width: 100%;
-                  height: 100%;
-                  object-fit: cover;
-                  border-radius: 15px;
+            &.mob {
+              display: none;
+              @include media('<=tablet') {
+                display: block;
+              }
+              .swiper {
+                .swiper-wrapper {
+                  .swiper-slide {
+                    img {
+                      width: 100%;
+                      height: 100%;
+                      border-radius: var(--br);
+                    }
+                  }
                 }
+              }
+            }
+          }
+
+          &.about {
+            &.desk {
+              @include media('<=tablet') {
+                display: none;
+              }
+            }
+            &.mob {
+              display: none;
+              @include media('<=tablet') {
+                display: block;
               }
             }
           }
 
           &.infors {
             position: sticky;
+            @include media('<=tablet') {
+              position: initial;
+            }
             top: 4rem;
             header {
               padding-bottom: 1rem;

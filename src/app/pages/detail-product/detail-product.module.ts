@@ -7,6 +7,7 @@ import { SharedModule } from 'src/app/components/shared/shared.module';
 import { AboutProductComponent } from './about/about.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxMaskModule } from 'ngx-mask';
+import { SwiperModule } from 'swiper/angular';
 
 @NgModule({
   declarations: [DetailProductComponent, AboutProductComponent],
@@ -16,6 +17,7 @@ import { NgxMaskModule } from 'ngx-mask';
     DetailProductRoutingModule,
     ReactiveFormsModule,
     NgxMaskModule.forRoot(),
+    SwiperModule,
   ],
 })
 export class DetailProductModule {}
