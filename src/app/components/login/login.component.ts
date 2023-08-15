@@ -3,7 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { CookiesLoginComponent } from 'src/app/components/modals/cookies-login/cookies-login.component';
+import { CartService } from 'src/app/services/cart.service';
 import { StorageService } from 'src/app/services/storage.service';
+import { IToken } from 'src/app/models/user';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +18,8 @@ export class LoginComponent implements OnInit {
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<LoginComponent>,
     public storage: StorageService,
-    private authService: AuthService
+    private authService: AuthService,
+    private cartService: CartService
   ) {}
 
   loading = false;
@@ -43,9 +46,7 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(email, password).subscribe({
       next: (response) => {
-        this.loading = false;
-        this.storage.setToken(response.access_token, remember);
-        this.dialogRef.close(true);
+        this.transferDataCart(response, remember);
       },
       error: () => {
         this.loading = false;
@@ -76,6 +77,38 @@ export class LoginComponent implements OnInit {
       } else {
         this.login_form.get('remember')?.setValue(false);
       }
+    });
+  }
+
+  transferDataCart(response: IToken, remember: boolean) {
+    this.cartService.getCart().subscribe({
+      next: (cart) => {
+        if (cart.length === 0) {
+          this.loading = false;
+          this.dialogRef.close(true);
+        }
+
+        this.storage.setToken(response.access_token, remember);
+
+        cart.forEach((item) => {
+          this.cartService.addToCart(item).subscribe({
+            next: () => {
+              if (cart.indexOf(item) === cart.length - 1) {
+                this.loading = false;
+                localStorage.removeItem('cart');
+                this.dialogRef.close(true);
+              }
+            },
+            error: () => {
+              this.loading = false;
+              this.dialogRef.close(false);
+            },
+          });
+        });
+      },
+      error: () => {
+        this.dialogRef.close(false);
+      },
     });
   }
 }
