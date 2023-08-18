@@ -1,0 +1,45 @@
+<main id="cart">
+  <div class="container">
+    <div class="row">
+      <div class="col cart">
+        <header>
+          <h2>Carrinho de compras</h2>
+          <mat-checkbox [formControl]="selectAll">
+            Selecionar tudo
+          </mat-checkbox>
+        </header>
+
+        <div class="product-list">
+          <div class="product" *ngFor="let item of cart; let i = index">
+            <mat-checkbox [formControl]="selectedFormArray.controls[0]">
+            </mat-checkbox>
+            <img src="https://via.placeholder.com/150" alt="Nome do produto">
+            <div class="product-info">
+              <h3>Nome do produto</h3>
+              <p>Descrição do produto</p>
+              <div class="product-quantity">
+                <button mat-icon-button>
+                  <i icon="minus"></i>
+                </button>
+                <input type="number" value="1">
+                <button mat-icon-button>
+                  <i icon="plus"></i>
+                </button>
+              </div>
+            </div>
+            <div class="product-price">
+              <h3>R$ 100,00</h3>
+              <button mat-icon-button>
+                <i icon="trash"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col price-resume">
+
+      </div>
+    </div>
+  </div>
+</main>
