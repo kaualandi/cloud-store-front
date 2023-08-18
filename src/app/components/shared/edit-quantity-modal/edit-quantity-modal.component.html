@@ -1,0 +1,16 @@
+<h1 matDialogTitle>
+  Produto adicionado
+</h1>
+
+<mat-dialog-content>
+  <app-product-list-item [cartItem]="data.cartItem" [product]="data.product"></app-product-list-item>
+
+  <p class="total f-24">
+    Total: {{ currentPrice * data.cartItem.quantity | currency }}
+  </p>
+</mat-dialog-content>
+
+<mat-dialog-actions [attr.align]="">
+  <button class="green" mat-button [matDialogClose]="true">Ir para o carrinho</button>
+  <button class="primary" mat-button matDialogClose>Continuar comprando</button>
+</mat-dialog-actions>

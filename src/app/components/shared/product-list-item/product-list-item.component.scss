@@ -1,0 +1,53 @@
+.item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  .image {
+    flex: none;
+    width: 110px;
+    height: 110px;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: var(--br);
+    }
+  }
+
+  .content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 0.5rem;
+
+    .infors {
+      position: relative;
+      p {
+        padding-right: 45px;
+        margin: 0;
+        &.name {
+          font-weight: bold;
+        }
+      }
+      .delete {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+
+    .qtd-price {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      justify-content: space-between;
+
+      .price {
+        font-weight: bold;
+        margin: 0;
+      }
+    }
+  }
+}

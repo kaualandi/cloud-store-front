@@ -3,12 +3,17 @@ import { Observable, Subject } from 'rxjs';
 import { ICartItem } from 'src/app/models/cart';
 import { BodyJson, HttpService } from './http.service';
 import { StorageService } from './storage.service';
+import { SnackbarService } from './snackbar.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
-  constructor(private http: HttpService, private storage: StorageService) {}
+  constructor(
+    private http: HttpService,
+    private storage: StorageService,
+    private snackbar: SnackbarService
+  ) {}
 
   cartSubject = new Subject<void>();
 
@@ -25,8 +30,6 @@ export class CartService {
   }
 
   addToCart(cartItem: ICartItem) {
-    console.log(cartItem);
-
     if (this.storage.token) {
       return this.addToCartLogged(cartItem);
     }
@@ -38,6 +41,20 @@ export class CartService {
       return this.getCartLogged();
     }
     return this.getCartGuest();
+  }
+
+  editQuantity(cartItem: ICartItem) {
+    if (this.storage.token) {
+      return this.editQuantityLogged(cartItem);
+    }
+    return this.editQuantityGuest(cartItem);
+  }
+
+  deleteCartItem(cartItem: ICartItem) {
+    if (this.storage.token) {
+      return this.deleteCartItemLogged(cartItem);
+    }
+    return this.deleteCartItemGuest(cartItem);
   }
 
   private addToCartLogged(cartItem: ICartItem) {
@@ -54,10 +71,10 @@ export class CartService {
       body['customization_number'] = cartItem.customization_number;
     }
 
-    return this.http.post('cart', body);
+    return this.http.post<ICartItem>('cart', body);
   }
 
-  private addToCartGuest(cartItem: ICartItem): Observable<ICartItem[]> {
+  private addToCartGuest(cartItem: ICartItem): Observable<ICartItem> {
     return new Observable((observer) => {
       const cartString = localStorage.getItem('cart');
       const cart: ICartItem[] = cartString ? JSON.parse(cartString) : [];
@@ -71,12 +88,13 @@ export class CartService {
 
       if (exists) {
         exists.quantity += cartItem.quantity;
+        cartItem.quantity = exists.quantity;
       } else {
         cart.push(cartItem);
       }
 
       localStorage.setItem('cart', JSON.stringify(cart));
-      observer.next(cart);
+      observer.next(cartItem);
       observer.complete();
     });
   }
@@ -89,6 +107,68 @@ export class CartService {
     return new Observable((observer) => {
       const cartString = localStorage.getItem('cart');
       const cart: ICartItem[] = cartString ? JSON.parse(cartString) : [];
+      observer.next(cart);
+      observer.complete();
+    });
+  }
+
+  private editQuantityLogged(cartItem: ICartItem) {
+    const body = {
+      quantity: cartItem.quantity,
+    } as BodyJson;
+
+    return this.http.patch(`cart/${cartItem.id}`, body);
+  }
+
+  private editQuantityGuest(cartItem: ICartItem) {
+    return new Observable((observer) => {
+      const cartString = localStorage.getItem('cart');
+      const cart: ICartItem[] = cartString ? JSON.parse(cartString) : [];
+      const exists = cart.find(
+        (item) =>
+          item.product_variant_id === cartItem.product_variant_id &&
+          item.customization === cartItem.customization &&
+          item.customization_name === cartItem.customization_name &&
+          item.customization_number === cartItem.customization_number
+      );
+
+      if (exists) {
+        exists.quantity = cartItem.quantity;
+      } else {
+        this.snackbar.error('Produto não encontrado');
+        observer.error();
+      }
+
+      localStorage.setItem('cart', JSON.stringify(cart));
+      observer.next(cart);
+      observer.complete();
+    });
+  }
+
+  private deleteCartItemLogged(cartItem: ICartItem) {
+    return this.http.delete(`cart/${cartItem.id}`);
+  }
+
+  private deleteCartItemGuest(cartItem: ICartItem) {
+    return new Observable((observer) => {
+      const cartString = localStorage.getItem('cart');
+      const cart: ICartItem[] = cartString ? JSON.parse(cartString) : [];
+      const index = cart.findIndex(
+        (item) =>
+          item.product_variant_id === cartItem.product_variant_id &&
+          item.customization === cartItem.customization &&
+          item.customization_name === cartItem.customization_name &&
+          item.customization_number === cartItem.customization_number
+      );
+
+      if (index !== -1) {
+        cart.splice(index, 1);
+      } else {
+        this.snackbar.error('Produto não encontrado');
+        observer.error();
+      }
+
+      localStorage.setItem('cart', JSON.stringify(cart));
       observer.next(cart);
       observer.complete();
     });

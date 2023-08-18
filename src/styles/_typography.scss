@@ -78,6 +78,14 @@ strong {
   font-family: 'Inter', sans-serif !important;
 }
 
+.one-line {
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+}
+
 .mat-typography {
   h1,
   h2,

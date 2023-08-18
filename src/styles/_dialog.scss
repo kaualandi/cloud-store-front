@@ -1,0 +1,28 @@
+.mat-dialog-container {
+  padding: 0 !important;
+  border-radius: var(--br) !important;
+
+  .mat-dialog-title,
+  .mat-dialog-content,
+  .mat-dialog-actions {
+    margin: 0;
+  }
+
+  .mat-dialog-title {
+    margin: 0;
+    padding: 18px;
+    text-align: center;
+    background-color: var(--primary_color);
+    color: var(--white);
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .mat-dialog-content {
+    padding: 18px;
+  }
+
+  .mat-dialog-actions {
+    padding: 0 24px 24px;
+  }
+}

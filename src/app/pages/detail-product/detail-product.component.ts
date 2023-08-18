@@ -1,6 +1,11 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import {
+  EditQuantityModalComponent,
+  CONFIG,
+} from 'src/app/components/shared/edit-quantity-modal/edit-quantity-modal.component';
 import { ICartItem } from 'src/app/models/cart';
 import { IProduct, IProductVariant } from 'src/app/models/product';
 import { CartService } from 'src/app/services/cart.service';
@@ -20,7 +25,8 @@ export class DetailProductComponent implements OnInit {
     private cartService: CartService,
     private route: ActivatedRoute,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private dialog: MatDialog
   ) {}
 
   loading = false;
@@ -105,7 +111,10 @@ export class DetailProductComponent implements OnInit {
     this.addToCartStatus = 'loading';
 
     this.cartService.addToCart(this.cartItem).subscribe({
-      next: () => {
+      next: (data) => {
+        this.cartItem.quantity = data.quantity;
+        this.cartItem.id = data.id || 0;
+
         this.handleAddToCart(true);
         this.cartService.changeCart();
       },
@@ -121,7 +130,21 @@ export class DetailProductComponent implements OnInit {
       this.addToCartStatus = status ? 'success' : 'error';
       setTimeout(() => {
         this.addToCartStatus = 'idle';
+        status && this.showEditQuantityModal();
       }, 1000);
     }, 1000);
+  }
+
+  showEditQuantityModal() {
+    const dialogRef = this.dialog.open(EditQuantityModalComponent, {
+      ...CONFIG,
+      data: { product: this.product, cartItem: this.cartItem },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.router.navigate(['/cart']);
+      }
+    });
   }
 }

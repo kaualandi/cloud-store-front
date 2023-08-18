@@ -18,6 +18,8 @@ import { LoadingComponent } from './loading/loading.component';
 import { PageLoadingComponent } from './page-loading/page-loading.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { ProductCardComponent } from './product-card/product-card.component';
+import { EditQuantityModalComponent } from './edit-quantity-modal/edit-quantity-modal.component';
+import { ProductListItemComponent } from './product-list-item/product-list-item.component';
 
 @NgModule({
   imports: [
@@ -42,6 +44,8 @@ import { ProductCardComponent } from './product-card/product-card.component';
     FooterComponent,
     LoginComponent,
     CookiesLoginComponent,
+    EditQuantityModalComponent,
+    ProductListItemComponent,
   ],
   exports: [
     LoadingComponent,
@@ -53,6 +57,8 @@ import { ProductCardComponent } from './product-card/product-card.component';
     ProductCardComponent,
     CarouselProductsComponent,
     FooterComponent,
+    EditQuantityModalComponent,
+    ProductListItemComponent,
   ],
 })
 export class SharedModule {}

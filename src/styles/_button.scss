@@ -15,6 +15,12 @@
       border: 1px solid var(--primary_color);
     }
 
+    &.green {
+      background-color: var(--green_color);
+      border: 1px solid var(--green_color);
+      color: var(--white);
+    }
+
     &.alt {
       background-color: transparent;
       border: 1px solid transparent;

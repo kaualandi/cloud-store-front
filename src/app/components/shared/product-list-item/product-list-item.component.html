@@ -1,0 +1,39 @@
+<div class="item">
+  <div class="image">
+    <img *ngIf="product.images" [src]="product.images[0].url" [alt]="product.name">
+  </div>
+
+  <div class="content">
+    <div class="infors">
+      <p class="name one-line f-15">{{ product.name }}</p>
+      <p class="size one-line">Tamanho: {{ cartItem.product_variant.name }}</p>
+      <p class="customization one-line">
+        <span *ngIf="cartItem.customization">
+          {{ cartItem.customization_name }} / {{ cartItem.customization_number }}
+        </span>
+        <span *ngIf="!cartItem.customization">
+          Sem personalização
+        </span>
+      </p>
+
+      <button class="delete" mat-icon-button (click)="handleDeleteItem()" [disabled]="deleteLoading">
+        <i *ngIf="!deleteLoading" icon="trash"></i>
+        <loading *ngIf="deleteLoading"></loading>
+      </button>
+    </div>
+
+    <div class="qtd-price">
+      <div class="qtd">
+        <button mat-icon-button (click)="handleEditQuantity('-')" [disabled]="cartItem.quantity <= 1">
+          <i icon="minus"></i>
+        </button>
+        <span>{{ cartItem.quantity }}</span>
+        <button mat-icon-button (click)="handleEditQuantity('+')">
+          <i icon="plus"></i>
+        </button>
+      </div>
+
+      <p class="price f-18">{{ currentPrice | currency }}</p>
+    </div>
+  </div>
+</div>
