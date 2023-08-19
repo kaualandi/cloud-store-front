@@ -1,5 +1,5 @@
 <main id="cart">
-  <div class="container">
+  <div class="container" *ngIf="cart.length">
     <div class="row">
       <div class="col cart">
         <header>
@@ -59,6 +59,15 @@
           <button mat-button class="primary">Continuar</button>
         </div>
       </div>
+    </div>
+  </div>
+
+  <div class="container" *ngIf="!cart.length">
+    <div class="empty-cart">
+      <i icon="cart_error" class="f-52"></i>
+      <h2 class="f-24">Seu carrinho está vazio</h2>
+      <p class="f-16">Adicione produtos clicando no botão abaixo</p>
+      <button mat-button class="primary" routerLink="/products">Adicionar produtos</button>
     </div>
   </div>
 
