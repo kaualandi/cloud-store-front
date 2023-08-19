@@ -6,7 +6,7 @@ import {
   EditQuantityModalComponent,
   CONFIG,
 } from 'src/app/components/shared/edit-quantity-modal/edit-quantity-modal.component';
-import { ICartItem } from 'src/app/models/cart';
+import { ICartItem, IProductVariantCart } from 'src/app/models/cart';
 import { IProduct, IProductVariant } from 'src/app/models/product';
 import { CartService } from 'src/app/services/cart.service';
 import { ProductsService } from 'src/app/services/products.service';
@@ -82,7 +82,11 @@ export class DetailProductComponent implements OnInit {
 
   handleSelectSize(variant: IProductVariant) {
     this.cartItem.product_variant_id = variant.id;
-    this.cartItem.product_variant = variant;
+    const variantCart = {
+      ...variant,
+      product: this.product,
+    } as IProductVariantCart;
+    this.cartItem.product_variant = variantCart;
   }
 
   setCustoms(status: boolean) {

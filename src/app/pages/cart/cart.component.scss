@@ -1,0 +1,124 @@
+@import 'src/styles/media';
+
+#cart {
+  .container {
+    .row {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: 1fr;
+      @include media('>=tablet') {
+        grid-template-columns: 3fr 2fr;
+      }
+
+      .col {
+        &.cart {
+          header {
+            padding: 1rem;
+            border-radius: var(--br);
+            box-shadow: var(--bs);
+            background-color: var(--primary_color);
+            text-align: center;
+            color: var(--white);
+            margin-bottom: 1rem;
+            @include media('>=tablet') {
+              text-align: left;
+            }
+            h2 {
+              text-transform: uppercase;
+            }
+          }
+
+          .product-list {
+            padding: 1rem;
+            border-radius: var(--br);
+            box-shadow: var(--bs);
+            background-color: var(--secondary_bg);
+
+            .product {
+              position: relative;
+              .mat-checkbox {
+                position: absolute;
+                top: 5px;
+                left: 5px;
+              }
+              &:not(:last-child) {
+                border-bottom: 1px solid var(--border_color);
+                margin-bottom: 1rem;
+                padding-bottom: 1rem;
+              }
+            }
+          }
+        }
+
+        &.price-resume {
+          .free-shipping {
+            background-color: var(--green_color);
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: var(--br);
+            box-shadow: var(--bs);
+            text-align: center;
+            margin-bottom: 1rem;
+            i {
+              margin-right: 0.5rem;
+            }
+          }
+
+          .resume {
+            background-color: var(--secondary_bg);
+            padding: 1rem;
+            border-radius: var(--br);
+            box-shadow: var(--bs);
+            .resume-item {
+              display: flex;
+              justify-content: space-between;
+              span {
+                &.free {
+                  text-decoration: line-through;
+                }
+                &:first-child {
+                  font-weight: 600;
+                }
+              }
+
+              & + .resume-item {
+                margin-top: 0.5rem;
+              }
+              &.total {
+                border-top: 1px solid var(--border_color);
+                padding-top: 1rem;
+              }
+            }
+
+            button {
+              margin-top: 2rem;
+              width: 100%;
+              padding: 0.5rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+::ng-deep {
+  .mat-checkbox-frame {
+    border-color: var(--white) !important;
+  }
+  header {
+    .mat-checkbox-checked.mat-accent .mat-checkbox-background {
+      background-color: var(--white) !important;
+    }
+
+    .mat-tab-group.mat-primary .mat-ink-bar {
+      background-color: var(--white) !important;
+      height: 5px;
+      border-radius: 5px;
+    }
+
+    .mat-checkbox-checkmark-path {
+      stroke: var(--primary_color) !important;
+    }
+  }
+}

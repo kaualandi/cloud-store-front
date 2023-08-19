@@ -1,6 +1,6 @@
-import { ICartItem } from 'src/app/models/cart';
+import { ICartItem, IProductCart } from 'src/app/models/cart';
 import { IProduct } from './../../../models/product';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { MatDialogRef } from '@angular/material/dialog';
@@ -12,8 +12,10 @@ import { EditQuantityModalComponent } from '../edit-quantity-modal/edit-quantity
   styleUrls: ['./product-list-item.component.scss'],
 })
 export class ProductListItemComponent implements OnInit {
-  @Input() product = {} as IProduct;
+  @Input() product = {} as IProduct | IProductCart;
   @Input() cartItem = {} as ICartItem;
+  @Output() deleted = new EventEmitter<void>();
+  @Output() edited = new EventEmitter<void>();
 
   constructor(
     private cartService: CartService,
@@ -37,10 +39,11 @@ export class ProductListItemComponent implements OnInit {
         this.cartService.changeCart();
         this.snackbar.success('Item removido do carrinho');
         this.deleteLoading = false;
-        this.dialogRef?.close();
+        this.closeDialog();
+        this.deleted.emit();
       },
       error: () => {
-        this.dialogRef?.close();
+        this.closeDialog();
       },
     });
   }
@@ -53,9 +56,16 @@ export class ProductListItemComponent implements OnInit {
     }
 
     this.cartService.editQuantity(this.cartItem).subscribe({
+      next: () => {
+        this.edited.emit();
+      },
       error: () => {
-        this.dialogRef?.close();
+        this.closeDialog();
       },
     });
+  }
+
+  closeDialog() {
+    this.dialogRef.close && this.dialogRef?.close();
   }
 }
