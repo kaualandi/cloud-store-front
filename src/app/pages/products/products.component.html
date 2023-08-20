@@ -1,1 +1,119 @@
-<p>products works!</p>
+<main id="products">
+  <div class="container">
+    <div class="row">
+      <div class="col filters">
+        <div class="filter">
+          <div class="expansion">
+            <mat-expansion-panel expanded>
+              <mat-expansion-panel-header>
+                <mat-panel-title>Categoria</mat-panel-title>
+              </mat-expansion-panel-header>
+
+              <div class="options">
+                <mat-checkbox>Option 1</mat-checkbox>
+                <mat-checkbox>Option 2</mat-checkbox>
+                <mat-checkbox>Option 3</mat-checkbox>
+                <mat-checkbox>Option 4</mat-checkbox>
+                <mat-checkbox>Option 5</mat-checkbox>
+                <mat-checkbox>Option 6</mat-checkbox>
+                <mat-checkbox>Option 7</mat-checkbox>
+                <mat-checkbox>Option 8</mat-checkbox>
+                <mat-checkbox>Option 9</mat-checkbox>
+                <mat-checkbox>Option 10</mat-checkbox>
+                <mat-checkbox>Option 11</mat-checkbox>
+                <mat-checkbox>Option 12</mat-checkbox>
+                <mat-checkbox>Option 13</mat-checkbox>
+                <mat-checkbox>Option 14</mat-checkbox>
+                <mat-checkbox>Option 15</mat-checkbox>
+              </div>
+            </mat-expansion-panel>
+          </div>
+          <div class="expansion">
+            <mat-expansion-panel expanded>
+              <mat-expansion-panel-header>
+                <mat-panel-title>Gênero</mat-panel-title>
+              </mat-expansion-panel-header>
+
+              <div class="options">
+                <mat-checkbox>Marculino</mat-checkbox>
+                <mat-checkbox>Feminino</mat-checkbox>
+              </div>
+            </mat-expansion-panel>
+          </div>
+          <div class="expansion">
+            <mat-expansion-panel expanded>
+              <mat-expansion-panel-header>
+                <mat-panel-title>Clube de futebol</mat-panel-title>
+              </mat-expansion-panel-header>
+
+              <div class="options">
+                <mat-checkbox>América MG</mat-checkbox>
+                <mat-checkbox>Atlético MG</mat-checkbox>
+              </div>
+            </mat-expansion-panel>
+          </div>
+          <div class="expansion">
+            <mat-expansion-panel expanded>
+              <mat-expansion-panel-header>
+                <mat-panel-title>Esporte</mat-panel-title>
+              </mat-expansion-panel-header>
+
+              <div class="options">
+                <mat-checkbox>Futebol</mat-checkbox>
+                <mat-checkbox>Basquete</mat-checkbox>
+              </div>
+            </mat-expansion-panel>
+          </div>
+          <div class="expansion">
+            <mat-expansion-panel expanded>
+              <mat-expansion-panel-header>
+                <mat-panel-title>Tipo do produto</mat-panel-title>
+              </mat-expansion-panel-header>
+
+              <div class="options">
+                <mat-checkbox>Camisa</mat-checkbox>
+                <mat-checkbox>Blusa</mat-checkbox>
+                <mat-checkbox>Corta vento</mat-checkbox>
+                <mat-checkbox>Regatas</mat-checkbox>
+                <mat-checkbox>Shorts</mat-checkbox>
+                <mat-checkbox>Jaqueta Puffer</mat-checkbox>
+                <mat-checkbox>Kit kids</mat-checkbox>
+              </div>
+            </mat-expansion-panel>
+          </div>
+        </div>
+      </div>
+      <div class="col list">
+        <div class="products-list">
+          <header>
+            <h2>Todos os produtos</h2>
+          </header>
+          <div class="resume">
+            <p class="quantity">
+              {{products.length}}
+              produto{{products.length === 1 ? '' : 's'}}
+              encontrado{{products.length === 1 ? '' : 's'}}
+            </p>
+
+            <div class="card-input">
+              <label for="order-by">
+                Ordenar por:
+              </label>
+              <mat-select id="order-by" [formControl]="orderBy">
+                <mat-option value="release">Lançamento</mat-option>
+                <mat-option value="lower_price">Menor preço</mat-option>
+                <mat-option value="higher_price">Maior preço</mat-option>
+                <mat-option value="best_sellers">Mais vendidos</mat-option>
+                <mat-option value="best_evaluation">Melhor avaliação</mat-option>
+                <mat-option value="az">A-Z</mat-option>
+                <mat-option value="za">Z-A</mat-option>
+              </mat-select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+</main>

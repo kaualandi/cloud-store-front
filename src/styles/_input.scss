@@ -30,7 +30,7 @@
 
   input,
   textarea,
-  select {
+  .mat-select {
     padding: 13px 20px;
     border-radius: 4px;
     outline: none;
@@ -39,6 +39,9 @@
     background-color: var(--white);
     color: var(--title_color) !important;
 
+    &.mat-select {
+      padding: 11px 20px;
+    }
     &.alt {
       background-color: var(--primary_bg);
     }
