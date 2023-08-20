@@ -8,6 +8,8 @@ import { IProduct } from 'src/app/models/product';
   styleUrls: ['./products.component.scss'],
 })
 export class ProductsComponent implements OnInit {
+  loading = true;
+
   products: IProduct[] = [];
   orderBy = new FormControl('release');
 
