@@ -95,7 +95,7 @@
   }
 }
 
-::ng-deep {
+:host ::ng-deep {
   .mat-expansion-panel {
     .mat-expansion-panel-body {
       padding: 0 5px;

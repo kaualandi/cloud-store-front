@@ -106,7 +106,7 @@
   }
 }
 
-::ng-deep {
+:host ::ng-deep {
   .mat-checkbox-frame {
     border-color: var(--white) !important;
   }
