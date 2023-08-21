@@ -24,6 +24,18 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getSections();
+    this.getProducts();
+  }
+
+  getProducts() {
+    this.productsService.getProducts(1).subscribe({
+      next: (data) => {
+        setTimeout(() => {
+          this.products = data.results;
+          this.loading = false;
+        }, 2000);
+      },
+    });
   }
 
   getSections() {

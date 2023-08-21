@@ -80,6 +80,9 @@
               produto{{products.length === 1 ? '' : 's'}}
               encontrado{{products.length === 1 ? '' : 's'}}
             </p>
+            <div class="card-input mob">
+              <button mat-button class="primary">Filtrar</button>
+            </div>
 
             <div class="card-input">
               <label for="order-by">
@@ -99,6 +102,10 @@
 
           <div class="products">
             <page-loading *ngIf="loading"></page-loading>
+
+            <div *ngIf="!loading" class="cards">
+              <app-product-card *ngFor="let product of products" [product]="product"></app-product-card>
+            </div>
           </div>
         </div>
       </div>
