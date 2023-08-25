@@ -152,6 +152,20 @@ $resp: '<=862px';
                   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
                 }
               }
+
+              .the-end {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-top: 2rem;
+                gap: 1rem;
+                font-size: 1rem;
+                color: var(--title_color);
+                i {
+                  margin: 0;
+                  font-size: 1.2rem;
+                }
+              }
             }
           }
         }

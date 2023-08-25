@@ -43,3 +43,12 @@ export interface IProduct {
   avaliations: IProductAvaliation[];
   variants: IProductVariant[];
 }
+
+export type TOrderBy =
+  | 'release'
+  | 'lower_price'
+  | 'higher_price'
+  | 'best_sellers'
+  | 'best_evaluation'
+  | 'az'
+  | 'za';
