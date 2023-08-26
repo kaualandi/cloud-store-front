@@ -56,7 +56,16 @@
             </span>
           </div>
 
-          <button mat-button class="primary">Continuar</button>
+          <button mat-button class="primary" [ngClass]="{ creating }" (click)="handleCreateOrder()"
+            [disabled]="onDisableCreateOrder()">
+            <span class="idle">
+              Continuar
+            </span>
+            <span class="loading f-28">
+              <i icon="box_heart"></i>
+              <i icon="shirt"></i>
+            </span>
+          </button>
         </div>
       </div>
     </div>

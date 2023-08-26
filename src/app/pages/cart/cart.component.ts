@@ -28,6 +28,8 @@ export class CartComponent implements OnInit {
   deliveryFee = 10;
   freeShipping = false;
 
+  creating = false;
+
   ngOnInit(): void {
     this.getCart();
 
@@ -80,5 +82,21 @@ export class CartComponent implements OnInit {
     });
 
     this.freeShipping = this.discountValue >= this.deliveryFreePrice;
+  }
+
+  handleCreateOrder() {
+    this.creating = true;
+
+    setTimeout(() => {
+      this.creating = false;
+    }, 2000);
+  }
+
+  onDisableCreateOrder() {
+    return (
+      this.creating ||
+      this.totalValue === 0 ||
+      this.selectedFormArray.value.every((item) => !item)
+    );
   }
 }

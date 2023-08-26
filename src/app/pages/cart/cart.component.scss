@@ -80,7 +80,6 @@
                   font-weight: 600;
                 }
               }
-
               & + .resume-item {
                 margin-top: 0.5rem;
               }
@@ -91,9 +90,48 @@
             }
 
             button {
+              position: relative;
+              height: 64px;
               margin-top: 2rem;
               width: 100%;
               padding: 0.5rem;
+              &:disabled {
+                color: var(--white) !important;
+              }
+              .idle,
+              .loading {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transition: var(--ts);
+                transform: translate(-50%, -50%) scale(0);
+                opacity: 0;
+
+                i {
+                  position: absolute;
+                  top: 50%;
+                  left: 50%;
+                  transform: translate(-50%, -50%);
+                  animation: icon-loading 1s infinite;
+                  &:last-child {
+                    animation-delay: 0.5s;
+                  }
+                }
+              }
+              .idle {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+              }
+              &.creating {
+                .idle {
+                  transform: translate(-50%, -50%) scale(0);
+                  opacity: 0;
+                }
+                .loading {
+                  transform: translate(-50%, -50%) scale(1);
+                  opacity: 1;
+                }
+              }
             }
           }
         }
@@ -124,5 +162,20 @@
     .mat-checkbox-checkmark-path {
       stroke: var(--primary_color) !important;
     }
+  }
+}
+
+@keyframes icon-loading {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
   }
 }
