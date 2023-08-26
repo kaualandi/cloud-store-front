@@ -137,7 +137,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     }
   }
 
-  openLoginDialog() {
+  openLoginDialog(fb?: () => void) {
     const dialogRef = this.dialog.open(LoginComponent, {
       panelClass: 'login-dialog',
     });
@@ -145,6 +145,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe((result: boolean) => {
       if (result) {
         this.getMe();
+        if (fb) fb();
       }
     });
   }

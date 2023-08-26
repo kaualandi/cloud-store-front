@@ -4,6 +4,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { Subject } from 'rxjs';
 import { IUser } from '../models/user';
 import { IConfig } from '../models/config';
+import { ICartItem } from '../models/cart';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +15,7 @@ export class StorageService {
   UserSubject = new Subject<void>();
   private myUser: IUser = {} as IUser;
   private _config: IConfig = {} as IConfig;
+  private _selectedItemsCart: ICartItem[] = [];
 
   get myself() {
     return this.myUser;
@@ -29,6 +31,14 @@ export class StorageService {
 
   set config(config: IConfig) {
     this._config = config;
+  }
+
+  get selectedItemsCart() {
+    return this._selectedItemsCart;
+  }
+
+  set selectedItemsCart(items: ICartItem[]) {
+    this._selectedItemsCart = items;
   }
 
   watchUser() {

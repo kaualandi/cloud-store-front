@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
+import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
 import { ICartItem } from 'src/app/models/cart';
 import { CartService } from 'src/app/services/cart.service';
 import { StorageService } from 'src/app/services/storage.service';
@@ -13,7 +15,9 @@ export class CartComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private cartService: CartService,
-    private storage: StorageService
+    private storage: StorageService,
+    private navbarComponent: NavbarComponent,
+    private router: Router
   ) {}
 
   selectAll = new FormControl(false);
@@ -24,6 +28,7 @@ export class CartComponent implements OnInit {
 
   totalValue = 0;
   discountValue = 0;
+  customizationFee = this.storage.config.customization_fee;
   deliveryFreePrice = this.storage.config.delivery_fee;
   deliveryFee = 10;
   freeShipping = false;
@@ -31,6 +36,13 @@ export class CartComponent implements OnInit {
   creating = false;
 
   ngOnInit(): void {
+    this.totalValue = 0;
+    this.discountValue = 0;
+    this.customizationFee = this.storage.config.customization_fee;
+    this.deliveryFreePrice = this.storage.config.delivery_fee;
+    this.deliveryFee = 10;
+    this.freeShipping = false;
+
     this.getCart();
 
     this.selectAll.valueChanges.subscribe((value) => {
@@ -78,6 +90,11 @@ export class CartComponent implements OnInit {
         const discountValue =
           product.base_price - (product.base_price * product.discount) / 100;
         this.discountValue += discountValue * item.quantity;
+
+        if (item.customization) {
+          this.totalValue += this.customizationFee;
+          this.discountValue += this.customizationFee;
+        }
       }
     });
 
@@ -85,11 +102,31 @@ export class CartComponent implements OnInit {
   }
 
   handleCreateOrder() {
+    if (this.onDisableCreateOrder()) return;
+
+    if (!this.storage.token) {
+      this.navbarComponent.openLoginDialog(() => {
+        this.ngOnInit();
+      });
+      return;
+    }
+
     this.creating = true;
+
+    const selectedItems: ICartItem[] = [];
+
+    this.selectedFormArray.controls.forEach((control, index) => {
+      if (control.value) {
+        selectedItems.push(this.cart[index]);
+      }
+    });
+
+    this.storage.selectedItemsCart = selectedItems;
 
     setTimeout(() => {
       this.creating = false;
-    }, 2000);
+      this.router.navigate(['/checkout']);
+    }, 1000);
   }
 
   onDisableCreateOrder() {
