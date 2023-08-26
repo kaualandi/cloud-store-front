@@ -1,0 +1,126 @@
+#checkout {
+  .container {
+    .row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      .mob {
+        display: none;
+      }
+      .desk {
+        .page {
+          background-color: var(--secondary_bg);
+          padding: 1rem;
+          border-radius: var(--br);
+          box-shadow: var(--bs);
+          & + .page {
+            margin-top: 1rem;
+          }
+        }
+      }
+      .col {
+        .resume {
+          background-color: var(--secondary_bg);
+          padding: 1rem;
+          border-radius: var(--br);
+          box-shadow: var(--bs);
+
+          h1 {
+            border-bottom: 2px solid var(--border_color);
+            font-weight: 600;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+          }
+
+          .items-list {
+            max-height: 200px;
+            overflow-y: auto;
+            margin-bottom: 1rem;
+            padding-right: 0.2rem;
+            border-radius: var(--br);
+            .product + .product {
+              margin-top: 0.5rem;
+            }
+          }
+
+          .resume-item {
+            display: flex;
+            justify-content: space-between;
+            span {
+              &.free {
+                text-decoration: line-through;
+              }
+              &:first-child {
+                font-weight: 600;
+              }
+            }
+            & + .resume-item {
+              margin-top: 0.5rem;
+            }
+            &.total {
+              border-top: 1px solid var(--border_color);
+              padding-top: 1rem;
+            }
+          }
+
+          button {
+            position: relative;
+            height: 64px;
+            margin-top: 2rem;
+            width: 100%;
+            padding: 0.5rem;
+            &:disabled {
+              color: var(--white) !important;
+            }
+            .idle,
+            .loading,
+            .success {
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transition: var(--ts);
+              transform: translate(-50%, -50%) scale(0);
+              opacity: 0;
+              display: flex;
+              align-items: center;
+
+              &.loading i {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                animation: icon-loading 1s infinite;
+                &:last-child {
+                  animation-delay: 0.5s;
+                }
+              }
+            }
+            .idle {
+              transform: translate(-50%, -50%) scale(1);
+              opacity: 1;
+            }
+            &.creating,
+            &.created {
+              .idle {
+                transform: translate(-50%, -50%) scale(0);
+                opacity: 0;
+              }
+            }
+            &.creating {
+              .loading {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+              }
+            }
+            &.created {
+              .success {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

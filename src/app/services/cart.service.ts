@@ -66,9 +66,9 @@ export class CartService {
 
     if (cartItem.customization) {
       // eslint-disable-next-line dot-notation
-      body['customization_name'] = cartItem.customization_name;
+      body['customization_name'] = cartItem.customization_name || '';
       // eslint-disable-next-line dot-notation
-      body['customization_number'] = cartItem.customization_number;
+      body['customization_number'] = cartItem.customization_number || '';
     }
 
     return this.http.post<ICartItem>('cart', body);

@@ -12,6 +12,6 @@ export interface ICartItem {
   customization: boolean;
   product_variant_id: number;
   product_variant: IProductVariantCart;
-  customization_name: string;
-  customization_number: number;
+  customization_name: string | null;
+  customization_number: number | null;
 }

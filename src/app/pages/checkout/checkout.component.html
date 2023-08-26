@@ -1,0 +1,76 @@
+<main id="checkout">
+  <div class="container">
+    <div class="row">
+      <div class="mob">
+        <router-outlet></router-outlet>
+      </div>
+      <div class="col desk">
+        <div class="page">
+          <app-personal-info></app-personal-info>
+        </div>
+        <div class="page">
+          <app-delivery-address></app-delivery-address>
+        </div>
+        <div class="page">
+          <app-shipping-methods></app-shipping-methods>
+        </div>
+      </div>
+      <div class="col desk">
+        <div class="page">
+          <app-payment-methods></app-payment-methods>
+        </div>
+      </div>
+      <div class="col desk">
+        <div class="resume">
+          <h1>Resumo do pedido</h1>
+          <div class="items-list">
+            <div class="product" *ngFor="let item of cartSelectedItems; let i = index">
+              <app-product-list-item [product]="item.product_variant.product" [cartItem]="item">
+              </app-product-list-item>
+            </div>
+          </div>
+
+          <div class="resume-item">
+            <span class="f-16">Subtotal: </span>
+            <span class="f-16">{{ totalValue | currency }}</span>
+          </div>
+
+          <div class="resume-item">
+            <span class="f-14">Frete: </span>
+            <span class="f-14" [ngClass]="{free: freeShipping}">{{ deliveryFee | currency }}</span>
+          </div>
+
+          <div class="resume-item">
+            <span class="f-14">Desconto: </span>
+            <span class="f-14">{{ (totalValue - discountValue) | currency }}</span>
+          </div>
+
+          <div class="resume-item total">
+            <span class="f-20">Total do pedido: </span>
+            <span class="f-20">
+              <strong *ngIf="freeShipping && discountValue">{{ discountValue | currency }}</strong>
+              <strong *ngIf="!freeShipping && discountValue">{{ (discountValue + deliveryFee) | currency }}</strong>
+              <strong *ngIf="!discountValue">{{ 0 | currency }}</strong>
+            </span>
+          </div>
+
+          <button mat-button class="primary"
+            [ngClass]="{ creating: creatingStatus === 'loading', created: creatingStatus === 'created' }"
+            (click)="handleCreateOrder()">
+            <span class="idle">
+              Comprar agora
+            </span>
+            <span class="loading f-28">
+              <i icon="box_heart"></i>
+              <i icon="shirt"></i>
+            </span>
+            <span class="success">
+              <i icon="check" class="f-28"></i>
+              <span>Os mantos já são seus!</span>
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

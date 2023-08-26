@@ -122,6 +122,7 @@ export class CartComponent implements OnInit {
     });
 
     this.storage.selectedItemsCart = selectedItems;
+    console.log(selectedItems);
 
     setTimeout(() => {
       this.creating = false;
