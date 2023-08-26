@@ -25,7 +25,7 @@
           <h1>Resumo do pedido</h1>
           <div class="items-list">
             <div class="product" *ngFor="let item of cartSelectedItems; let i = index">
-              <app-product-list-item [product]="item.product_variant.product" [cartItem]="item">
+              <app-product-list-item [actions]="false" [product]="item.product_variant.product" [cartItem]="item">
               </app-product-list-item>
             </div>
           </div>

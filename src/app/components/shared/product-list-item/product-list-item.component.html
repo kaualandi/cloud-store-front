@@ -16,14 +16,14 @@
         </span>
       </p>
 
-      <button class="delete" mat-icon-button (click)="handleDeleteItem()" [disabled]="deleteLoading">
+      <button *ngIf="actions" class="delete" mat-icon-button (click)="handleDeleteItem()" [disabled]="deleteLoading">
         <i *ngIf="!deleteLoading" icon="trash"></i>
         <loading *ngIf="deleteLoading"></loading>
       </button>
     </div>
 
     <div class="qtd-price">
-      <div class="qtd">
+      <div *ngIf="actions" class="qtd">
         <button mat-icon-button (click)="handleEditQuantity('-')" [disabled]="cartItem.quantity <= 1">
           <i icon="minus"></i>
         </button>

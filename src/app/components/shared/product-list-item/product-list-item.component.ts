@@ -14,6 +14,7 @@ import { EditQuantityModalComponent } from '../edit-quantity-modal/edit-quantity
 export class ProductListItemComponent implements OnInit {
   @Input() product = {} as IProduct | IProductCart;
   @Input() cartItem = {} as ICartItem;
+  @Input() actions = true;
   @Output() deleted = new EventEmitter<void>();
   @Output() edited = new EventEmitter<void>();
 

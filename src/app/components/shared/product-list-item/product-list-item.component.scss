@@ -44,9 +44,15 @@
       align-items: center;
       justify-content: space-between;
 
+      .qtd {
+        flex: none;
+      }
+
       .price {
         font-weight: bold;
+        text-align: end;
         margin: 0;
+        width: 100%;
       }
     }
   }
