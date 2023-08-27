@@ -2,7 +2,45 @@
   .container {
     .content {
       .mat-radio-group {
+        ::ng-deep .mat-radio-button {
+          .mat-radio-label {
+            border: 1px solid var(--border_color);
+            border-radius: var(--br);
+            .mat-radio-container {
+              background-color: var(--border_color);
+              padding: 0.8rem;
+              border-radius: var(--br) 0 0 var(--br);
+              .mat-radio-outer-circle,
+              .mat-radio-inner-circle {
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+
+                .mat-radio-outer-circle {
+                  color: var(--white);
+                }
+                &.mat-radio-inner-circle {
+                  background-color: var(--white);
+                  transform: translate(-50%, -50%) scale(0);
+                }
+              }
+            }
+          }
+          &.mat-accent.mat-radio-checked {
+            .mat-radio-container {
+              background-color: var(--primary_color);
+              .mat-radio-outer-circle {
+                border-color: var(--white);
+              }
+              .mat-radio-inner-circle {
+                transform: translate(-50%, -50%) scale(0.5);
+              }
+            }
+          }
+        }
+
         button.black {
+          margin-top: 1rem;
           width: 100%;
         }
       }
