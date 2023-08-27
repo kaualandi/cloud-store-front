@@ -3,5 +3,60 @@
     <header>
       <h2><span class="f-18">2</span> Endereço de entrega</h2>
     </header>
+
+    <div class="content">
+      <mat-radio-group *ngIf="user.address?.length" aria-label="Escolha o endereço">
+        <mat-radio-button *ngFor="let addr of user.address" [value]="addr.id">{{ addr.city }}</mat-radio-button>
+        <button mat-button class="black" (click)="addAddress = true">Adicionar um novo endereço</button>
+      </mat-radio-group>
+
+      <div class="not-found" *ngIf="!user.address?.length || addAddress">
+        <p class="title" *ngIf="!user.address?.length">Você ainda não possui endereços cadastrados.</p>
+
+        <form (ngSubmit)="handleFormSubmit()" [formGroup]="newAddressForm">
+          <div class="card-input">
+            <label for="zip_code">CEP</label>
+            <input type="text" id="zip_code" formControlName="zip_code" mask="00000-000" />
+          </div>
+
+          <div class="card-input">
+            <label for="state">Estado</label>
+            <input type="text" id="state" mask="AA" formControlName="state" />
+          </div>
+
+          <div class="card-input">
+            <label for="city">Cidade</label>
+            <input type="text" id="city" formControlName="city" />
+          </div>
+
+          <div class="card-input">
+            <label for="neighborhood">Bairro</label>
+            <input type="text" id="neighborhood" formControlName="neighborhood" />
+          </div>
+
+          <div class="card-input">
+            <label for="street">Rua</label>
+            <input type="text" id="street" formControlName="street" />
+          </div>
+
+          <div class="card-input">
+            <label for="number">Número</label>
+            <input type="text" id="number" formControlName="number" />
+          </div>
+
+          <div class="card-input">
+            <label for="complement">Complemento</label>
+            <input type="text" id="complement" formControlName="complement" />
+          </div>
+
+          <div class="card-input">
+            <button mat-button *ngIf="addAddress" type="button" class="alt"
+              (click)="handleAddAddressCancel()">Cancelar</button>
+            <button mat-button type="submit" class="primary">Adicionar endereço <loading *ngIf="loading"></loading>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
 </section>

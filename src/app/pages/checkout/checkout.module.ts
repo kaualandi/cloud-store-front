@@ -1,15 +1,16 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatRadioModule } from '@angular/material/radio';
+import { NgxMaskModule } from 'ngx-mask';
+import { SharedModule } from 'src/app/components/shared/shared.module';
 import { CheckoutRoutingModule } from './checkout-routing.module';
 import { CheckoutComponent } from './checkout.component';
-import { PersonalInfoComponent } from './personal-info/personal-info.component';
 import { DeliveryAddressComponent } from './delivery-address/delivery-address.component';
-import { ShippingMethodsComponent } from './shipping-methods/shipping-methods.component';
 import { PaymentMethodsComponent } from './payment-methods/payment-methods.component';
-import { SharedModule } from 'src/app/components/shared/shared.module';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgxMaskModule } from 'ngx-mask';
+import { PersonalInfoComponent } from './personal-info/personal-info.component';
+import { ShippingMethodsComponent } from './shipping-methods/shipping-methods.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { NgxMaskModule } from 'ngx-mask';
     FormsModule,
     NgxMaskModule.forRoot(),
     ReactiveFormsModule,
+    MatRadioModule,
   ],
 })
 export class CheckoutModule {}

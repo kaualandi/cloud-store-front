@@ -21,6 +21,12 @@
       color: var(--white);
     }
 
+    &.black {
+      background-color: var(--title_color);
+      border: 1px solid var(--title_color);
+      color: var(--white);
+    }
+
     &.alt {
       background-color: transparent;
       border: 1px solid transparent;
