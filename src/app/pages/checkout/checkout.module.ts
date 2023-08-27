@@ -8,6 +8,8 @@ import { DeliveryAddressComponent } from './delivery-address/delivery-address.co
 import { ShippingMethodsComponent } from './shipping-methods/shipping-methods.component';
 import { PaymentMethodsComponent } from './payment-methods/payment-methods.component';
 import { SharedModule } from 'src/app/components/shared/shared.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,13 @@ import { SharedModule } from 'src/app/components/shared/shared.module';
     ShippingMethodsComponent,
     PaymentMethodsComponent,
   ],
-  imports: [CommonModule, CheckoutRoutingModule, SharedModule],
+  imports: [
+    CommonModule,
+    CheckoutRoutingModule,
+    SharedModule,
+    FormsModule,
+    NgxMaskModule.forRoot(),
+    ReactiveFormsModule,
+  ],
 })
 export class CheckoutModule {}

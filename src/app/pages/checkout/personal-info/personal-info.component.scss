@@ -1,0 +1,27 @@
+#personal-info {
+  .container {
+    .content {
+      h3 {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        button {
+          padding-top: 0;
+          padding-bottom: 0;
+        }
+      }
+      form {
+        .card-input {
+          input {
+            transition: var(--ts);
+            &:disabled {
+              background-color: transparent;
+              border-color: transparent;
+              padding: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}

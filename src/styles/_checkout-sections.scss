@@ -2,5 +2,31 @@
   animation: fadeInBounceLeft 0.5s ease-in-out both;
   .container {
     margin-top: 0;
+    padding: 0;
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      h2 {
+        display: flex;
+        align-items: center;
+        margin: 0;
+        gap: 0.5rem;
+        span {
+          color: var(--white);
+          width: 45px;
+          height: 45px;
+          border-radius: 50%;
+          background-color: var(--border_color);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          &.completed {
+            background-color: var(--primary_color);
+          }
+        }
+      }
+    }
   }
 }

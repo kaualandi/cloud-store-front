@@ -27,7 +27,7 @@
         <i icon="user"></i>
         <span class="flex">
           <small *ngIf="!user.id">Entrar/Cadastrar</small>
-          <small *ngIf="user.id">Olá, {{user.name.split(' ')[0]}}</small>
+          <small *ngIf="user.id">Olá, {{(user.name || 'usuário').split(' ')[0]}}</small>
           Minha conta
         </span>
       </button>

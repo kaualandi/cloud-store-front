@@ -95,12 +95,14 @@ export class NavbarComponent implements OnInit, OnDestroy {
         this.storage.myself = data;
         this.user = data;
         this.getCart();
-        this.loading = false;
       },
       error: (error) => {
         if (error.status === 401) {
           this.storage.logout();
         }
+        this.user = {} as IUser;
+        this.storage.myself = {} as IUser;
+        this.loading = false;
       },
     });
   }

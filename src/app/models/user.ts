@@ -17,8 +17,9 @@ export interface IUser {
   address: IAddress[];
   email: string;
   is_admin: boolean;
-  name: string;
-  phone: string;
+  name?: string;
+  phone?: string;
+  cpf?: string;
   profile_url?: string;
   updated_at?: string;
   created_at?: string;

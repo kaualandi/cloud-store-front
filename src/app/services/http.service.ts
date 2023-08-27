@@ -51,7 +51,7 @@ export class HttpService {
       errorMessage = error.error.message;
     } else {
       // Erro ocorreu no lado do servidor
-      errorMessage = `Erro: ${error.status}: ${error.error.detail}`;
+      errorMessage = `Erro: ${error.status}: ${error.error.message}`;
     }
     this.snackbar.error(errorMessage);
 

@@ -25,9 +25,10 @@ export class AuthService {
 
   updateMe(data: IUser) {
     const body = new HttpParams()
-      .set('name', data.name)
+      .set('name', data.name || '')
       .set('email', data.email)
-      .set('phone', data.phone)
+      .set('phone', data.phone || '')
+      .set('cpf', data.cpf || '')
       .set('profile_url', data.profile_url || '');
 
     return this.http.patch<IUser>('auth/update', body);

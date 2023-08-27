@@ -5,12 +5,18 @@ import { Subject } from 'rxjs';
 import { IUser } from '../models/user';
 import { IConfig } from '../models/config';
 import { ICartItem, IProductCart } from '../models/cart';
+import { MatDialog } from '@angular/material/dialog';
+import { LoginComponent } from '../components/login/login.component';
 
 @Injectable({
   providedIn: 'root',
 })
 export class StorageService {
-  constructor(private cookieService: CookieService, private router: Router) {}
+  constructor(
+    private cookieService: CookieService,
+    private router: Router,
+    private dialog: MatDialog
+  ) {}
 
   UserSubject = new Subject<void>();
   private myUser: IUser = {} as IUser;
@@ -275,7 +281,11 @@ export class StorageService {
 
   logout() {
     this.cookieService.delete('token');
-    this.router.navigate(['/login']);
+    this.changeUser();
+    this.router.navigate(['/']);
+    this.dialog.open(LoginComponent, {
+      panelClass: 'login-dialog',
+    });
   }
 
   get ssl() {
