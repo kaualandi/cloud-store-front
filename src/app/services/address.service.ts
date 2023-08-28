@@ -25,4 +25,17 @@ export class AddressService {
 
     return this.http.post<IAddress>('address', body);
   }
+
+  patchAddress(id: number, data: IAddress) {
+    const body = new HttpParams()
+      .set('city', data.city || '')
+      .set('complement', data.complement || '')
+      .set('neighborhood', data.neighborhood || '')
+      .set('number', data.number || '')
+      .set('state', data.state || '')
+      .set('street', data.street || '')
+      .set('zip_code', data.zip_code || '');
+
+    return this.http.patch<IAddress>(`address/${id}`, body);
+  }
 }

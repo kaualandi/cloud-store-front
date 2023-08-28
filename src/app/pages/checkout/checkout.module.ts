@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { MatRadioModule } from '@angular/material/radio';
 import { NgxMaskModule } from 'ngx-mask';
 import { SharedModule } from 'src/app/components/shared/shared.module';
@@ -28,6 +29,7 @@ import { ShippingMethodsComponent } from './shipping-methods/shipping-methods.co
     NgxMaskModule.forRoot(),
     ReactiveFormsModule,
     MatRadioModule,
+    MatExpansionModule,
   ],
 })
 export class CheckoutModule {}

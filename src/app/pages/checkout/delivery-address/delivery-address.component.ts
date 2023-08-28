@@ -21,6 +21,7 @@ export class DeliveryAddressComponent implements OnInit {
   loading = false;
   completed = false;
   addAddress = false;
+  edditingAddress = false;
   user = this.storage.myself;
   selectedAddress = new FormControl(0);
 
@@ -69,14 +70,58 @@ export class DeliveryAddressComponent implements OnInit {
       complement: formAddress.complement || '',
     } as IAddress;
 
+    if (this.edditingAddress) {
+      if (!this.selectedAddress.value) return;
+      this.patchAddress(this.selectedAddress.value, address);
+      return;
+    }
+
+    this.postAddress(address);
+  }
+
+  setAddAddress() {
+    this.addAddress = true;
+    this.edditingAddress = false;
+  }
+
+  setEdittingAddress(id: number) {
+    this.selectedAddress.setValue(id);
+    this.addAddress = false;
+    this.edditingAddress = true;
+    const address = this.user.address?.find((address) => address.id === id);
+    if (!address) return;
+    this.newAddressForm.patchValue({ ...address, complement: 'VAI A MERDA' });
+  }
+
+  postAddress(address: IAddress) {
     this.addressService.postAddress(address).subscribe({
       next: (address) => {
-        this.user.address.push(address);
-        this.storage.myself = this.user;
+        this.user.address?.push(address);
+        this.storage.changeUser();
         this.snackbar.success('Endereço cadastrado com sucesso');
-        this.newAddressForm.reset();
-        this.selectedAddress.setValue(this.user.address.length - 1);
-        this.addAddress = false;
+        this.handleAddAddressCancel();
+        this.selectedAddress.setValue(address.id);
+        this.loading = false;
+      },
+      error: () => {
+        this.loading = false;
+      },
+    });
+  }
+
+  patchAddress(id: number, address: IAddress) {
+    this.addressService.patchAddress(id, address).subscribe({
+      next: (address) => {
+        const oldAddress = this.user.address?.find(
+          (address) => address.id === id
+        );
+        if (oldAddress) {
+          Object.assign(oldAddress, address);
+        }
+        this.storage.changeUser();
+        this.snackbar.success('Endereço editado com sucesso');
+        this.handleAddAddressCancel();
+        this.selectedAddress.setValue((this.user.address?.length || 1) - 1);
         this.loading = false;
       },
       error: () => {
@@ -87,6 +132,7 @@ export class DeliveryAddressComponent implements OnInit {
 
   handleAddAddressCancel() {
     this.addAddress = false;
+    this.edditingAddress = false;
     this.newAddressForm.reset();
   }
 

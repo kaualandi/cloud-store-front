@@ -14,7 +14,7 @@ export interface IAddress {
 
 export interface IUser {
   id: number;
-  address: IAddress[];
+  address?: IAddress[];
   email: string;
   is_admin: boolean;
   name?: string;
