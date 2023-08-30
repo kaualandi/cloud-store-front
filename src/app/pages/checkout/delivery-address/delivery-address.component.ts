@@ -19,7 +19,6 @@ export class DeliveryAddressComponent implements OnInit {
   ) {}
 
   loading = false;
-  completed = false;
   addAddress = false;
   edditingAddress = false;
   user = this.storage.myself;
@@ -90,7 +89,7 @@ export class DeliveryAddressComponent implements OnInit {
     this.edditingAddress = true;
     const address = this.user.address?.find((address) => address.id === id);
     if (!address) return;
-    this.newAddressForm.patchValue({ ...address, complement: 'VAI A MERDA' });
+    this.newAddressForm.patchValue(address);
   }
 
   postAddress(address: IAddress) {

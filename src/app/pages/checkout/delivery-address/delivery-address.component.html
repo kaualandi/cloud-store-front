@@ -1,16 +1,17 @@
 <section class="checkout-page" id="delivery-address">
   <div class="container">
     <header>
-      <h2><span class="f-18">2</span> Endereço de entrega</h2>
+      <h2><span [ngClass]="{ completed: selectedAddress.value }" class="f-18">2</span> Endereço de entrega</h2>
     </header>
 
     <div class="content">
-      <mat-radio-group *ngIf="user.address?.length" aria-label="Escolha o endereço" class="primary">
-        <mat-radio-button [disableRipple]=" true" *ngFor="let addr of user.address" [value]="addr.id">
-          <span class="street-num">{{addr.street}}, {{addr.number}}</span>
-          <span class="neighborhood-city-state">{{addr.neighborhood}} - {{addr.city}} / {{addr.state}}</span>
-          <span class="zip-code">{{addr.zip_code | mask: '00000-000'}}</span>
-          <span class="complement">{{addr.complement}}</span>
+      <mat-radio-group *ngIf="user.address?.length" aria-label="Escolha o endereço" class="primary"
+        [formControl]="selectedAddress">
+        <mat-radio-button [disableRipple]="true" *ngFor="let addr of user.address" [value]="addr.id">
+          <span class="street-num f-16 one-line">{{addr.street}}, {{addr.number}}</span>
+          <span class="neighborhood-city-state one-line">{{addr.neighborhood}} - {{addr.city}} / {{addr.state}}</span>
+          <span class="zip-code one-line">{{addr.zip_code | mask: '00000-000'}}</span>
+          <span class="complement one-line">{{addr.complement}}</span>
           <button mat-icon-button *ngIf="!addAddress" (click)="setEdittingAddress(addr.id)">
             <i icon="pen"></i>
           </button>

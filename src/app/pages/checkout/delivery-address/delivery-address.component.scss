@@ -7,6 +7,9 @@
             .mat-radio-label-content {
               & > span {
                 padding-right: 42px;
+                &.street-num {
+                  font-weight: 600;
+                }
               }
               button {
                 position: absolute;
