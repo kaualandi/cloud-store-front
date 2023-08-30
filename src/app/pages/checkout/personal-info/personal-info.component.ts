@@ -38,6 +38,9 @@ export class PersonalInfoComponent implements OnInit {
           clearInterval(userInterval);
         }
       });
+    } else {
+      this.userForm.patchValue(this.user);
+      this.checkUserData();
     }
   }
 
