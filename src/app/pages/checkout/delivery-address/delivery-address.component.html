@@ -62,9 +62,9 @@
             </div>
 
             <div class="card-input">
-              <button mat-button *ngIf="addAddress" type="button" class="alt"
-                (click)="handleAddAddressCancel()">Cancelar</button>
-              <button mat-button type="submit" class="primary">Adicionar endereço <loading *ngIf="loading"></loading>
+              <button mat-button type="button" class="alt" (click)="handleAddAddressCancel()">Cancelar</button>
+              <button mat-button type="submit" class="primary">{{edditingAddress ? 'Editar' : 'Adicionar'}} endereço
+                <loading *ngIf="loading"></loading>
               </button>
             </div>
           </form>

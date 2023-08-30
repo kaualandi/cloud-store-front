@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { OrderService } from 'src/app/services/order.service';
 import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
@@ -8,9 +9,13 @@ import { StorageService } from 'src/app/services/storage.service';
   styleUrls: ['./checkout.component.scss'],
 })
 export class CheckoutComponent implements OnInit {
-  constructor(private storage: StorageService, private router: Router) {}
+  constructor(
+    private storage: StorageService,
+    private router: Router,
+    private orderService: OrderService
+  ) {}
 
-  cartSelectedItems = this.storage.selectedItemsCart;
+  order = this.orderService.getNewOrder();
   creatingStatus: 'idle' | 'loading' | 'created' = 'idle';
   freeShipping = false;
   totalValue = 0;
@@ -20,10 +25,14 @@ export class CheckoutComponent implements OnInit {
   deliveryFee = 10;
 
   ngOnInit(): void {
-    if (this.cartSelectedItems.length === 0) {
+    if (this.order.selected_items_cart.length === 0) {
       this.router.navigate(['/cart']);
       return;
     }
+
+    this.orderService.watchOrder().subscribe(() => {
+      this.order = this.orderService.getNewOrder();
+    });
 
     this.calcItems();
   }
@@ -32,7 +41,7 @@ export class CheckoutComponent implements OnInit {
     this.totalValue = 0;
     this.discountValue = 0;
 
-    this.cartSelectedItems.forEach((item) => {
+    this.order.selected_items_cart.forEach((item) => {
       const product = item.product_variant.product;
       this.totalValue += product.base_price * item.quantity;
 

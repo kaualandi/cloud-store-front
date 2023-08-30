@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
 import { ICartItem } from 'src/app/models/cart';
 import { CartService } from 'src/app/services/cart.service';
+import { OrderService } from 'src/app/services/order.service';
 import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
@@ -17,7 +18,8 @@ export class CartComponent implements OnInit {
     private cartService: CartService,
     private storage: StorageService,
     private navbarComponent: NavbarComponent,
-    private router: Router
+    private router: Router,
+    private orderService: OrderService
   ) {}
 
   selectAll = new FormControl(false);
@@ -121,8 +123,10 @@ export class CartComponent implements OnInit {
       }
     });
 
-    this.storage.selectedItemsCart = selectedItems;
-    console.log(selectedItems);
+    this.orderService.setNewOrder({
+      address_id: 0,
+      selected_items_cart: selectedItems,
+    });
 
     setTimeout(() => {
       this.creating = false;

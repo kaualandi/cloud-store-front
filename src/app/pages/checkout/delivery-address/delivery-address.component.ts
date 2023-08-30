@@ -2,6 +2,7 @@ import { AddressService } from './../../../services/address.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { IAddress } from 'src/app/models/user';
+import { OrderService } from 'src/app/services/order.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { StorageService } from 'src/app/services/storage.service';
 
@@ -15,12 +16,14 @@ export class DeliveryAddressComponent implements OnInit {
     private storage: StorageService,
     private fb: FormBuilder,
     private addressService: AddressService,
-    private snackbar: SnackbarService
+    private snackbar: SnackbarService,
+    private orderService: OrderService
   ) {}
 
   loading = false;
   addAddress = false;
   edditingAddress = false;
+  order = this.orderService.getNewOrder();
   user = this.storage.myself;
   selectedAddress = new FormControl(0);
 
@@ -39,6 +42,12 @@ export class DeliveryAddressComponent implements OnInit {
 
   ngOnInit(): void {
     this.observeZipCodeChanges();
+
+    this.selectedAddress.valueChanges.subscribe((value) => {
+      if (!value) return;
+      this.order.address_id = value;
+      this.orderService.changeOrder();
+    });
 
     if (!this.user.id) {
       const userInterval = setInterval(() => {

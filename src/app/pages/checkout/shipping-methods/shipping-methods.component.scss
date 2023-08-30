@@ -1,0 +1,31 @@
+#shipping-methods {
+  .container {
+    .content {
+      .not-found {
+        .title {
+          text-align: center;
+        }
+      }
+      .mat-radio-group {
+        .mat-radio-button {
+          ::ng-deep {
+            .mat-radio-label-content {
+              & > span {
+                padding-right: 42px;
+                &.street-num {
+                  font-weight: 600;
+                }
+              }
+              button {
+                position: absolute;
+                right: 0;
+                top: 50%;
+                transform: translateY(-50%);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
