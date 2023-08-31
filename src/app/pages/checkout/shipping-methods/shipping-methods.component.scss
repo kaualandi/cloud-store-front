@@ -1,10 +1,13 @@
 #shipping-methods {
   .container {
     .content {
-      .not-found {
-        .title {
-          text-align: center;
-        }
+      .not-found,
+      .error {
+        text-align: center;
+      }
+      .loading {
+        display: flex;
+        justify-content: center;
       }
       .mat-radio-group {
         .mat-radio-button {
@@ -12,15 +15,18 @@
             .mat-radio-label-content {
               & > span {
                 padding-right: 42px;
-                &.street-num {
+                &.type {
                   font-weight: 600;
                 }
               }
-              button {
+              .price {
                 position: absolute;
-                right: 0;
+                right: 0.8rem;
                 top: 50%;
                 transform: translateY(-50%);
+                color: var(--green_color);
+                padding-right: 0;
+                font-weight: 600;
               }
             }
           }

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpService } from './http.service';
 import { ICartItem, IProductCart } from '../models/cart';
 import { Subject } from 'rxjs';
+import { IAddress } from '../models/user';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +13,9 @@ export class OrderService {
   orderSubject = new Subject<void>();
   private newOrder = {
     address_id: 0,
+    address: {} as IAddress,
+    total: 0,
+    subtotal: 0,
     selected_items_cart: [
       {
         id: 21,

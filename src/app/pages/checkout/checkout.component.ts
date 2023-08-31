@@ -56,6 +56,7 @@ export class CheckoutComponent implements OnInit {
     });
 
     this.freeShipping = this.discountValue >= this.deliveryFreePrice;
+    this.order.subtotal = this.discountValue;
   }
 
   handleCreateOrder() {

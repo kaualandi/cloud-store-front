@@ -3,6 +3,7 @@ import { FormBuilder, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
 import { ICartItem } from 'src/app/models/cart';
+import { IAddress } from 'src/app/models/user';
 import { CartService } from 'src/app/services/cart.service';
 import { OrderService } from 'src/app/services/order.service';
 import { StorageService } from 'src/app/services/storage.service';
@@ -125,6 +126,9 @@ export class CartComponent implements OnInit {
 
     this.orderService.setNewOrder({
       address_id: 0,
+      total: this.totalValue,
+      subtotal: this.totalValue,
+      address: {} as IAddress,
       selected_items_cart: selectedItems,
     });
 

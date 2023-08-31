@@ -46,6 +46,9 @@ export class DeliveryAddressComponent implements OnInit {
     this.selectedAddress.valueChanges.subscribe((value) => {
       if (!value) return;
       this.order.address_id = value;
+      this.order.address = this.user.address?.find(
+        (address) => address.id === value
+      ) as IAddress;
       this.orderService.changeOrder();
     });
 
