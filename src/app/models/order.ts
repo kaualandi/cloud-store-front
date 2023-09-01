@@ -14,5 +14,5 @@ export type TNewOrder = IPrePrice & {
   address: IAddress;
   items_id: number[];
   shipping_price: number;
-  shipping_type: 'pac' | 'sedex';
+  shipping_method: 'pac' | 'sedex';
 };

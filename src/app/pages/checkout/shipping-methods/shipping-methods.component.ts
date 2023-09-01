@@ -17,26 +17,41 @@ export class ShippingMethodsComponent implements OnInit {
     private correiosService: CorreiosService
   ) {}
 
+  loading = false;
+  error = false;
   order = this.orderService.getNewOrder();
   delivery_fee = this.storage.config.delivery_fee;
   cep = '';
   price = 0;
   quantity = 0;
   correios = {} as PriceDeadlineCorreios;
+  ignoreNext = false;
 
-  loading = false;
-  error = false;
-
-  selectedShippingMethod = new FormControl(0);
+  selectedShippingMethod = new FormControl<'sedex' | 'pac' | null>(null);
 
   ngOnInit(): void {
     this.orderService.watchOrder().subscribe(() => {
+      if (this.ignoreNext) {
+        this.ignoreNext = false;
+        return;
+      }
       this.reload();
+    });
+
+    this.selectedShippingMethod.valueChanges.subscribe((value) => {
+      if (value !== 'sedex' && value !== 'pac') return;
+
+      this.order.shipping_method = value;
+      this.order.shipping_price = this.correios[value].price;
+
+      this.ignoreNext = true;
+      this.orderService.setNewOrder(this.order);
     });
   }
 
   reload() {
     this.order = this.orderService.getNewOrder();
+    this.selectedShippingMethod.setValue(null);
     console.log(this.order);
 
     this.cep = this.order.address.zip_code;

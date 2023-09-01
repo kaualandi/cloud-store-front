@@ -21,9 +21,9 @@ export class CheckoutComponent implements OnInit {
   freeShipping = false;
   totalValue = 0;
   discountValue = 0;
-  customizationFee = this.storage.config.customization_fee;
   deliveryFreePrice = this.storage.config.delivery_fee;
-  deliveryFee = 10;
+  stepsValidations = { 1: false, 2: false, 3: false, 4: false };
+  disabledSubmit = true;
 
   selected_items: ICartItem[] = [];
 
@@ -35,6 +35,10 @@ export class CheckoutComponent implements OnInit {
 
     this.orderService.watchOrder().subscribe(() => {
       this.order = this.orderService.getNewOrder();
+      this.validateFields();
+      this.freeShipping =
+        this.order.total_with_discount >= this.deliveryFreePrice &&
+        this.order.shipping_method === 'pac';
     });
 
     this.calcItems();
@@ -62,7 +66,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   handleCreateOrder() {
-    if (this.creatingStatus !== 'idle') return;
+    if (this.creatingStatus !== 'idle' || !this.disabledSubmit) return;
 
     this.creatingStatus = 'loading';
     setTimeout(() => {
@@ -71,5 +75,19 @@ export class CheckoutComponent implements OnInit {
         this.creatingStatus = 'idle';
       }, 2000);
     }, 2000);
+  }
+
+  validateFields() {
+    const user = this.storage.myself;
+    this.stepsValidations[1] =
+      !!user.id && !!user.name && !!user.email && !!user.cpf && !!user.phone;
+    this.stepsValidations[2] = !!this.order.address.zip_code;
+    this.stepsValidations[3] = !!this.order.shipping_method;
+    this.stepsValidations[4] = false;
+    console.log('this.stepsValidations', this.stepsValidations);
+
+    this.disabledSubmit = !Object.values(this.stepsValidations).every(
+      (value) => value
+    );
   }
 }

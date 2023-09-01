@@ -37,7 +37,7 @@
 
           <div class="resume-item">
             <span class="f-14">Frete: </span>
-            <span class="f-14" [ngClass]="{free: freeShipping}">{{ deliveryFee | currency }}</span>
+            <span class="f-14" [ngClass]="{free: freeShipping}">{{ order.shipping_price | currency }}</span>
           </div>
 
           <div class="resume-item">
@@ -49,14 +49,15 @@
             <span class="f-20">Total do pedido: </span>
             <span class="f-20">
               <strong *ngIf="freeShipping && discountValue">{{ discountValue | currency }}</strong>
-              <strong *ngIf="!freeShipping && discountValue">{{ (discountValue + deliveryFee) | currency }}</strong>
+              <strong *ngIf="!freeShipping && discountValue">{{ (discountValue + (order.shipping_price || 0)) | currency
+                }}</strong>
               <strong *ngIf="!discountValue">{{ 0 | currency }}</strong>
             </span>
           </div>
 
           <button mat-button class="primary"
             [ngClass]="{ creating: creatingStatus === 'loading', created: creatingStatus === 'created' }"
-            (click)="handleCreateOrder()">
+            (click)="handleCreateOrder()" [disabled]="disabledSubmit">
             <span class="idle">
               Comprar agora
             </span>
