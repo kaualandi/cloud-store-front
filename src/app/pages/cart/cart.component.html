@@ -1,4 +1,4 @@
-<main id="cart">
+<main id="cart" *ngIf="!loading">
   <div class="container" *ngIf="cart.length">
     <div class="row">
       <div class="col cart">
@@ -34,20 +34,25 @@
         <div class="resume">
           <div class="resume-item">
             <span class="f-16">Subtotal: </span>
-            <span class="f-16">{{ totalValue | currency }}</span>
+            <span class="f-16" *ngIf="!loadingPrice">{{ totalValue | currency }}</span>
+            <span class="f-16" *ngIf="loadingPrice">Calculando...</span>
+
           </div>
 
           <div class="resume-item">
             <span class="f-14">Desconto: </span>
-            <span class="f-14">{{ (totalValue - discountValue) | currency }}</span>
+            <span class="f-14" *ngIf="!loadingPrice">{{ (totalValue - discountValue) | currency }}</span>
+            <span class="f-14" *ngIf="loadingPrice">Calculando...</span>
           </div>
 
           <div class="resume-item total">
             <span class="f-20">Total: </span>
-            <span class="f-20">
+            <span class="f-20" *ngIf="!loadingPrice">
               <strong *ngIf="discountValue">{{ discountValue | currency }}</strong>
               <strong *ngIf="!discountValue">{{ 0 | currency }}</strong>
             </span>
+            <span class="f-20" *ngIf="loadingPrice">Calculando...</span>
+
           </div>
 
           <button mat-button class="primary" [ngClass]="{ creating }" (click)="handleCreateOrder()"
@@ -75,4 +80,10 @@
   </div>
 
   <app-footer></app-footer>
+</main>
+
+<main id="cart" *ngIf="loading">
+  <div class="container">
+    <page-loading></page-loading>
+  </div>
 </main>

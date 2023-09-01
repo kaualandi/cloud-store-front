@@ -25,10 +25,10 @@ export class CartComponent implements OnInit {
     private orderService: OrderService
   ) {}
 
+  loading = false;
+  loadingPrice = false;
   selectAll = new FormControl(false);
-
   selectedFormArray = this.fb.array([new FormControl(false)]);
-
   cart: ICartItem[] = [];
 
   totalValue = 0;
@@ -38,6 +38,8 @@ export class CartComponent implements OnInit {
   creating = false;
 
   ngOnInit(): void {
+    this.loading = true;
+
     this.totalValue = 0;
     this.discountValue = 0;
     this.deliveryFreePrice = this.storage.config.delivery_fee;
@@ -55,6 +57,7 @@ export class CartComponent implements OnInit {
   getCart() {
     this.cartService.getCart().subscribe((cart) => {
       this.cart = cart;
+      this.loading = false;
 
       this.selectedFormArray = this.fb.array(
         cart.map(() => new FormControl(false))
@@ -87,6 +90,7 @@ export class CartComponent implements OnInit {
 
     const selectedItems = this.getSelectedItemsId();
     if (!selectedItems.length) return;
+    this.loadingPrice = true;
 
     this.orderService.getPricePreOrder(selectedItems).subscribe({
       next: (prePrice) => {
@@ -94,6 +98,7 @@ export class CartComponent implements OnInit {
         this.discountValue = prePrice.total_with_discount;
         this.freeShipping =
           prePrice.total_with_discount >= this.deliveryFreePrice;
+        this.loadingPrice = false;
       },
       error: () => {
         this.freeShipping = false;

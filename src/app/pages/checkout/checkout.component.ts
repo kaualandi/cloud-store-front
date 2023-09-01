@@ -58,8 +58,6 @@ export class CheckoutComponent implements OnInit {
           ...prePrice,
         };
 
-        console.log('this.order in checkout', this.order);
-
         this.orderService.setNewOrder(this.order);
       },
     });

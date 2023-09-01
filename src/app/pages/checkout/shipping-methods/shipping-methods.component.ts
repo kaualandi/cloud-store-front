@@ -52,8 +52,6 @@ export class ShippingMethodsComponent implements OnInit {
   reload() {
     this.order = this.orderService.getNewOrder();
     this.selectedShippingMethod.setValue(null);
-    console.log(this.order);
-
     this.cep = this.order.address.zip_code;
     if (!this.cep) return;
     this.price = this.order.total_with_discount;
