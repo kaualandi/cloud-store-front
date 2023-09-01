@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import { PriceDeadlineCorreios } from 'src/app/models/correios';
 import { CorreiosService } from 'src/app/services/correios.service';
 import { OrderService } from 'src/app/services/order.service';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-shipping-methods',
@@ -12,10 +13,12 @@ import { OrderService } from 'src/app/services/order.service';
 export class ShippingMethodsComponent implements OnInit {
   constructor(
     private orderService: OrderService,
+    private storage: StorageService,
     private correiosService: CorreiosService
   ) {}
 
   order = this.orderService.getNewOrder();
+  delivery_fee = this.storage.config.delivery_fee;
   cep = '';
   price = 0;
   quantity = 0;
@@ -34,9 +37,12 @@ export class ShippingMethodsComponent implements OnInit {
 
   reload() {
     this.order = this.orderService.getNewOrder();
+    console.log(this.order);
+
     this.cep = this.order.address.zip_code;
-    this.price = this.order.total;
-    this.quantity = this.order.selected_items_cart.length;
+    if (!this.cep) return;
+    this.price = this.order.total_with_discount;
+    this.quantity = this.order.items_id.length;
     this.getPriceDeadline();
   }
 
@@ -49,6 +55,7 @@ export class ShippingMethodsComponent implements OnInit {
         next: (correios) => {
           this.correios = correios;
           this.loading = false;
+          this.delivery_fee = this.storage.config.delivery_fee;
         },
         error: () => {
           this.error = true;

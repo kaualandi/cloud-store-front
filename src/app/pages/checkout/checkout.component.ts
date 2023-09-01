@@ -1,5 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ICartItem } from 'src/app/models/cart';
 import { OrderService } from 'src/app/services/order.service';
 import { StorageService } from 'src/app/services/storage.service';
 
@@ -24,8 +25,10 @@ export class CheckoutComponent implements OnInit {
   deliveryFreePrice = this.storage.config.delivery_fee;
   deliveryFee = 10;
 
+  selected_items: ICartItem[] = [];
+
   ngOnInit(): void {
-    if (this.order.selected_items_cart.length === 0) {
+    if (this.order.items_id.length === 0) {
       this.router.navigate(['/cart']);
       return;
     }
@@ -41,22 +44,21 @@ export class CheckoutComponent implements OnInit {
     this.totalValue = 0;
     this.discountValue = 0;
 
-    this.order.selected_items_cart.forEach((item) => {
-      const product = item.product_variant.product;
-      this.totalValue += product.base_price * item.quantity;
+    this.orderService.getPricePreOrder().subscribe({
+      next: (prePrice) => {
+        this.totalValue = prePrice.total_without_discount;
+        this.discountValue = prePrice.total_with_discount;
+        this.selected_items = prePrice.items;
+        this.order = {
+          ...this.order,
+          ...prePrice,
+        };
 
-      const discountValue =
-        product.base_price - (product.base_price * product.discount) / 100;
-      this.discountValue += discountValue * item.quantity;
+        console.log('this.order in checkout', this.order);
 
-      if (item.customization) {
-        this.totalValue += this.customizationFee;
-        this.discountValue += this.customizationFee;
-      }
+        this.orderService.setNewOrder(this.order);
+      },
     });
-
-    this.freeShipping = this.discountValue >= this.deliveryFreePrice;
-    this.order.subtotal = this.discountValue;
   }
 
   handleCreateOrder() {

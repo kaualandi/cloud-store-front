@@ -38,11 +38,6 @@
           </div>
 
           <div class="resume-item">
-            <span class="f-14">Frete: </span>
-            <span class="f-14" [ngClass]="{free: freeShipping}">{{ deliveryFee | currency }}</span>
-          </div>
-
-          <div class="resume-item">
             <span class="f-14">Desconto: </span>
             <span class="f-14">{{ (totalValue - discountValue) | currency }}</span>
           </div>
@@ -50,8 +45,7 @@
           <div class="resume-item total">
             <span class="f-20">Total: </span>
             <span class="f-20">
-              <strong *ngIf="freeShipping && discountValue">{{ discountValue | currency }}</strong>
-              <strong *ngIf="!freeShipping && discountValue">{{ (discountValue + deliveryFee) | currency }}</strong>
+              <strong *ngIf="discountValue">{{ discountValue | currency }}</strong>
               <strong *ngIf="!discountValue">{{ 0 | currency }}</strong>
             </span>
           </div>

@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
 import { ICartItem } from 'src/app/models/cart';
+import { TNewOrder } from 'src/app/models/order';
 import { IAddress } from 'src/app/models/user';
 import { CartService } from 'src/app/services/cart.service';
 import { OrderService } from 'src/app/services/order.service';
@@ -31,19 +33,14 @@ export class CartComponent implements OnInit {
 
   totalValue = 0;
   discountValue = 0;
-  customizationFee = this.storage.config.customization_fee;
   deliveryFreePrice = this.storage.config.delivery_fee;
-  deliveryFee = 10;
   freeShipping = false;
-
   creating = false;
 
   ngOnInit(): void {
     this.totalValue = 0;
     this.discountValue = 0;
-    this.customizationFee = this.storage.config.customization_fee;
     this.deliveryFreePrice = this.storage.config.delivery_fee;
-    this.deliveryFee = 10;
     this.freeShipping = false;
 
     this.getCart();
@@ -74,34 +71,36 @@ export class CartComponent implements OnInit {
   }
 
   handleSelectObserver() {
-    this.selectedFormArray.valueChanges.subscribe((value) => {
-      this.calcItems();
-      const allSelected = value.every((item) => item);
-      this.selectAll.setValue(allSelected, { emitEvent: false });
-    });
+    this.selectedFormArray.valueChanges
+      .pipe(debounceTime(500), distinctUntilChanged())
+      .subscribe((value) => {
+        this.calcItems();
+        const allSelected = value.every((item) => item);
+        this.selectAll.setValue(allSelected, { emitEvent: false });
+      });
   }
 
   calcItems() {
     this.totalValue = 0;
     this.discountValue = 0;
+    this.freeShipping = false;
 
-    this.cart.forEach((item, index) => {
-      if (this.selectedFormArray.controls[index].value) {
-        const product = item.product_variant.product;
-        this.totalValue += product.base_price * item.quantity;
+    const selectedItems = this.getSelectedItemsId();
+    if (!selectedItems.length) return;
 
-        const discountValue =
-          product.base_price - (product.base_price * product.discount) / 100;
-        this.discountValue += discountValue * item.quantity;
-
-        if (item.customization) {
-          this.totalValue += this.customizationFee;
-          this.discountValue += this.customizationFee;
-        }
-      }
+    this.orderService.getPricePreOrder(selectedItems).subscribe({
+      next: (prePrice) => {
+        this.totalValue = prePrice.total_without_discount;
+        this.discountValue = prePrice.total_with_discount;
+        this.freeShipping =
+          prePrice.total_with_discount >= this.deliveryFreePrice;
+      },
+      error: () => {
+        this.freeShipping = false;
+        this.totalValue = 0;
+        this.discountValue = 0;
+      },
     });
-
-    this.freeShipping = this.discountValue >= this.deliveryFreePrice;
   }
 
   handleCreateOrder() {
@@ -116,21 +115,13 @@ export class CartComponent implements OnInit {
 
     this.creating = true;
 
-    const selectedItems: ICartItem[] = [];
-
-    this.selectedFormArray.controls.forEach((control, index) => {
-      if (control.value) {
-        selectedItems.push(this.cart[index]);
-      }
-    });
+    const selectedItems = this.getSelectedItemsId();
 
     this.orderService.setNewOrder({
       address_id: 0,
-      total: this.totalValue,
-      subtotal: this.totalValue,
       address: {} as IAddress,
-      selected_items_cart: selectedItems,
-    });
+      items_id: selectedItems,
+    } as TNewOrder);
 
     setTimeout(() => {
       this.creating = false;
@@ -144,5 +135,15 @@ export class CartComponent implements OnInit {
       this.totalValue === 0 ||
       this.selectedFormArray.value.every((item) => !item)
     );
+  }
+
+  getSelectedItemsId() {
+    const selectedItems: number[] = [];
+    this.selectedFormArray.controls.forEach((control, index) => {
+      if (control.value) {
+        selectedItems.push(this.cart[index].id);
+      }
+    });
+    return selectedItems;
   }
 }
