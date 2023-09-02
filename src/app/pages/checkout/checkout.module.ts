@@ -12,6 +12,7 @@ import { DeliveryAddressComponent } from './delivery-address/delivery-address.co
 import { PaymentMethodsComponent } from './payment-methods/payment-methods.component';
 import { PersonalInfoComponent } from './personal-info/personal-info.component';
 import { ShippingMethodsComponent } from './shipping-methods/shipping-methods.component';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { ShippingMethodsComponent } from './shipping-methods/shipping-methods.co
     ReactiveFormsModule,
     MatRadioModule,
     MatExpansionModule,
+    MatSelectModule,
   ],
 })
 export class CheckoutModule {}

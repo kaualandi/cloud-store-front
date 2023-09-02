@@ -1,7 +1,88 @@
 <section class="checkout-page" id="payment-methods">
   <div class="container">
     <header>
-      <h2><span class="f-18">4</span> Forma de pagamento</h2>
+      <h2><span [ngClass]="{ completed: selectedPaymentMethod.value }" class="f-18">4</span> Forma de pagamento</h2>
     </header>
+
+    <div class="content">
+      <mat-radio-group *ngIf="!loading" aria-label="Escolha o método de pagamento" class="primary"
+        [formControl]="selectedPaymentMethod">
+        <mat-radio-button value="PIX">
+          <p>
+            <i class="f-22" icon="pix"></i>
+            <span class="details">
+              <div class="title">PIX</div>
+              <div class="subtitle">Pague na hora.</div>
+            </span>
+            <span class="new f-10">Novo!</span>
+          </p>
+        </mat-radio-button>
+        <mat-radio-button [value]="cardType.value">
+          <p>
+            <i class="f-22" icon="card"></i>
+            <span class="details">
+              <div class="title">Cartão {{ order.card_number ? '(' + order.card_number.substring(12) + ')' : '' }}</div>
+              <div class="subtitle">Até {{this.config.installment_limit}}x sem juros.</div>
+            </span>
+          </p>
+          <button mat-icon-button (click)="handleChangeCardClick()">
+            <i icon="pen"></i>
+          </button>
+        </mat-radio-button>
+        <mat-expansion-panel [hideToggle]="true" [expanded]="changeCard">
+          <form (ngSubmit)="handleFormSubmit()" [formGroup]="cardForm">
+            <div class="card-input">
+              <mat-radio-group aria-label="Crédito ou débito" [formControl]="cardType" class="default">
+                <mat-radio-button value="CREDIT_CARD">Crédito</mat-radio-button>
+                <mat-radio-button value="DEBIT_CARD">Débito</mat-radio-button>
+              </mat-radio-group>
+            </div>
+            <div class="card-input">
+              <label for="card_number">Número do cartão</label>
+              <input type="text" id="card_number" formControlName="card_number" mask="0000 0000 0000 0000" />
+            </div>
+
+            <div class="card-input">
+              <label for="card_name">Nome do titular</label>
+              <input type="text" id="card_name" formControlName="card_name" />
+            </div>
+
+            <div class="card-input">
+              <label for="card_expiration">Validade</label>
+              <input type="text" id="card_expiration" formControlName="card_expiration" mask="M0/00" />
+            </div>
+
+            <div class="card-input">
+              <label for="card_cvv">CVV</label>
+              <input type="text" id="card_cvv" formControlName="card_cvv" mask="000" />
+            </div>
+
+            <div class="card-input" *ngIf="cardType.value === 'CREDIT_CARD'">
+              <label for="parcels">Parcelas</label>
+              <mat-select id="parcels" formControlName="parcels">
+                <mat-option *ngFor="let parcel of parcels" [value]="parcel.value">
+                  {{ parcel.label }}
+                </mat-option>
+              </mat-select>
+            </div>
+
+            <div class="card-input">
+              <button mat-button type="button" class="alt" (click)="handleAddCardCancel()">Cancelar</button>
+              <button mat-button type="submit" class="primary">Salvar <loading *ngIf="loading"></loading></button>
+            </div>
+          </form>
+        </mat-expansion-panel>
+
+        <mat-radio-button value="BILLET">
+          <p class="f-18">
+            <i class="f-22" icon="barcode"></i>
+            <span class="details">
+              <div class="title">Boleto</div>
+              <div class="subtitle">Pague em qualquer lotérica.</div>
+            </span>
+          </p>
+        </mat-radio-button>
+      </mat-radio-group>
+    </div>
   </div>
 </section>

@@ -64,7 +64,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   handleCreateOrder() {
-    if (this.creatingStatus !== 'idle' || !this.disabledSubmit) return;
+    if (this.creatingStatus !== 'idle' || this.disabledSubmit) return;
 
     this.creatingStatus = 'loading';
     setTimeout(() => {
@@ -81,7 +81,15 @@ export class CheckoutComponent implements OnInit {
       !!user.id && !!user.name && !!user.email && !!user.cpf && !!user.phone;
     this.stepsValidations[2] = !!this.order.address.zip_code;
     this.stepsValidations[3] = !!this.order.shipping_method;
-    this.stepsValidations[4] = false;
+    this.stepsValidations[4] = !!this.order.payment_method;
+    if (this.order.payment_method?.includes('CARD')) {
+      this.stepsValidations[4] =
+        this.stepsValidations[4] &&
+        !!this.order.card_number &&
+        !!this.order.card_name &&
+        !!this.order.card_expiration &&
+        !!this.order.card_cvv;
+    }
     console.log('this.stepsValidations', this.stepsValidations);
 
     this.disabledSubmit = !Object.values(this.stepsValidations).every(

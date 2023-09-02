@@ -1,0 +1,74 @@
+#payment-methods {
+  .container {
+    .content {
+      .mat-radio-group {
+        .mat-radio-button {
+          ::ng-deep {
+            .mat-radio-label-content {
+              position: relative;
+              p {
+                margin: 0;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                .details {
+                  .title {
+                    font-weight: 600;
+                  }
+                }
+                .new {
+                  text-transform: uppercase;
+                  padding: 2px 4px;
+                  background-color: var(--primary_color);
+                  position: absolute;
+                  top: 8px;
+                  right: 8px;
+                  border-radius: 4px;
+                  color: var(--white);
+                  &::before {
+                    content: '';
+                    position: absolute;
+                    top: 50%;
+                    left: -5px;
+                    transform: translateY(-50%);
+                    width: 0;
+                    height: 0;
+                    border-top: 5px solid transparent;
+                    border-bottom: 5px solid transparent;
+                    border-right: 5px solid var(--primary_color);
+                  }
+                }
+              }
+              button {
+                position: absolute;
+                right: 0;
+                top: 50%;
+                transform: translateY(-50%);
+              }
+            }
+          }
+        }
+
+        .mat-expansion-panel {
+          box-shadow: none;
+          background-color: transparent;
+          padding: 0 0.5rem 0.5rem;
+          &.mat-expanded {
+            padding-bottom: 1rem;
+          }
+          ::ng-deep .mat-expansion-panel-body {
+            padding: 0;
+            form {
+              margin-top: 0.5rem;
+            }
+            .mat-radio-group {
+              display: flex;
+              gap: 1rem;
+              justify-content: space-evenly;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -4,3 +4,8 @@ export interface IPagedReq<T> {
   next: string;
   previous: string;
 }
+
+export interface ISelectValue {
+  value: string | number;
+  label: string;
+}

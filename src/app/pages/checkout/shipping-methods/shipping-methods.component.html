@@ -19,9 +19,9 @@
         <button mat-button (click)="reload()" class="secondary">Tentar novamente</button>
       </div>
 
-      <mat-radio-group *ngIf="!loading && !error && order.address_id" aria-label="Escolha o endereço" class="primary"
-        [formControl]="selectedShippingMethod">
-        <mat-radio-button [disableRipple]="true" value="sedex">
+      <mat-radio-group *ngIf="!loading && !error && order.address_id" aria-label="Escolha o método de envio"
+        class="primary" [formControl]="selectedShippingMethod">
+        <mat-radio-button value="sedex">
           <span class="type f-16 one-line">SEDEX - CORREIOS</span>
           <span class="deadline one-line" *ngIf="correios.sedex.deadline === '1'">
             Em {{correios.sedex.deadline}} dia útil.
@@ -32,7 +32,7 @@
           <span class="price f-18">{{correios.sedex.price | currency}}</span>
         </mat-radio-button>
 
-        <mat-radio-button [disableRipple]="true" value="pac">
+        <mat-radio-button value="pac">
           <span class="type f-16 one-line">PAC - CORREIOS</span>
           <span class="deadline one-line" *ngIf="correios.pac.deadline === '1'">
             Em {{correios.pac.deadline}} dia útil.

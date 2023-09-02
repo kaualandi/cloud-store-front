@@ -26,6 +26,7 @@ export class ShippingMethodsComponent implements OnInit {
   quantity = 0;
   correios = {} as PriceDeadlineCorreios;
   ignoreNext = false;
+  pushedCep: string | undefined = undefined;
 
   selectedShippingMethod = new FormControl<'sedex' | 'pac' | null>(null);
 
@@ -35,6 +36,9 @@ export class ShippingMethodsComponent implements OnInit {
         this.ignoreNext = false;
         return;
       }
+
+      if (this.pushedCep === this.orderService.getNewOrder().address?.zip_code)
+        return;
       this.reload();
     });
 
@@ -68,6 +72,8 @@ export class ShippingMethodsComponent implements OnInit {
         next: (correios) => {
           this.correios = correios;
           this.loading = false;
+          this.error = false;
+          this.pushedCep = this.cep;
           this.delivery_fee = this.storage.config.delivery_fee;
         },
         error: () => {
