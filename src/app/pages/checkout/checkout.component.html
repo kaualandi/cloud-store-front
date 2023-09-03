@@ -45,15 +45,35 @@
             <span class="f-14">{{ (totalValue - discountValue) | currency }}</span>
           </div>
 
+          <div class="resume-item" *ngIf="order.cupom && cupomDiscount">
+            <span class="f-14">Cupom ({{order.cupom}}): </span>
+            <span class="f-14">{{ cupomDiscount | currency }}</span>
+          </div>
+
           <div class="resume-item total">
             <span class="f-20">Total do pedido: </span>
             <span class="f-20">
               <strong *ngIf="freeShipping && discountValue">{{ discountValue | currency }}</strong>
-              <strong *ngIf="!freeShipping && discountValue">{{ (discountValue + (order.shipping_price || 0)) | currency
-                }}</strong>
+              <strong *ngIf="!freeShipping && discountValue">
+                {{ (discountValue + (order.shipping_price || 0)) | currency }}
+              </strong>
               <strong *ngIf="!discountValue">{{ 0 | currency }}</strong>
             </span>
           </div>
+
+          <form class="cupom-area" [formGroup]="cupomForm" (ngSubmit)="handleApplyCupom()">
+            <div class="line">
+              <div class="card-input">
+                <input type="text" placeholder="Cupom de desconto" formControlName="value">
+              </div>
+              <div class="card-button">
+                <button mat-button type="submit" class="primary">Aplicar</button>
+              </div>
+            </div>
+            <span *ngIf="cupomError" class="cupom-error">
+              Esse cupom é inválido ou já foi utilizado.
+            </span>
+          </form>
 
           <button mat-button class="primary"
             [ngClass]="{ creating: creatingStatus === 'loading', created: creatingStatus === 'created' }"

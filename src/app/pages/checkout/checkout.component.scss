@@ -63,7 +63,30 @@
             }
           }
 
-          button {
+          .cupom-area {
+            margin-top: 1rem;
+            .line {
+              display: flex;
+              align-items: center;
+              gap: 0.5rem;
+              .card-input {
+                input {
+                  padding: 8px 12px;
+                }
+              }
+              .card-button {
+                button {
+                  padding: 0px 8px;
+                  line-height: 33px;
+                }
+              }
+            }
+            .cupom-error {
+              color: var(--red_color);
+            }
+          }
+
+          > button {
             position: relative;
             height: 64px;
             margin-top: 2rem;

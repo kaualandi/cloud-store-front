@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ICartItem } from 'src/app/models/cart';
 import { TNewOrder } from 'src/app/models/order';
@@ -14,7 +15,8 @@ export class CheckoutComponent implements OnInit {
   constructor(
     private storage: StorageService,
     private router: Router,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private fb: FormBuilder
   ) {}
 
   order = this.orderService.getNewOrder();
@@ -25,6 +27,12 @@ export class CheckoutComponent implements OnInit {
   deliveryFreePrice = this.storage.config.delivery_fee;
   stepsValidations = { 1: false, 2: false, 3: false, 4: false };
   disabledSubmit = true;
+
+  cupomDiscount = 0;
+  cupomError = false;
+  cupomForm = this.fb.group({
+    value: new FormControl(''),
+  });
 
   selected_items: ICartItem[] = [];
 
@@ -54,6 +62,8 @@ export class CheckoutComponent implements OnInit {
         this.totalValue = prePrice.total_without_discount;
         this.discountValue = prePrice.total_with_discount;
         this.selected_items = prePrice.items;
+        this.cupomError = !prePrice.cupom_status && !!this.order.cupom;
+        this.cupomDiscount = prePrice.cupom_discount;
         this.order = {
           ...this.order,
           ...prePrice,
@@ -72,7 +82,6 @@ export class CheckoutComponent implements OnInit {
 
     this.orderService.createOrder(this.order).subscribe({
       next: (order) => {
-        console.log('created order', order);
         this.orderService.setNewOrder({} as TNewOrder, false);
         this.storage.changeUser();
         this.creatingStatus = 'created';
@@ -103,12 +112,19 @@ export class CheckoutComponent implements OnInit {
         !!this.order.card_expiration &&
         !!this.order.card_cvv;
     }
-    console.log('this.stepsValidations', this.stepsValidations);
 
     this.disabledSubmit = !Object.values(this.stepsValidations).every(
       (value) => value
     );
 
     return this.disabledSubmit;
+  }
+
+  handleApplyCupom() {
+    const cupom = this.cupomForm.get('value')?.value;
+    if (!cupom) return;
+    this.order.cupom = cupom;
+    this.orderService.setNewOrder(this.order, false);
+    this.calcItems();
   }
 }

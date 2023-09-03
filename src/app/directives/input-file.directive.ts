@@ -18,10 +18,8 @@ export class InputFileDirective {
 
     if (files[0].type.startsWith('image')) {
       this.onImage(files);
-      console.log('image');
     } else {
       this.onPdf(files);
-      console.log('pdf');
     }
   }
 

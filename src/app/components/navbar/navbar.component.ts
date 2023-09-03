@@ -132,8 +132,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   handleProfileClick() {
     if (!this.storage.token) {
-      console.log('Não logado');
-
       this.openLoginDialog();
     }
   }

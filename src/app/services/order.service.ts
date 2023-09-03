@@ -47,8 +47,8 @@ export class OrderService {
 
   getPricePreOrder(items?: number[]) {
     !items && (items = this.newOrder.items_id);
-
-    return this.http.post<IPrePrice>('orders/pre-price', { items });
+    const cupom = this.newOrder.cupom?.toUpperCase() || '';
+    return this.http.post<IPrePrice>('orders/pre-price', { items, cupom });
   }
 
   createOrder(order: TNewOrder) {
@@ -59,6 +59,7 @@ export class OrderService {
       delivery_method: order.shipping_method,
       cart_ids: order.items_id,
       payment_method: order.payment_method,
+      cupom: order.cupom,
     } as BodyJson;
 
     if (order.payment_method.includes('CARD')) {

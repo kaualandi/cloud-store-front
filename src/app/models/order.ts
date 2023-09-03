@@ -11,6 +11,8 @@ export interface IPrePrice {
   total_customizations: number;
   total_discount: number;
   items: ICartItem[];
+  cupom_status: boolean;
+  cupom_discount: number;
 }
 
 export type TNewOrder = IPrePrice & {
@@ -19,6 +21,7 @@ export type TNewOrder = IPrePrice & {
   items_id: number[];
   shipping_price: number;
   shipping_method: 'pac' | 'sedex';
+  cupom: string;
   payment_method: TPaymentMethod;
   installments: number;
   card_number: string;

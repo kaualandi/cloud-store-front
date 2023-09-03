@@ -12,6 +12,6 @@ export class SectionsService {
 
   getSections() {
     const query = new HttpParams().set('page', '1').set('page_size', '100');
-    return this.http.get<IPagedReq<ISection>>('/sections', query);
+    return this.http.get<IPagedReq<ISection>>('sections', query);
   }
 }
