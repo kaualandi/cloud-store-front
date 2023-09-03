@@ -26,3 +26,9 @@ export type TNewOrder = IPrePrice & {
   card_expiration: string;
   card_cvv: string;
 };
+
+export interface ICreatedOrder {
+  worked: boolean;
+  status: string;
+  order_id: number;
+}

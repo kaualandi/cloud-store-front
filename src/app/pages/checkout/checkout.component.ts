@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ICartItem } from 'src/app/models/cart';
+import { TNewOrder } from 'src/app/models/order';
 import { OrderService } from 'src/app/services/order.service';
 import { StorageService } from 'src/app/services/storage.service';
 
@@ -65,14 +66,26 @@ export class CheckoutComponent implements OnInit {
 
   handleCreateOrder() {
     if (this.creatingStatus !== 'idle' || this.disabledSubmit) return;
+    if (this.validateFields()) return;
 
     this.creatingStatus = 'loading';
-    setTimeout(() => {
-      this.creatingStatus = 'created';
-      setTimeout(() => {
+
+    this.orderService.createOrder(this.order).subscribe({
+      next: (order) => {
+        console.log('created order', order);
+        this.orderService.setNewOrder({} as TNewOrder, false);
+        this.storage.changeUser();
+        this.creatingStatus = 'created';
+        setTimeout(() => {
+          this.creatingStatus = 'idle';
+          this.router.navigate(['/account/orders', order.order_id]);
+        }, 2000);
+      },
+      error: (err) => {
+        console.log('err', err);
         this.creatingStatus = 'idle';
-      }, 2000);
-    }, 2000);
+      },
+    });
   }
 
   validateFields() {
@@ -95,5 +108,7 @@ export class CheckoutComponent implements OnInit {
     this.disabledSubmit = !Object.values(this.stepsValidations).every(
       (value) => value
     );
+
+    return this.disabledSubmit;
   }
 }

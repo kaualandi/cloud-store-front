@@ -46,7 +46,12 @@ export class ShippingMethodsComponent implements OnInit {
       if (value !== 'sedex' && value !== 'pac') return;
 
       this.order.shipping_method = value;
-      this.order.shipping_price = this.correios[value].price;
+
+      if (this.price >= this.delivery_fee && value === 'pac') {
+        this.order.shipping_price = 0;
+      } else {
+        this.order.shipping_price = this.correios[value].price;
+      }
 
       this.ignoreNext = true;
       this.orderService.setNewOrder(this.order);
