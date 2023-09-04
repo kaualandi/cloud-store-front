@@ -1,5 +1,5 @@
 import { AddressService } from './../../../services/address.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { IAddress } from 'src/app/models/user';
 import { OrderService } from 'src/app/services/order.service';
@@ -12,6 +12,9 @@ import { StorageService } from 'src/app/services/storage.service';
   styleUrls: ['./delivery-address.component.scss'],
 })
 export class DeliveryAddressComponent implements OnInit {
+  @Output() next = new EventEmitter<void>();
+  @Output() prev = new EventEmitter<void>();
+
   constructor(
     private storage: StorageService,
     private fb: FormBuilder,
@@ -61,6 +64,18 @@ export class DeliveryAddressComponent implements OnInit {
         }
       });
     }
+  }
+
+  handleNextClick() {
+    console.log(this.selectedAddress.value);
+    if (this.loading || !this.selectedAddress.value) return;
+
+    this.next.emit();
+  }
+
+  handlePrevClick() {
+    if (this.loading) return;
+    this.prev.emit();
   }
 
   handleFormSubmit() {

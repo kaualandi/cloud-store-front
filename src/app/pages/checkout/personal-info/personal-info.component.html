@@ -39,6 +39,12 @@
           <input type="text" id="phone" name="phone" mask="(00) 00000-0000" formControlName="phone" />
         </div>
       </form>
+
+      <div class="actions">
+        <button mat-button class="primary" (click)="handleNextClick()" [disabled]="!completed">
+          Próximo
+        </button>
+      </div>
     </div>
   </div>
 </section>

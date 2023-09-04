@@ -38,7 +38,6 @@
 
     &.mat-button-disabled,
     &:disabled {
-      color: var(--primary-bg) !important;
       opacity: 0.5;
     }
   }

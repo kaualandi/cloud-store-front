@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
+import { MatStepper } from '@angular/material/stepper';
 import { Router } from '@angular/router';
 import { ICartItem } from 'src/app/models/cart';
 import { TNewOrder } from 'src/app/models/order';
@@ -118,6 +119,14 @@ export class CheckoutComponent implements OnInit {
     );
 
     return this.disabledSubmit;
+  }
+
+  handleNextStep(stepper: MatStepper) {
+    stepper.next();
+  }
+
+  handlePrevStep(stepper: MatStepper) {
+    stepper.previous();
   }
 
   handleApplyCupom() {

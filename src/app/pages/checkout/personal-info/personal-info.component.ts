@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { CustomValidatorsService } from 'src/app/services/custom-validators.service';
@@ -10,6 +10,8 @@ import { StorageService } from 'src/app/services/storage.service';
   styleUrls: ['./personal-info.component.scss'],
 })
 export class PersonalInfoComponent implements OnInit {
+  @Output() next = new EventEmitter<void>();
+
   constructor(
     private authService: AuthService,
     private storage: StorageService,
@@ -54,6 +56,15 @@ export class PersonalInfoComponent implements OnInit {
 
     this.editing = true;
     this.userForm.enable();
+  }
+
+  handleNextClick() {
+    if (this.loading || !this.completed) return;
+    if (this.userForm.invalid) {
+      this.userForm.markAllAsTouched();
+    }
+
+    this.next.emit();
   }
 
   handleFormSubmit() {

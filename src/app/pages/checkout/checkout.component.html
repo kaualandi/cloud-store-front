@@ -2,7 +2,21 @@
   <div class="container">
     <div class="row">
       <div class="mob">
-        <router-outlet></router-outlet>
+        <mat-stepper #stepper>
+          <mat-step [completed]="this.stepsValidations[1]">
+            <app-personal-info (next)="handleNextStep(stepper)"></app-personal-info>
+          </mat-step>
+          <mat-step [completed]="this.stepsValidations[2]">
+            <app-delivery-address (next)="handleNextStep(stepper)"
+              (prev)="handlePrevStep(stepper)"></app-delivery-address>
+          </mat-step>
+          <mat-step [completed]="this.stepsValidations[3]">
+            <app-shipping-methods></app-shipping-methods>
+          </mat-step>
+          <mat-step [completed]="this.stepsValidations[4]">
+            <app-payment-methods></app-payment-methods>
+          </mat-step>
+        </mat-stepper>
       </div>
       <div class="col desk">
         <div class="page">

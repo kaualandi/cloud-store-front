@@ -1,13 +1,56 @@
+@import 'src/styles/media';
+$mobBreak: '<=860px';
+
 #checkout {
   .container {
     .row {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1rem;
+      @include media('<=1270px') {
+        grid: repeat(2, 1fr) / auto-flow;
+      }
       .mob {
         display: none;
+        @include media($mobBreak) {
+          display: block;
+        }
+
+        .mat-stepper-horizontal {
+          background-color: transparent;
+          ::ng-deep .mat-horizontal-stepper-header-container {
+            .mat-step-header {
+              .mat-step-icon {
+                margin: 0;
+                width: 45px;
+                height: 45px;
+                transition: var(--ts);
+                background-color: var(--border_color);
+                &.mat-step-icon-selected {
+                  transform: scale(1.2);
+                  background-color: var(--primary_color);
+                  opacity: 0.6;
+                }
+                &.mat-step-icon-state-done {
+                  background-color: var(--primary_color);
+                }
+                .mat-step-icon-content {
+                  span {
+                    font-size: 0.9473684211rem;
+                  }
+                }
+              }
+              .mat-step-label {
+                display: none;
+              }
+            }
+          }
+        }
       }
       .desk {
+        @include media($mobBreak) {
+          display: none;
+        }
         .page {
           background-color: var(--secondary_bg);
           padding: 1rem;

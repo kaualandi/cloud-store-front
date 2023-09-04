@@ -15,7 +15,7 @@ export class OrderService {
   private newOrder = {
     address_id: 0,
     address: {} as IAddress,
-    items_id: [] as number[],
+    items_id: [45] as number[],
   } as TNewOrder;
 
   getNewOrder() {
