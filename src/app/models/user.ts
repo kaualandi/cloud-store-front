@@ -1,3 +1,5 @@
+import { IOrder } from './order';
+
 export interface IAddress {
   id: number;
   user_id: number;
@@ -41,4 +43,11 @@ export interface IViaCep {
   gia: string;
   ddd: string;
   siafi: string;
+}
+
+export interface IAccountResume {
+  user: IUser;
+  last_order: IOrder;
+  user_register_percent: number;
+  user_register_text_status: string;
 }

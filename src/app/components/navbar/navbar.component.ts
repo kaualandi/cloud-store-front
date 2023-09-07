@@ -8,6 +8,7 @@ import SwiperCore, { Autoplay, Navigation, FreeMode } from 'swiper';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from '../login/login.component';
 import { IUser } from 'src/app/models/user';
+import { Router } from '@angular/router';
 
 SwiperCore.use([Navigation, Autoplay, FreeMode]);
 @Component({
@@ -22,7 +23,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
     private homeFooterService: HomeFooterService,
     private cartService: CartService,
     private authService: AuthService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private router: Router
   ) {}
 
   loading = false;
@@ -132,8 +134,9 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   handleProfileClick() {
     if (!this.storage.token) {
-      this.openLoginDialog();
+      return this.openLoginDialog();
     }
+    return this.router.navigate(['/account']);
   }
 
   openLoginDialog(fb?: () => void) {

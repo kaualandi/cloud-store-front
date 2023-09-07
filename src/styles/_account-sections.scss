@@ -1,0 +1,14 @@
+.account-page {
+  animation: fadeInBounceLeft 0.5s ease-in-out both;
+  .container {
+    margin-top: 0;
+    padding: 0;
+
+    header {
+      margin-bottom: 1rem;
+      h2 {
+        margin: 0;
+      }
+    }
+  }
+}

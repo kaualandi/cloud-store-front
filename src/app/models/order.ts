@@ -5,6 +5,13 @@ export type TPaymentCardMethod = 'CREDIT_CARD' | 'DEBIT_CARD';
 
 export type TPaymentMethod = TPaymentCardMethod | 'PIX' | 'CASH' | 'BILLET';
 
+export type TOrderStatus =
+  | 'PENDING'
+  | 'CONFIRMED'
+  | 'CANCELLED'
+  | 'SENT'
+  | 'DELIVERED';
+
 export interface IPrePrice {
   total_with_discount: number;
   total_without_discount: number;
@@ -34,4 +41,24 @@ export interface ICreatedOrder {
   worked: boolean;
   status: string;
   order_id: number;
+}
+
+export interface IOrder {
+  id: number;
+  user_id: number;
+  address_id: number;
+  subtotal: number;
+  delivery_fee: number;
+  customization_fee: number;
+  total: number;
+  tracking_number: string;
+  status: TOrderStatus;
+  cancelled_reason: string;
+  payment_method: TPaymentMethod;
+  payment_id: string;
+  installments: number;
+  coupon_id: number;
+  created_at: string;
+  updated_at: string;
+  address: IAddress;
 }

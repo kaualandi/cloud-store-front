@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { Subject } from 'rxjs';
-import { IUser } from '../models/user';
-import { IConfig } from '../models/config';
-import { ICartItem, IProductCart } from '../models/cart';
-import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from '../components/login/login.component';
+import { IConfig } from '../models/config';
+import { IUser } from '../models/user';
 
 @Injectable({
   providedIn: 'root',

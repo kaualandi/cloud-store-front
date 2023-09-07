@@ -1,0 +1,55 @@
+<div class="order-list-item">
+  <div class="status-id {{order.status}}">
+    <span class="status f-16">{{ order.status | orderStatus }}</span>
+    <span class="id f-16">#{{ order.id }} <i (click)="copyOrderId()" icon="copy"></i></span>
+  </div>
+
+  <div class="progress-bar">
+    <div class="progress" [ngStyle]="{ '--progress': progress + '%' }"
+      [ngClass]="{cancelled: order.status === 'CANCELLED'}">
+      <div class="steps">
+        <div class="step" [ngClass]="{active: progress >= 0}">
+          <span class="icon">
+            <i icon="clipboard"></i>
+          </span>
+        </div>
+
+        <div class="step" [ngClass]="{active: progress >= 35}" *ngIf="order.status !== 'CANCELLED'">
+          <span class="icon">
+            <i icon="check"></i>
+          </span>
+        </div>
+
+        <div class="step cancelled" *ngIf="order.status === 'CANCELLED'">
+          <span class="icon">
+            <i icon="xmark"></i>
+          </span>
+        </div>
+
+        <div class="step" [ngClass]="{active: progress >= 65}" *ngIf="order.status !== 'CANCELLED'">
+          <span class="icon">
+            <i icon="truck"></i>
+          </span>
+        </div>
+
+        <div class="step" [ngClass]="{active: progress >= 100}" *ngIf="order.status !== 'CANCELLED'">
+          <span class="icon">
+            <i icon="shirt"></i>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="address">
+    <h3 class="f-16">Endereço de entrega</h3>
+    <p class="f-14 name">{{name}}</p>
+    <p class="f-14">{{order.address.street}}, {{order.address.number}}</p>
+    <p class="f-14">{{order.address.city}} - {{order.address.state}}</p>
+    <p class="f-14">CEP: {{order.address.zip_code | mask: '00000-000'}}</p>
+  </div>
+
+  <div class="details">
+    <button mat-button class="primary">Ver detalhes do pedido</button>
+  </div>
+</div>

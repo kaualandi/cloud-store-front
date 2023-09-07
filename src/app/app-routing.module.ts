@@ -59,6 +59,11 @@ const routes: Routes = [
             (m) => m.CheckoutModule
           ),
       },
+      {
+        path: 'account',
+        loadChildren: () =>
+          import('./pages/account/account.module').then((m) => m.AccountModule),
+      },
     ],
   },
 ];

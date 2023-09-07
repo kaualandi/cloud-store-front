@@ -1,5 +1,46 @@
-<main id="checkout">
+<main id="account">
   <div class="container">
+    <div class="row">
+      <div class="menu">
+        <ul>
+          <li>
+            <button mat-button routerLink="/account" routerLinkActive="active">
+              <i icon="user"></i> Minha conta
+            </button>
+          </li>
+          <li>
+            <button mat-button>
+              <i icon="clipboard"></i> Meus pedidos
+            </button>
+          </li>
+          <li>
+            <button mat-button>
+              <i icon="server"></i> Meus dados
+            </button>
+          </li>
+          <li>
+            <button mat-button>
+              <i icon="map"></i> Meus endereços
+            </button>
+          </li>
+          <li>
+            <button mat-button>
+              <i icon="user_shield"></i> Alterar senha
+            </button>
+          </li>
+          <li>
+            <button mat-button>
+              <i icon="exit"></i> Sair
+            </button>
+          </li>
+        </ul>
+      </div>
 
+      <div class="content">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
   </div>
+
+  <app-footer></app-footer>
 </main>

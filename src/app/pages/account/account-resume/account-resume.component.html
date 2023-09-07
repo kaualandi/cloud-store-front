@@ -1,0 +1,16 @@
+<section class="account-page" id="account-resume">
+  <div class="container" *ngIf="!loading">
+    <header>
+      <h2>Dados do seu último pedido</h2>
+    </header>
+
+    <div class="content">
+      <div class="last-order">
+        <app-order-list-item [order]="accountResume.last_order"
+          [name]="accountResume.user.name || ''"></app-order-list-item>
+      </div>
+    </div>
+  </div>
+
+  <page-loading *ngIf="loading"></page-loading>
+</section>

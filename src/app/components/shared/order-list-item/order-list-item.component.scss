@@ -1,0 +1,124 @@
+.order-list-item {
+  .status-id {
+    background-color: var(--primary_bg);
+    border-radius: 2px;
+    padding: 0.5rem;
+    border-left: 1rem solid transparent;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    margin-bottom: 2rem;
+
+    span {
+      text-transform: uppercase;
+      &.id {
+        font-weight: 600;
+      }
+      i {
+        cursor: pointer;
+      }
+    }
+
+    &.PENDING {
+      border-left-color: var(--yellow_color);
+    }
+    &.CONFIRMED {
+      border-left-color: var(--primary_color);
+    }
+    &.CANCELLED {
+      border-left-color: var(--red_color);
+    }
+    &.SENT {
+      border-left-color: var(--primary_color);
+    }
+    &.DELIVERED {
+      border-left-color: var(--green_color);
+    }
+  }
+
+  .progress-bar {
+    height: 50px;
+    margin-bottom: 2rem;
+    .progress {
+      position: relative;
+      height: 1rem;
+      background-color: var(--primary_bg);
+      border-radius: 1rem;
+      &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 0;
+        height: 1rem;
+        width: var(--progress);
+        transition: var(--ts);
+        transition-duration: 1s;
+        background-color: var(--green_color);
+        border-radius: 1rem;
+      }
+      &.cancelled {
+        &::before {
+          background-image: linear-gradient(
+            45deg,
+            var(--green_color) 50%,
+            var(--red_color) 50%
+          );
+        }
+      }
+      .steps {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 1;
+        .step {
+          height: 50px;
+          width: 50px;
+          border-radius: 50%;
+          background-color: var(--white);
+          border: 2px solid var(--green_color);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: var(--green_color);
+          i {
+            font-size: 1.2rem;
+          }
+
+          &.active {
+            background-color: var(--green_color);
+            color: var(--white);
+          }
+          &.cancelled {
+            background-color: var(--red_color);
+            border-color: var(--red_color);
+            color: var(--white);
+          }
+        }
+      }
+    }
+  }
+
+  .address {
+    h3 {
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+    p {
+      margin-bottom: 0.1rem;
+      &.name {
+        font-weight: 500;
+      }
+    }
+  }
+
+  .details {
+    margin-top: 0.5rem;
+    display: flex;
+    justify-content: center;
+  }
+}
