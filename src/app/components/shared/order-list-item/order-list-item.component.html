@@ -1,10 +1,12 @@
 <div class="order-list-item">
   <div class="status-id {{order.status}}">
     <span class="status f-16">{{ order.status | orderStatus }}</span>
+    <span class="total f-16">Produtos: {{ totalItems }}</span>
     <span class="id f-16">#{{ order.id }} <i (click)="copyOrderId()" icon="copy"></i></span>
+    <span class="total f-16">{{ order.created_at | date: 'dd/MM/yyyy' }}</span>
   </div>
 
-  <div class="progress-bar">
+  <div class="progress-bar" *ngIf="expanded">
     <div class="progress" [ngStyle]="{ '--progress': progress + '%' }"
       [ngClass]="{cancelled: order.status === 'CANCELLED'}">
       <div class="steps">
@@ -41,15 +43,11 @@
     </div>
   </div>
 
-  <div class="address">
+  <div class="address" *ngIf="expanded">
     <h3 class="f-16">Endereço de entrega</h3>
     <p class="f-14 name">{{name}}</p>
     <p class="f-14">{{order.address.street}}, {{order.address.number}}</p>
     <p class="f-14">{{order.address.city}} - {{order.address.state}}</p>
     <p class="f-14">CEP: {{order.address.zip_code | mask: '00000-000'}}</p>
-  </div>
-
-  <div class="details">
-    <button mat-button class="primary">Ver detalhes do pedido</button>
   </div>
 </div>

@@ -20,6 +20,7 @@ export class StorageService {
   UserSubject = new Subject<void>();
   private myUser: IUser = {} as IUser;
   private _config: IConfig = {} as IConfig;
+  openLogin = false;
 
   get myself() {
     return this.myUser;

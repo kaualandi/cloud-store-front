@@ -10,6 +10,7 @@ import { Clipboard } from '@angular/cdk/clipboard';
 })
 export class OrderListItemComponent implements OnInit {
   @Input() order = {} as IOrder;
+  @Input() expanded = true;
   @Input() name = '';
 
   constructor(
@@ -18,9 +19,15 @@ export class OrderListItemComponent implements OnInit {
   ) {}
 
   progress = 3;
+  totalItems = 0;
 
   ngOnInit(): void {
     console.log(this.order);
+
+    this.totalItems = this.order.order_items.reduce(
+      (acc, item) => acc + item.quantity,
+      0
+    );
 
     let progress = 0;
     switch (this.order.status) {

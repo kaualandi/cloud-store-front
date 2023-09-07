@@ -4,13 +4,15 @@
     border-radius: 2px;
     padding: 0.5rem;
     border-left: 1rem solid transparent;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 0.2rem;
     margin-bottom: 2rem;
 
     span {
-      text-transform: uppercase;
+      &.status {
+        text-transform: uppercase;
+      }
       &.id {
         font-weight: 600;
       }
@@ -114,11 +116,5 @@
         font-weight: 500;
       }
     }
-  }
-
-  .details {
-    margin-top: 0.5rem;
-    display: flex;
-    justify-content: center;
   }
 }

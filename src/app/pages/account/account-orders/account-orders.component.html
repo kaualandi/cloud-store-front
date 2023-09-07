@@ -1,0 +1,18 @@
+<section class="account-page" id="account-orders">
+  <div class="container" *ngIf="!loading">
+    <header>
+      <h1>Meus pedidos</h1>
+    </header>
+
+    <div class="content">
+      <div class="orders">
+        <div class="order" *ngFor="let order of orders">
+          <app-order-list-item [order]="order" [expanded]="false"></app-order-list-item>
+          <a mat-icon-button routerLink="/account/orders/{{order.id}}"><i icon="view_pass"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <page-loading *ngIf="loading"></page-loading>
+</section>

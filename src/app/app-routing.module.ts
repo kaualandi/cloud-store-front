@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const SPR = true;
 
@@ -54,6 +55,7 @@ const routes: Routes = [
       },
       {
         path: 'checkout',
+        canActivate: [AuthGuard],
         loadChildren: () =>
           import('./pages/checkout/checkout.module').then(
             (m) => m.CheckoutModule
@@ -61,6 +63,7 @@ const routes: Routes = [
       },
       {
         path: 'account',
+        canActivate: [AuthGuard],
         loadChildren: () =>
           import('./pages/account/account.module').then((m) => m.AccountModule),
       },

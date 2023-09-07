@@ -22,6 +22,7 @@ export interface IUser {
   name?: string;
   phone?: string;
   cpf?: string;
+  birth_date?: string;
   profile_url?: string;
   updated_at?: string;
   created_at?: string;

@@ -54,6 +54,7 @@ export interface IOrder {
   tracking_number: string;
   status: TOrderStatus;
   cancelled_reason: string;
+  order_items: ICartItem[];
   payment_method: TPaymentMethod;
   payment_id: string;
   installments: number;

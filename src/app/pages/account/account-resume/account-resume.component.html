@@ -1,13 +1,73 @@
 <section class="account-page" id="account-resume">
   <div class="container" *ngIf="!loading">
     <header>
-      <h2>Dados do seu último pedido</h2>
+      <h1>Dados do seu último pedido</h1>
     </header>
 
     <div class="content">
       <div class="last-order">
         <app-order-list-item [order]="accountResume.last_order"
           [name]="accountResume.user.name || ''"></app-order-list-item>
+      </div>
+
+      <div class="details">
+        <button mat-button class="primary">Ver detalhes do pedido</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container" *ngIf="!loading">
+    <header>
+      <h1>Dados pessoais</h1>
+    </header>
+
+    <div class="content personal-data">
+      <div class="row">
+        <div class="data">
+          <div class="col">
+            <p>
+              <span>Nome</span>
+              <span>{{accountResume.user.name}}</span>
+            </p>
+
+            <p>
+              <span>E-mail</span>
+              <span>{{accountResume.user.email}}</span>
+            </p>
+
+            <p>
+              <span>CPF</span>
+              <span>{{accountResume.user.cpf || '-' | mask: '000.000.000-00'}}</span>
+            </p>
+          </div>
+          <div class="col">
+            <p>
+              <span>Data de nascimento</span>
+              <span>{{accountResume.user.birth_date ? (accountResume.user.birth_date | date: 'dd/MM/yyyy') :
+                '-'}}</span>
+            </p>
+
+            <p>
+              <span>Telefone</span>
+              <span>{{accountResume.user.phone || '-' | mask: '(00) 00000-0000'}}</span>
+            </p>
+          </div>
+        </div>
+        <div class="percent">
+          <div class="loader">
+            <mat-progress-spinner [mode]="'determinate'" [value]="accountResume.user_register_percent">
+            </mat-progress-spinner>
+            <span class="number f-24">
+              {{accountResume.user_register_percent}}%
+            </span>
+          </div>
+          <p class="title f-16">{{accountResume.user_register_text_status}}</p>
+          <p>{{accountResume.user_register_percent === 100 ? 'Seus dados estão completos!' : 'Complete sua conta.'}}</p>
+        </div>
+      </div>
+
+      <div class="details">
+        <button mat-button class="primary">Editar meus dados</button>
       </div>
     </div>
   </div>

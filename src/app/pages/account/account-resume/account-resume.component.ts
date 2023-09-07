@@ -21,7 +21,11 @@ export class AccountResumeComponent implements OnInit {
   getResume() {
     this.accountService.getResume().subscribe({
       next: (response) => {
-        this.accountResume = response;
+        this.accountResume = { ...response, user_register_percent: 0 };
+        setTimeout(() => {
+          this.accountResume.user_register_percent =
+            response.user_register_percent;
+        }, 1000);
         this.loading = false;
       },
       error: () => {

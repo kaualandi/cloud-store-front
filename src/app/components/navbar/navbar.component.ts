@@ -84,6 +84,11 @@ export class NavbarComponent implements OnInit, OnDestroy {
         this.getCart();
       },
     });
+
+    if (this.storage.openLogin) {
+      this.openLoginDialog();
+      this.storage.openLogin = false;
+    }
   }
 
   ngOnDestroy(): void {

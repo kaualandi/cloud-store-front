@@ -4,12 +4,14 @@
       <div class="menu">
         <ul>
           <li>
-            <button mat-button routerLink="/account" routerLinkActive="active">
+            <button mat-button routerLink="/account" routerLinkActive="active"
+              [routerLinkActiveOptions]="{exact: true}">
               <i icon="user"></i> Minha conta
             </button>
           </li>
           <li>
-            <button mat-button>
+            <button mat-button routerLink="/account/orders" routerLinkActive="active"
+              [routerLinkActiveOptions]="{exact: true}">
               <i icon="clipboard"></i> Meus pedidos
             </button>
           </li>
