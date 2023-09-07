@@ -22,9 +22,7 @@ export class OrderListItemComponent implements OnInit {
   totalItems = 0;
 
   ngOnInit(): void {
-    console.log(this.order);
-
-    this.totalItems = this.order.order_items.reduce(
+    this.totalItems = this.order.order_items?.reduce(
       (acc, item) => acc + item.quantity,
       0
     );
