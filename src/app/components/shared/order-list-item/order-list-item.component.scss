@@ -4,20 +4,26 @@
     border-radius: 2px;
     padding: 0.5rem;
     border-left: 1rem solid transparent;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.2rem;
-    margin-bottom: 2rem;
+    width: 100%;
+    position: relative;
 
-    span {
-      &.status {
-        text-transform: uppercase;
-      }
-      &.id {
-        font-weight: 600;
-      }
-      i {
-        cursor: pointer;
+    ::ng-deep .mat-button-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.2rem;
+      span {
+        text-align: start;
+        line-height: 1;
+        font-weight: 400;
+        &.status {
+          text-transform: uppercase;
+        }
+        &.id {
+          font-weight: 600;
+        }
+        i {
+          cursor: pointer;
+        }
       }
     }
 
@@ -41,6 +47,7 @@
   .progress-bar {
     height: 50px;
     margin-bottom: 2rem;
+    margin-top: 2rem;
     .progress {
       position: relative;
       height: 1rem;
