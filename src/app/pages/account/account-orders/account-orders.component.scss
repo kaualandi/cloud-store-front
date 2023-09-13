@@ -10,6 +10,9 @@
             right: 0;
             transform: translateY(-50%);
           }
+          & + .order {
+            margin-top: 2rem;
+          }
         }
       }
     }
