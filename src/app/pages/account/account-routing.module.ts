@@ -4,6 +4,7 @@ import { AccountResumeComponent } from './account-resume/account-resume.componen
 import { AccountComponent } from './account.component';
 import { AccountOrdersComponent } from './account-orders/account-orders.component';
 import { AccountOrderDetailComponent } from './account-order-detail/account-order-detail.component';
+import { AccountMyDataComponent } from './account-my-data/account-my-data.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
       {
         path: 'orders/:id',
         component: AccountOrderDetailComponent,
+      },
+      {
+        path: 'my-data',
+        component: AccountMyDataComponent,
       },
     ],
   },
