@@ -8,9 +8,10 @@ import { AccountResumeComponent } from './account-resume/account-resume.componen
 import { AccountRoutingModule } from './account-routing.module';
 import { AccountComponent } from './account.component';
 import { AccountOrdersComponent } from './account-orders/account-orders.component';
+import { AccountOrderDetailComponent } from './account-order-detail/account-order-detail.component';
 
 @NgModule({
-  declarations: [AccountComponent, AccountResumeComponent, AccountOrdersComponent],
+  declarations: [AccountComponent, AccountResumeComponent, AccountOrdersComponent, AccountOrderDetailComponent],
   imports: [
     CommonModule,
     SharedModule,

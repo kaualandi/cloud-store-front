@@ -1,0 +1,41 @@
+<section class="account-page" id="account-order-detail">
+  <div class="container" *ngIf="!loading">
+    <header>
+      <h1>Pedido #{{id}}</h1>
+    </header>
+
+    <div class="content">
+      <app-order-list-item [order]="order"></app-order-list-item>
+
+      <div class="products">
+        <h2>Produtos comprados</h2>
+
+        <div class="product" *ngFor="let item of order.order_items">
+          <app-product-list-item [product]="item.product_variant.product" [cartItem]="item"
+            [actions]="false"></app-product-list-item>
+        </div>
+      </div>
+
+      <div class="prices">
+        <h2>Resumo</h2>
+        <div class="price">
+          <p class="item">
+            <span>Subtotal</span>
+            <span>{{order.subtotal | currency}}</span>
+          </p>
+          <p class="item">
+            <span>Frete</span>
+            <span *ngIf="order.total !== order.subtotal">{{order.total - order.subtotal | currency}}</span>
+            <span *ngIf="order.total === order.subtotal">Gratis</span>
+          </p>
+          <p class="item total">
+            <span>Total</span>
+            <span>{{order.total | currency}}</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <page-loading *ngIf="loading"></page-loading>
+</section>

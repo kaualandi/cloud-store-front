@@ -33,6 +33,10 @@
         </button>
       </div>
 
+      <p *ngIf="!actions" class="qtd">
+        {{ cartItem.quantity }} unidade{{cartItem.quantity > 1 ? 's' : ''}}
+      </p>
+
       <p class="price f-18">{{ currentPrice | currency }}</p>
     </div>
   </div>

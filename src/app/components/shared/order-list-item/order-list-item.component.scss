@@ -112,15 +112,28 @@
     }
   }
 
-  .address {
-    h3 {
-      font-weight: 600;
-      margin-bottom: 0.2rem;
-    }
-    p {
-      margin-bottom: 0.1rem;
-      &.name {
-        font-weight: 500;
+  .sent {
+    display: flex;
+    gap: 2rem;
+    justify-content: space-between;
+    > div {
+      h3 {
+        font-weight: 600;
+        margin-bottom: 0.2rem;
+      }
+      p {
+        margin-bottom: 0.1rem;
+        &.name {
+          font-weight: 500;
+        }
+      }
+      .tracking-code {
+        p {
+          margin-bottom: 0.5rem;
+          i {
+            cursor: pointer;
+          }
+        }
       }
     }
   }

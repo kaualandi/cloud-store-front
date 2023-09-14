@@ -1,7 +1,7 @@
 /* eslint-disable dot-notation */
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { ICreatedOrder, IPrePrice, TNewOrder } from '../models/order';
+import { ICreatedOrder, IOrder, IPrePrice, TNewOrder } from '../models/order';
 import { IAddress } from '../models/user';
 import { BodyJson, HttpService } from './http.service';
 
@@ -49,6 +49,10 @@ export class OrderService {
     !items && (items = this.newOrder.items_id);
     const cupom = this.newOrder.cupom?.toUpperCase() || '';
     return this.http.post<IPrePrice>('orders/pre-price', { items, cupom });
+  }
+
+  getOrder(id: number) {
+    return this.http.get<IOrder>(`orders/${id}`);
   }
 
   createOrder(order: TNewOrder) {

@@ -1,0 +1,39 @@
+#account-order-detail {
+  .container {
+    .content {
+      .products {
+        margin-top: 1rem;
+        h2 {
+          margin-bottom: 0.5rem;
+        }
+        .product {
+          & + .product {
+            margin-top: 1rem;
+          }
+        }
+      }
+
+      .prices {
+        margin-top: 1rem;
+        h2 {
+          margin-bottom: 0.5rem;
+        }
+        .price {
+          max-width: 250px;
+          width: 100%;
+          .item {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 400;
+            &.total {
+              font-weight: 600;
+              span {
+                font-size: 1rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

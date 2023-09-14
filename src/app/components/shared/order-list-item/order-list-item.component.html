@@ -1,5 +1,5 @@
 <div class="order-list-item">
-  <button mat-button class="status-id {{order.status}}" [routerLink]="order.id + ''">
+  <button mat-button class="status-id {{order.status}}" routerLink="/account/orders/{{order.id}}">
     <span class="status f-16">{{ order.status | orderStatus }}</span>
     <span class="total f-16">Produtos: {{ totalItems }}</span>
     <span class="id f-16">#{{ order.id }} <i (click)="copyOrderId()" icon="copy"></i></span>
@@ -43,11 +43,27 @@
     </div>
   </div>
 
-  <div class="address" *ngIf="expanded">
-    <h3 class="f-16">Endereço de entrega</h3>
-    <p class="f-14 name">{{name}}</p>
-    <p class="f-14">{{order.address.street}}, {{order.address.number}}</p>
-    <p class="f-14">{{order.address.city}} - {{order.address.state}}</p>
-    <p class="f-14">CEP: {{order.address.zip_code | mask: '00000-000'}}</p>
+  <div class="sent" *ngIf="expanded">
+    <div class="address">
+      <h3 class="f-16">Endereço de entrega</h3>
+      <p class="f-14 name">{{name}}</p>
+      <p class="f-14">{{order.address.street}}, {{order.address.number}}</p>
+      <p class="f-14">{{order.address.city}} - {{order.address.state}}</p>
+      <p class="f-14">CEP: {{order.address.zip_code | mask: '00000-000'}}</p>
+    </div>
+
+    <div class="tracking">
+      <div class="tracking-code">
+        <h3 class="f-16">Código de rastreio</h3>
+        <p class="f-14">
+          {{ order.tracking_number || 'Indisponível' }}
+          <i *ngIf="order.tracking_number" (click)="copyTrackingNumber()" icon="copy"></i>
+        </p>
+      </div>
+
+      <a *ngIf="order.tracking_number" routerLink="/tracking/{{order.tracking_number}}" mat-button class="primary">
+        Rastrear pedido
+      </a>
+    </div>
   </div>
 </div>

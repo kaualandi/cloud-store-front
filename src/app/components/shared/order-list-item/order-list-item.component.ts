@@ -57,4 +57,9 @@ export class OrderListItemComponent implements OnInit {
     this.clipboard.copy(this.order.id.toString());
     this.snackbar.success('Código copiado');
   }
+
+  copyTrackingNumber() {
+    this.clipboard.copy(this.order.tracking_number);
+    this.snackbar.success('Código copiado');
+  }
 }
