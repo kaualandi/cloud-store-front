@@ -11,7 +11,9 @@
       </div>
 
       <div class="details">
-        <button mat-button class="primary">Ver detalhes do pedido</button>
+        <a mat-button class="primary" routerLink="/account/orders/{{accountResume.last_order.id}}">
+          Ver detalhes do pedido
+        </a>
       </div>
     </div>
   </div>
@@ -67,7 +69,7 @@
       </div>
 
       <div class="details">
-        <button mat-button class="primary">Editar meus dados</button>
+        <a mat-button class="primary" routerLink="/account/my-data">Editar meus dados</a>
       </div>
     </div>
   </div>

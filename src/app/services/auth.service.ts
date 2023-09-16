@@ -24,11 +24,14 @@ export class AuthService {
   }
 
   updateMe(data: IUser) {
+    const date = data.birth_date ? new Date(data.birth_date).toISOString() : '';
+
     const body = new HttpParams()
       .set('name', data.name || '')
       .set('email', data.email)
       .set('phone', data.phone || '')
       .set('cpf', data.cpf || '')
+      .set('birth_date', date)
       .set('profile_url', data.profile_url || '');
 
     return this.http.patch<IUser>('auth/update', body);

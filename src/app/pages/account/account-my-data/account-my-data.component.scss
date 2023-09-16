@@ -1,0 +1,110 @@
+#account-my-data {
+  .container {
+    .content {
+      form {
+        .profile-pic {
+          margin-bottom: 1rem;
+          .pic {
+            position: relative;
+            width: 132px;
+            height: 132px;
+            border-radius: 50%;
+            background-color: var(--border_color);
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              border-radius: 50%;
+            }
+            .no-photo {
+              font-size: 3rem;
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              color: var(--white);
+              transform: translate(-50%, -50%);
+            }
+            button {
+              position: absolute;
+              background-color: var(--primary_bg);
+              transition: var(--ts);
+              &.hidden {
+                transform: scale(0);
+              }
+              &.edit {
+                bottom: 0px;
+                right: 0px;
+                &:hover {
+                  background-color: var(--green_color);
+                  color: var(--white);
+                }
+              }
+              &.delete {
+                top: 0px;
+                right: 0px;
+                &:hover {
+                  background-color: var(--red_color);
+                  color: var(--white);
+                }
+              }
+            }
+          }
+        }
+
+        .inputs {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          grid-gap: 1rem;
+          margin-bottom: 2rem;
+          .card-input {
+            & + .card-input {
+              margin-top: 0px;
+            }
+          }
+        }
+
+        .actions {
+          display: flex;
+          justify-content: center;
+        }
+      }
+
+      .percent {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: fit-content;
+        margin: 2rem 0 0 auto;
+
+        .loader {
+          width: 120px;
+          height: 120px;
+          position: relative;
+          .mat-progress-spinner,
+          ::ng-deep .mat-progress-spinner svg {
+            width: 100% !important;
+            height: 100% !important;
+          }
+          ::ng-deep .mat-progress-spinner circle {
+            stroke: var(--green_color) !important;
+          }
+          .number {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-weight: 500;
+            color: var(--green_color);
+          }
+        }
+        p {
+          &.title {
+            margin-top: 0.5rem;
+            font-weight: 500;
+          }
+        }
+      }
+    }
+  }
+}
