@@ -6,7 +6,7 @@
   </p>
 </mat-dialog-content>
 
-<mat-dialog-actions [attr.align]="'end'">
+<mat-dialog-actions [attr.align]="data.buttons || 'end'">
   <button mat-button [matDialogClose]="false">Cancelar</button>
   <button mat-button [matDialogClose]="true" class="primary">Confirmar</button>
 

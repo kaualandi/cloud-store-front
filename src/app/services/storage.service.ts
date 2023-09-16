@@ -91,7 +91,7 @@ export class StorageService {
   }
 
   logout() {
-    this.cookieService.delete('token');
+    this.setToken('');
     this.changeUser();
     this.router.navigate(['/']);
     this.dialog.open(LoginComponent, {
