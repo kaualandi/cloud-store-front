@@ -1,3 +1,5 @@
+@import 'src/styles/media';
+
 #account-address-detail {
   .container {
     .content {
@@ -7,6 +9,9 @@
           grid-template-columns: repeat(2, 1fr);
           grid-gap: 1rem;
           margin-bottom: 2rem;
+          @include media('<=phone') {
+            grid-template-columns: repeat(1, 1fr);
+          }
           .card-input {
             & + .card-input {
               margin-top: 0px;

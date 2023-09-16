@@ -69,19 +69,19 @@
             </div>
 
             <form *ngIf="cartItem.customization" (ngSubmit)="handleCustomFormSubmit()" [formGroup]="customsForm">
-              <div class="card-input">
+              <div class="card-input alt">
                 <label for="name">
                   <i icon="user"></i> Nome:
                   <small [ngClass]="{error: (customsForm.value.name?.length || 0) > 15}">
                     {{15 - (customsForm.value.name?.length || 0)}} restantes
                   </small>
                 </label>
-                <input type="text" id="name" class="alt" formControlName="name" placeholder="Nome">
+                <input type="text" id="name" formControlName="name" placeholder="Nome">
               </div>
 
-              <div class="card-input">
+              <div class="card-input alt">
                 <label for="number"><i icon="ball"></i> Número:</label>
-                <input type="number" id="number" class="alt" formControlName="number" placeholder="Número">
+                <input type="number" id="number" formControlName="number" placeholder="Número">
               </div>
             </form>
           </div>

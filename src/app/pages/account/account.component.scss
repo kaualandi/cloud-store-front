@@ -1,9 +1,20 @@
+@import 'src/styles/media';
+
 #account {
   .container {
     .row {
       display: grid;
       grid-template-columns: 250px 1fr;
       gap: 2rem;
+
+      @include media('<=desktop') {
+        grid-template-columns: 220px 1fr;
+      }
+
+      @include media('<=tablet') {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
 
       .menu,
       .content {
@@ -36,6 +47,49 @@
               border-top: 1px solid var(--border_color);
             }
           }
+        }
+
+        @include media('<=tablet') {
+          padding: 1rem 0.5rem;
+          ul {
+            display: flex;
+            justify-content: space-around;
+            li {
+              flex: 1;
+              max-width: 40px;
+              button {
+                width: 40px;
+                height: 40px;
+                min-width: 40px;
+                padding: 0;
+                border-radius: 40px;
+                i {
+                  font-size: 1.2rem;
+                  margin: 0;
+                }
+                ::ng-deep .mat-button-wrapper {
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  span {
+                    display: none;
+                  }
+                }
+              }
+              & + li {
+                border-top: none;
+              }
+            }
+          }
+        }
+      }
+
+      .content {
+        @include media('<=tablet') {
+          padding: 0;
+          border-radius: none;
+          background-color: transparent;
+          box-shadow: none;
         }
       }
     }

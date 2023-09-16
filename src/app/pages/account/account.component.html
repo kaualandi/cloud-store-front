@@ -6,34 +6,34 @@
           <li>
             <button mat-button routerLink="/account" routerLinkActive="active"
               [routerLinkActiveOptions]="{exact: true}">
-              <i icon="user"></i> Minha conta
+              <i icon="user"></i> <span>Minha conta</span>
             </button>
           </li>
           <li>
             <button mat-button routerLink="/account/orders" routerLinkActive="active"
               [routerLinkActiveOptions]="{exact: true}">
-              <i icon="clipboard"></i> Meus pedidos
+              <i icon="clipboard"></i> <span>Meus pedidos</span>
             </button>
           </li>
           <li>
             <button mat-button routerLink="/account/my-data" routerLinkActive="active">
-              <i icon="server"></i> Meus dados
+              <i icon="server"></i> <span>Meus dados</span>
             </button>
           </li>
           <li>
             <button mat-button routerLink="/account/my-address" routerLinkActive="active"
               [routerLinkActiveOptions]="{exact: true}">
-              <i icon="map"></i> Meus endereços
+              <i icon="map"></i> <span>Meus endereços</span>
             </button>
           </li>
           <li>
             <button mat-button routerLink="/account/password" routerLinkActive="active">
-              <i icon="user_shield"></i> Alterar senha
+              <i icon="user_shield"></i> <span>Alterar senha</span>
             </button>
           </li>
           <li>
             <button mat-button (click)="logout()">
-              <i icon="exit"></i> Sair
+              <i icon="exit"></i> <span>Sair</span>
             </button>
           </li>
         </ul>

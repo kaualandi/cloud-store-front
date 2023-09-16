@@ -1,14 +1,14 @@
 <mat-tab-group>
   <mat-tab label="Entrar">
     <form (ngSubmit)="loginSubmitHandler()" [formGroup]="login_form">
-      <div class="card-input">
+      <div class="card-input alt">
         <label for="email">E-mail</label>
-        <input class="alt" type="text" id="email" name="email" placeholder="Digite seu e-mail" formControlName="email">
+        <input type="text" id="email" name="email" placeholder="Digite seu e-mail" formControlName="email">
       </div>
-      <div class="card-input">
+      <div class="card-input alt">
         <label for="current-password">Senha</label>
         <span class="input-icon">
-          <input class="alt" [type]="view_pass ? 'text' : 'password'" id="current-password" name="current-password"
+          <input [type]="view_pass ? 'text' : 'password'" id="current-password" name="current-password"
             placeholder="Digite sua senha" formControlName="password">
           <button class="view-pass" type="button" mat-icon-button aria-label="Ver senha"
             (click)="view_pass = !view_pass">
@@ -33,14 +33,14 @@
   </mat-tab>
   <mat-tab label="Criar conta">
     <form (ngSubmit)="loginSubmitHandler()" [formGroup]="login_form">
-      <div class="card-input">
+      <div class="card-input alt">
         <label for="email">E-mail</label>
-        <input class="alt" type="text" id="email" name="email" placeholder="Digite seu e-mail" formControlName="email">
+        <input type="text" id="email" name="email" placeholder="Digite seu e-mail" formControlName="email">
       </div>
-      <div class="card-input">
+      <div class="card-input alt">
         <label for="current-password">Senha</label>
         <span class="input-icon">
-          <input class="alt" [type]="view_pass ? 'text' : 'password'" id="current-password" name="current-password"
+          <input [type]="view_pass ? 'text' : 'password'" id="current-password" name="current-password"
             placeholder="Digite sua senha" formControlName="password">
           <button class="view-pass" type="button" mat-icon-button aria-label="Ver senha"
             (click)="view_pass = !view_pass">

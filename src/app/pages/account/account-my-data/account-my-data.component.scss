@@ -1,3 +1,5 @@
+@import 'src/styles/media';
+
 #account-my-data {
   .container {
     .content {
@@ -10,6 +12,9 @@
             height: 132px;
             border-radius: 50%;
             background-color: var(--border_color);
+            @include media('<=tablet') {
+              margin: 0 auto;
+            }
             img {
               width: 100%;
               height: 100%;
@@ -26,7 +31,7 @@
             }
             button {
               position: absolute;
-              background-color: var(--primary_bg);
+              background-color: var(--secondary_bg);
               transition: var(--ts);
               &.hidden {
                 transform: scale(0);
@@ -56,6 +61,10 @@
           grid-template-columns: repeat(2, 1fr);
           grid-gap: 1rem;
           margin-bottom: 2rem;
+
+          @include media('<=phone') {
+            grid-template-columns: repeat(1, 1fr);
+          }
           .card-input {
             & + .card-input {
               margin-top: 0px;
@@ -76,6 +85,9 @@
         align-items: center;
         width: fit-content;
         margin: 2rem 0 0 auto;
+        @include media('<=phone') {
+          margin: 2rem auto 0 auto;
+        }
 
         .loader {
           width: 120px;
