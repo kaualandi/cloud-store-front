@@ -96,6 +96,12 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   getMe() {
+    if (!this.storage.token) {
+      this.user = {} as IUser;
+      this.getCart();
+      return;
+    }
+
     this.authService.me().subscribe({
       next: (data) => {
         this.storage.myself = data;

@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { Subject } from 'rxjs';
-import { LoginComponent } from '../components/login/login.component';
 import { IConfig } from '../models/config';
 import { IUser } from '../models/user';
 
@@ -11,11 +9,7 @@ import { IUser } from '../models/user';
   providedIn: 'root',
 })
 export class StorageService {
-  constructor(
-    private cookieService: CookieService,
-    private router: Router,
-    private dialog: MatDialog
-  ) {}
+  constructor(private cookieService: CookieService, private router: Router) {}
 
   UserSubject = new Subject<void>();
   private myUser: IUser = {} as IUser;
@@ -94,9 +88,7 @@ export class StorageService {
     this.setToken('');
     this.changeUser();
     this.router.navigate(['/']);
-    this.dialog.open(LoginComponent, {
-      panelClass: 'login-dialog',
-    });
+    this.myself = {} as IUser;
   }
 
   get ssl() {
