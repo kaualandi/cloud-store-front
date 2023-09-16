@@ -13,6 +13,10 @@ export class AddressService {
     return this.http.get<IViaCep>(`https://viacep.com.br/ws/${zipCode}/json/`);
   }
 
+  getAddressById(id: number) {
+    return this.http.get<IAddress>(`address/${id}`);
+  }
+
   postAddress(data: IAddress) {
     const body = new HttpParams()
       .set('city', data.city || '')
@@ -37,5 +41,9 @@ export class AddressService {
       .set('zip_code', data.zip_code || '');
 
     return this.http.patch<IAddress>(`address/${id}`, body);
+  }
+
+  deleteAddress(id: number) {
+    return this.http.delete(`address/${id}`);
   }
 }

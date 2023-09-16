@@ -5,6 +5,8 @@ import { AccountComponent } from './account.component';
 import { AccountOrdersComponent } from './account-orders/account-orders.component';
 import { AccountOrderDetailComponent } from './account-order-detail/account-order-detail.component';
 import { AccountMyDataComponent } from './account-my-data/account-my-data.component';
+import { AccountMyAddressComponent } from './account-my-address/account-my-address.component';
+import { AccountAddressDetailComponent } from './account-address-detail/account-address-detail.component';
 
 const routes: Routes = [
   {
@@ -26,6 +28,18 @@ const routes: Routes = [
       {
         path: 'my-data',
         component: AccountMyDataComponent,
+      },
+      {
+        path: 'my-address',
+        component: AccountMyAddressComponent,
+      },
+      {
+        path: 'my-address/:id',
+        component: AccountAddressDetailComponent,
+      },
+      {
+        path: 'my-address/new',
+        component: AccountAddressDetailComponent,
       },
     ],
   },

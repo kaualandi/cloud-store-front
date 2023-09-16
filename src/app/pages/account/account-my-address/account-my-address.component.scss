@@ -1,0 +1,40 @@
+#account-my-address {
+  .container {
+    .content {
+      .addresses {
+        .address {
+          position: relative;
+          border-radius: var(--br);
+          box-shadow: var(--bs);
+          padding: 1rem;
+          & > span {
+            padding-right: 42px;
+            &.street-num {
+              font-weight: 600;
+            }
+          }
+          a {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+          }
+
+          & + .address {
+            margin-top: 1rem;
+          }
+
+          &.add {
+            padding: 1rem;
+            width: 100%;
+            ::ng-deep .mat-button-wrapper {
+              span {
+                display: block;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -13,6 +13,8 @@ import { AccountResumeComponent } from './account-resume/account-resume.componen
 import { AccountRoutingModule } from './account-routing.module';
 import { AccountComponent } from './account.component';
 import { MatNativeDateModule } from '@angular/material/core';
+import { AccountMyAddressComponent } from './account-my-address/account-my-address.component';
+import { AccountAddressDetailComponent } from './account-address-detail/account-address-detail.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     AccountOrdersComponent,
     AccountOrderDetailComponent,
     AccountMyDataComponent,
+    AccountMyAddressComponent,
+    AccountAddressDetailComponent,
   ],
   imports: [
     CommonModule,

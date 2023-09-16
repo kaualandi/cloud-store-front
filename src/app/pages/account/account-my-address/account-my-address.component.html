@@ -1,0 +1,28 @@
+<section class="account-page" id="account-my-address">
+  <div class="container" *ngIf="!loading">
+    <header>
+      <h1>Meus endereços</h1>
+    </header>
+
+    <div class="content">
+      <div class="addresses">
+        <a mat-button class="address add" routerLink="new">
+          <span>Adicionar novo endereço</span>
+          <i icon="plus"></i>
+        </a>
+
+        <div class="address" *ngFor="let addr of user.address">
+          <span class="street-num f-16 one-line">{{addr.street}}, {{addr.number}}</span>
+          <span class="neighborhood-city-state one-line">{{addr.neighborhood}} - {{addr.city}} / {{addr.state}}</span>
+          <span class="zip-code one-line">{{addr.zip_code | mask: '00000-000'}}</span>
+          <span class="complement one-line">{{addr.complement}}</span>
+          <a mat-icon-button routerLink="{{addr.id}}">
+            <i icon="pen"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <page-loading *ngIf="loading"></page-loading>
+</section>

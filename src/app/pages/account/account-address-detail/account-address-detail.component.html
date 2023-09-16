@@ -1,0 +1,60 @@
+<section class="account-page" id="account-address-detail">
+  <div class="container" *ngIf="!loading">
+    <header>
+      <h1>{{id === 'new' ? 'Adicionar' : 'Editar'}} endereço</h1>
+    </header>
+
+    <div class="content">
+      <form [formGroup]="form" (ngSubmit)="handleFormSubmit()">
+        <div class="inputs">
+          <div class="card-input alt">
+            <label for="zip_code">CEP</label>
+            <input type="text" id="zip_code" formControlName="zip_code" mask="00000-000" />
+          </div>
+
+          <div class="card-input alt">
+            <label for="state">Estado</label>
+            <input type="text" id="state" formControlName="state" mask="AA" />
+          </div>
+
+          <div class="card-input alt">
+            <label for="city">Cidade</label>
+            <input type="text" id="city" formControlName="city" />
+          </div>
+
+          <div class="card-input alt">
+            <label for="neighborhood">Bairro</label>
+            <input type="text" id="neighborhood" formControlName="neighborhood" />
+          </div>
+
+          <div class="card-input alt">
+            <label for="street">Rua</label>
+            <input type="text" id="street" formControlName="street" />
+          </div>
+
+          <div class="card-input alt">
+            <label for="number">Número</label>
+            <input type="text" id="number" formControlName="number" />
+          </div>
+
+          <div class="card-input alt">
+            <label for="complement">Complemento</label>
+            <input type="text" id="complement" formControlName="complement" />
+          </div>
+        </div>
+
+        <div class="actions">
+          <button mat-button type="button" class="danger" *ngIf="id !== 'new'" (click)="handleDeleteAddress()"
+            [disabled]="submitting || deleting">
+            Excluir <loading *ngIf="deleting"></loading>
+          </button>
+          <button mat-button type="submit" class="primary" [disabled]="submitting || deleting">
+            Salvar alterações <loading *ngIf="submitting"></loading>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <page-loading *ngIf="loading"></page-loading>
+</section>

@@ -38,6 +38,18 @@
       border: 1px solid transparent;
     }
 
+    &.danger {
+      background-color: var(--red_color);
+      background-image: linear-gradient(
+        45deg,
+        #eb6474 0%,
+        #e72138 99%,
+        #e72138 100%
+      );
+      border: 1px solid var(--red_color);
+      color: var(--white);
+    }
+
     &.s {
       padding: 0rem 0.5rem;
     }

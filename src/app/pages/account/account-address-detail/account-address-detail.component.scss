@@ -1,0 +1,25 @@
+#account-address-detail {
+  .container {
+    .content {
+      form {
+        .inputs {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          grid-gap: 1rem;
+          margin-bottom: 2rem;
+          .card-input {
+            & + .card-input {
+              margin-top: 0px;
+            }
+          }
+        }
+
+        .actions {
+          display: flex;
+          justify-content: center;
+          gap: 1rem;
+        }
+      }
+    }
+  }
+}

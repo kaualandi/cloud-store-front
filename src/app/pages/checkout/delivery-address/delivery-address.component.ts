@@ -179,7 +179,9 @@ export class DeliveryAddressComponent implements OnInit {
             city: address.localidade,
             neighborhood: address.bairro,
             street: address.logradouro,
-            complement: address.complemento,
+            complement:
+              address.complemento ||
+              this.newAddressForm.get('complement')?.value,
           });
         },
       });

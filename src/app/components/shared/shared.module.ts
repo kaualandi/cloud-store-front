@@ -23,6 +23,7 @@ import { PageLoadingComponent } from './page-loading/page-loading.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { ProductCardComponent } from './product-card/product-card.component';
 import { ProductListItemComponent } from './product-list-item/product-list-item.component';
+import { ConfirmComponent } from '../modals/confirm/confirm.component';
 
 @NgModule({
   imports: [
@@ -52,6 +53,7 @@ import { ProductListItemComponent } from './product-list-item/product-list-item.
     ProductListItemComponent,
     OrderListItemComponent,
     OrderStatusPipe,
+    ConfirmComponent,
   ],
   exports: [
     LoadingComponent,
@@ -66,6 +68,7 @@ import { ProductListItemComponent } from './product-list-item/product-list-item.
     EditQuantityModalComponent,
     ProductListItemComponent,
     OrderListItemComponent,
+    ConfirmComponent,
   ],
 })
 export class SharedModule {}
