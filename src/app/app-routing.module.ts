@@ -67,6 +67,11 @@ const routes: Routes = [
         loadChildren: () =>
           import('./pages/account/account.module').then((m) => m.AccountModule),
       },
+      {
+        path: 'contact',
+        loadChildren: () =>
+          import('./pages/contact/contact.module').then((m) => m.ContactModule),
+      },
     ],
   },
 ];
