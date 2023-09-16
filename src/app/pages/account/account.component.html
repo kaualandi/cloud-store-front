@@ -21,12 +21,13 @@
             </button>
           </li>
           <li>
-            <button mat-button routerLink="/account/my-address" routerLinkActive="active">
+            <button mat-button routerLink="/account/my-address" routerLinkActive="active"
+              [routerLinkActiveOptions]="{exact: true}">
               <i icon="map"></i> Meus endereços
             </button>
           </li>
           <li>
-            <button mat-button>
+            <button mat-button routerLink="/account/password" routerLinkActive="active">
               <i icon="user_shield"></i> Alterar senha
             </button>
           </li>

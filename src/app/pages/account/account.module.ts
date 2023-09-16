@@ -15,6 +15,7 @@ import { AccountComponent } from './account.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import { AccountMyAddressComponent } from './account-my-address/account-my-address.component';
 import { AccountAddressDetailComponent } from './account-address-detail/account-address-detail.component';
+import { AccountPasswordComponent } from './account-password/account-password.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { AccountAddressDetailComponent } from './account-address-detail/account-
     AccountMyDataComponent,
     AccountMyAddressComponent,
     AccountAddressDetailComponent,
+    AccountPasswordComponent,
   ],
   imports: [
     CommonModule,

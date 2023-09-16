@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   base_url: 'https://cloud-api.kaualf.com/',
+  // base_url: 'http://localhost:3000/',
 };
 
 /*

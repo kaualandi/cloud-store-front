@@ -36,4 +36,13 @@ export class AuthService {
 
     return this.http.patch<IUser>('auth/update', body);
   }
+
+  changePassword(old_password: string, new_password: string) {
+    const body = {
+      old_password: Md5.init(old_password),
+      new_password: Md5.init(new_password),
+    };
+
+    return this.http.post('auth/change-password', body);
+  }
 }

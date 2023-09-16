@@ -7,6 +7,7 @@ import { AccountOrderDetailComponent } from './account-order-detail/account-orde
 import { AccountMyDataComponent } from './account-my-data/account-my-data.component';
 import { AccountMyAddressComponent } from './account-my-address/account-my-address.component';
 import { AccountAddressDetailComponent } from './account-address-detail/account-address-detail.component';
+import { AccountPasswordComponent } from './account-password/account-password.component';
 
 const routes: Routes = [
   {
@@ -40,6 +41,10 @@ const routes: Routes = [
       {
         path: 'my-address/new',
         component: AccountAddressDetailComponent,
+      },
+      {
+        path: 'password',
+        component: AccountPasswordComponent,
       },
     ],
   },

@@ -17,6 +17,8 @@
         "prettier"
       ],
       "rules": {
+        "camelcase": "off",
+        "dot-notation": "off",
         "@angular-eslint/directive-selector": [
           "error",
           {
