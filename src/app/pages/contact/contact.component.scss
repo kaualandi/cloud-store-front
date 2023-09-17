@@ -1,0 +1,45 @@
+#contact {
+  .container {
+    .content {
+      max-width: 600px;
+      width: 100%;
+      margin: 0 auto;
+
+      .socials {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        li {
+          a {
+            background-color: var(--secondary_bg);
+            i {
+              font-size: 0.9rem;
+            }
+          }
+        }
+      }
+
+      .divider {
+        margin: 2rem 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        color: var(--text_color);
+        &::before,
+        &::after {
+          content: '';
+          flex: 1;
+          border-bottom: 1px solid var(--secondary_bg);
+        }
+      }
+
+      form {
+        p {
+          text-align: center;
+        }
+      }
+    }
+  }
+}

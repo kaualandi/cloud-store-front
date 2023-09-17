@@ -1,1 +1,74 @@
-<p>contact works!</p>
+<main id="contact">
+  <div class="container">
+    <div class="content">
+      <ul class="socials">
+        <li>
+          <a mat-icon-button [href]="wpp">
+            <i icon="whatsapp"></i>
+          </a>
+        </li>
+        <li>
+          <a mat-icon-button [href]="phone">
+            <i icon="phone"></i>
+          </a>
+        </li>
+        <li>
+          <a mat-icon-button [href]="mail">
+            <i icon="email"></i>
+          </a>
+        </li>
+      </ul>
+
+      <div class="divider f-18">ou abra um chamado</div>
+
+      <form [formGroup]="form" (ngSubmit)="handleFormSubmit()">
+        <p>Respondemos bem rápido e da forma que quiser!</p>
+        <div class="card-input alt">
+          <label for="name">Nome</label>
+          <input type="text" id="name" name="name" placeholder="Qual o seu nome?" formControlName="name">
+        </div>
+
+        <div class="inputs">
+          <div class="card-input alt">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" placeholder="Qual o seu e-mail?" formControlName="email">
+          </div>
+
+          <div class="card-input alt">
+            <label for="phone">Celular</label>
+            <input type="tel" id="phone" name="phone" placeholder="Qual o seu celular?" mask="(00) 00000-0000"
+              formControlName="phone">
+          </div>
+        </div>
+
+        <div class="card-input alt">
+          <label for="contact-back">Contato de volta</label>
+          <mat-select id="contact-back" name="contact-back" formControlName="contact_back">
+            <mat-option value="CALL">Quero conversar por ligação</mat-option>
+            <mat-option value="WHATSAPP">Quero conversar pelo WhatsApp</mat-option>
+            <mat-option value="EMAIL">Quero conversar por e-mail</mat-option>
+          </mat-select>
+        </div>
+
+        <div class="card-input alt">
+          <label for="subject">Assunto</label>
+          <input type="text" id="subject" name="subject" placeholder="Sobre o que quer conversar?"
+            formControlName="subject">
+        </div>
+
+        <div class="card-input alt">
+          <label for="message">Mensagem</label>
+          <textarea id="message" name="message" placeholder="Diga do que precisa" rows="8"
+            formControlName="message"></textarea>
+        </div>
+
+        <div class="card-input">
+          <button type="submit" mat-button class="primary" [disabled]="submitting">
+            Enviar <loading *ngIf="submitting"></loading>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</main>

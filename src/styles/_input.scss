@@ -1,4 +1,5 @@
 @import './animations';
+@import './media';
 
 .card-input {
   position: relative;
@@ -38,9 +39,10 @@
     border: 1px solid transparent;
     background-color: var(--white);
     color: var(--title_color) !important;
+    resize: none;
 
     &.mat-select {
-      padding: 11px 20px;
+      padding: 12px 20px;
     }
     &.alt {
       background-color: var(--secondary_bg);
@@ -79,4 +81,23 @@
 
 .mat-form-field-infix {
   display: flex;
+}
+
+form {
+  .inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1rem 0;
+
+    @include media('<=phone') {
+      grid-template-columns: 1fr;
+    }
+
+    .card-input {
+      & + .card-input {
+        margin-top: 0;
+      }
+    }
+  }
 }

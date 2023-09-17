@@ -58,7 +58,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     },
     {
       text: 'Trocas e Devoluções',
-      link: '/exchanges',
+      link: '/exchange',
     },
     {
       text: 'Sobre Nós',

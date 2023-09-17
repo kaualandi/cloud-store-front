@@ -13,6 +13,8 @@ $max-font-size: 52;
 }
 
 .mat-typography {
+  @extend .f-inter;
+
   h1 {
     @extend .fd-24;
   }
@@ -49,6 +51,9 @@ $max-font-size: 52;
   input {
     @extend .fd-14;
   }
+  textarea {
+    @extend .fd-14;
+  }
   .mat-button {
     @extend .fd-14;
   }
@@ -76,6 +81,11 @@ strong {
 
 .f-inter {
   font-family: 'Inter', sans-serif !important;
+}
+
+input,
+textarea {
+  @extend .f-inter;
 }
 
 .one-line {
