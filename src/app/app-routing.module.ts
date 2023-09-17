@@ -35,6 +35,13 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'exchange',
+        loadChildren: () =>
+          import('./pages/exchange/exchange.module').then(
+            (m) => m.ExchangeModule
+          ),
+      },
+      {
         path: 'product/:id',
         loadChildren: () =>
           import('./pages/detail-product/detail-product.module').then(
