@@ -1,0 +1,46 @@
+@import 'src/styles/typography';
+
+#faq {
+  padding-top: 3rem;
+
+  .container {
+    margin: 0 auto;
+    header {
+      margin-bottom: 2rem;
+      h1 {
+        font-weight: 600;
+        color: var(--text_color);
+        text-align: center;
+        margin: 0;
+        @extend .f-45;
+        line-height: 1;
+      }
+    }
+
+    .content {
+      .mat-accordion {
+        ::ng-deep .mat-expansion-panel {
+          .mat-expansion-panel-header {
+            .mat-content {
+              @extend .f-18;
+              line-height: normal;
+              color: var(--text_color);
+              font-weight: 500;
+            }
+          }
+          .mat-expansion-panel-body {
+            p,
+            p a {
+              @extend .f-16;
+              color: var(--text_color);
+              line-height: 1.5;
+              &:visited {
+                color: var(--text_color);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
