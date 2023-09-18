@@ -1,0 +1,83 @@
+<main id="tracking">
+  <div class="container">
+    <header>
+      <h1>Rastreio do pedido</h1>
+    </header>
+
+    <div class="content">
+      <mat-accordion displayMode="flat" [hideToggle]="true">
+        <mat-expansion-panel class="search" [expanded]="search">
+          <p *ngIf="search_error">Suas informações não nos ajudaram a encontrar sua encomenda, tente novamente, de outra
+            forma, ou podemos te ajudar entrando em <a routerLink="/contact">contato</a>.</p>
+          <div class="row">
+            <div class="col">
+              <div class="by-order card">
+                <form [formGroup]="byOrderNumberForm" (ngSubmit)="handleByOrderNumberFormSubmit()">
+                  <div class="card-input alt">
+                    <label for="email-phone">E-mail ou telefone</label>
+                    <input type="text" id="email-phone" name="email-phone" placeholder="Digite seu e-mail ou telefone"
+                      formControlName="email_phone">
+                  </div>
+                  <div class="card-input alt">
+                    <label for="order-number">Número do pedido</label>
+                    <input type="text" id="order-number" name="order-number" placeholder="Digite o número do pedido"
+                      formControlName="order_number" spellcheck="false">
+                  </div>
+                  <div class="card-input alt">
+                    <button type="submit" mat-button class="primary">Localizar</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="col divider">
+              <span class="f-18">ou</span>
+            </div>
+            <div class="col">
+              <div class="by-tracking-number card">
+                <form [formGroup]="byTrackingNumberForm" (ngSubmit)="handleByTrackingNumberFormSubmit()">
+                  <div class="card-input alt">
+                    <label for="tracking-number">Código de rastreio</label>
+                    <input type="text" id="tracking-number" name="tracking-number"
+                      placeholder="Digite o código de rastreio" mask="AA000000000AA" formControlName="tracking_number"
+                      spellcheck="false">
+                  </div>
+                  <div class="card-input alt">
+                    <button type="submit" mat-button class="primary">Localizar</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel class="loading" [expanded]="loading">
+          <div class="box-loading">📦</div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel class="success" [expanded]="success">
+          <h2>Que ótimo, encontramos seu manto!</h2>
+          <p class="subtitle">Acompanhe abaixo o status do pedido <strong>#2345673456</strong>!</p>
+
+          <div class="tracking">
+            <div class="item" *ngFor="let step of tracking_steps">
+              <div class="image">
+                <i icon="truck" class="f-18"></i>
+              </div>
+              <div class="texts">
+                <p class="title f-16 one-line">{{ step.title }}</p>
+                <p class="description one-line">{{ step.description }}</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="another">
+            <p>Quer rastrear outro pedido?</p>
+            <button type="button" mat-button class="primary" (click)="reset()">Rastrear outro pedido</button>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+</main>

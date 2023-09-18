@@ -89,6 +89,13 @@ const routes: Routes = [
         loadChildren: () =>
           import('./pages/about/about.module').then((m) => m.AboutModule),
       },
+      {
+        path: 'tracking',
+        loadChildren: () =>
+          import('./pages/tracking/tracking.module').then(
+            (m) => m.TrackingModule
+          ),
+      },
     ],
   },
 ];
